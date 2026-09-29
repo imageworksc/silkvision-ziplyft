@@ -1,0 +1,256 @@
+/* ==========================================================================
+   Page behaviour
+   Loaded with `defer`, so the document is parsed by the time this runs.
+
+   Everything here is an enhancement. If the file fails to load the page is
+   still complete and readable: nothing is hidden by CSS until this script
+   says it is safe to hide it.
+   ========================================================================== */
+
+'use strict';
+
+const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
+const root = document.documentElement;
+
+/* --------------------------------------------------------------------------
+   1 · Menu
+   A button with aria-expanded rather than a <details>: above 992px the panel
+   has to be a plain row, and forcing a closed <details> open in CSS means
+   fighting the browser's own hiding of its contents.
+   -------------------------------------------------------------------------- */
+const setupMenu = () => {
+  const toggle = document.querySelector('.nav-toggle');
+  const nav = document.getElementById('nav');
+  if (!toggle || !nav) return;
+
+  const setOpen = (open) => {
+    toggle.setAttribute('aria-expanded', String(open));
+    nav.dataset.open = String(open);
+  };
+
+  toggle.addEventListener('click', () => {
+    setOpen(toggle.getAttribute('aria-expanded') !== 'true');
+  });
+
+  /* Escape closes it and returns focus to the control that opened it,
+     otherwise focus is stranded in a panel that is no longer on screen.
+
+     Bound to the document, not to nav. The toggle is nav's sibling, so right
+     after you open the menu — when focus is still sitting on the button —
+     a keydown on nav never fires and Escape did nothing at the one moment
+     you are most likely to press it. */
+  document.addEventListener('keydown', (e) => {
+    if (e.key !== 'Escape') return;
+    if (toggle.getAttribute('aria-expanded') !== 'true') return;
+    setOpen(false);
+    toggle.focus();
+  });
+
+  nav.addEventListener('click', (e) => {
+    if (e.target.closest('a')) setOpen(false);
+  });
+};
+
+/* --------------------------------------------------------------------------
+   2 · Scroll state — the reading progress bar, the sticky header's shadow,
+   and the flag that retires the scroll cue once it has done its job.
+   -------------------------------------------------------------------------- */
+const setupScroll = () => {
+  const bar = document.getElementById('progress');
+  const header = document.getElementById('siteHeader');
+  let ticking = false;
+
+  const read = () => {
+    const y = window.scrollY;
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+    if (bar) bar.style.setProperty('--p', max > 0 ? (y / max).toFixed(4) : '0');
+    if (header) header.dataset.stuck = String(y > 8);
+    root.dataset.scrolled = String(y > 40);
+    ticking = false;
+  };
+
+  const request = () => {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(read);
+  };
+
+  window.addEventListener('scroll', request, { passive: true });
+  window.addEventListener('resize', request);
+
+  read();
+};
+
+/* --------------------------------------------------------------------------
+   3 · Scroll reveals
+   The flag goes on <html> from here, so a target is only ever hidden while
+   the page is in a position to bring it back.
+   -------------------------------------------------------------------------- */
+const setupReveals = () => {
+  const targets = [...document.querySelectorAll('[data-reveal]')];
+  if (!targets.length) return;
+
+  root.dataset.anim = 'on';
+
+  if (reduced.matches || !('IntersectionObserver' in window)) {
+    for (const el of targets) el.classList.add('is-in');
+    return;
+  }
+
+  const io = new IntersectionObserver((entries) => {
+    for (const entry of entries) {
+      if (!entry.isIntersecting) continue;
+      entry.target.classList.add('is-in');
+      io.unobserve(entry.target);
+    }
+  }, { rootMargin: '0px 0px -10% 0px', threshold: .1 });
+
+  for (const el of targets) io.observe(el);
+
+  // The negative rootMargin means anything in the last slice of a
+  // fully-scrolled page would never trigger. Once the visitor reaches the
+  // bottom, reveal whatever is still waiting.
+  const flush = () => {
+    if (window.innerHeight + window.scrollY < document.documentElement.scrollHeight - 2) return;
+    for (const el of targets) {
+      el.classList.add('is-in');
+      io.unobserve(el);
+    }
+    window.removeEventListener('scroll', flush);
+  };
+  window.addEventListener('scroll', flush, { passive: true });
+  window.addEventListener('load', flush);
+};
+
+/* --------------------------------------------------------------------------
+   4 · The comparison table's swipe hint
+   A closed loop: it runs once and ends. The hint exists because a horizontal
+   swipe is an invisible trigger; the moment the region is actually scrolled
+   the user has discovered it, so the hint retires and the listener with it.
+   -------------------------------------------------------------------------- */
+const setupScrollHint = () => {
+  const region = document.getElementById('compareScroll');
+  if (!region) return;
+
+  const used = () => {
+    region.dataset.used = 'true';
+    region.removeEventListener('scroll', used);
+  };
+  region.addEventListener('scroll', used, { passive: true, once: true });
+};
+
+/* --------------------------------------------------------------------------
+   5 · Before / after
+   The range input is the control; this only mirrors its value into the one
+   custom property the clip and the handle both read. The live text keeps a
+   screen reader told how far the reveal has gone.
+   -------------------------------------------------------------------------- */
+const setupBeforeAfter = () => {
+  const stage = document.getElementById('ba');
+  const range = document.getElementById('baRange');
+  if (!stage || !range) return;
+
+  const paint = () => {
+    stage.style.setProperty('--pos', `${range.value}%`);
+    range.setAttribute('aria-valuetext', `${Math.round(100 - range.value)}% of the after photograph showing`);
+  };
+  range.addEventListener('input', paint);
+  paint();
+};
+
+/* --------------------------------------------------------------------------
+   6 · The mechanism video
+   Silent and looping, so it plays by itself — but only while it is on
+   screen, never under reduced motion, and never again once somebody has
+   pressed pause. The button shows which state it is in.
+   -------------------------------------------------------------------------- */
+const setupLoopVideo = () => {
+  const video = document.getElementById('mechVideo');
+  const btn = document.getElementById('mechToggle');
+  if (!video || !btn) return;
+
+  const label = btn.querySelector('.vid-btn__label');
+  let userPaused = reduced.matches;
+
+  const show = () => {
+    const playing = !video.paused;
+    btn.dataset.state = playing ? 'playing' : 'paused';
+    btn.setAttribute('aria-label', playing ? 'Pause video' : 'Play video');
+    if (label) label.textContent = playing ? 'Pause' : 'Play';
+  };
+  video.addEventListener('play', show);
+  video.addEventListener('pause', show);
+  show();
+
+  btn.addEventListener('click', () => {
+    if (video.paused) {
+      userPaused = false;
+      video.play().catch(() => {});
+    } else {
+      userPaused = true;
+      video.pause();
+    }
+  });
+
+  if (!('IntersectionObserver' in window)) return;
+  new IntersectionObserver(([entry]) => {
+    if (entry.isIntersecting && !userPaused) video.play().catch(() => {});
+    else if (!entry.isIntersecting && !video.paused) video.pause();
+  }, { threshold: .5 }).observe(video);
+};
+
+/* --------------------------------------------------------------------------
+   7 · Dr. Silk's video
+   This one talks, so it waits to be asked. Pressing play starts it with
+   sound and hands over to the browser's own controls.
+   -------------------------------------------------------------------------- */
+const setupTalkVideo = () => {
+  const video = document.getElementById('silkVideo');
+  const btn = document.getElementById('silkPlay');
+  if (!video || !btn) return;
+
+  btn.addEventListener('click', () => {
+    btn.hidden = true;
+    video.controls = true;
+    video.muted = false;
+    video.play().catch(() => { btn.hidden = false; });
+    video.focus();
+  });
+};
+
+/* --------------------------------------------------------------------------
+   8 · The sticky call bar
+   On a phone, once the hero and its two buttons have scrolled away. Hidden
+   again at the closing band, which carries the same two actions full size.
+   -------------------------------------------------------------------------- */
+const setupStickyCta = () => {
+  const bar = document.getElementById('stickyCta');
+  const hero = document.querySelector('.hero');
+  const closing = document.getElementById('contact');
+  if (!bar || !hero || !('IntersectionObserver' in window)) return;
+
+  let pastHero = false;
+  let atClosing = false;
+  const paint = () => { bar.dataset.shown = String(pastHero && !atClosing); };
+
+  new IntersectionObserver(([e]) => {
+    pastHero = !e.isIntersecting && e.boundingClientRect.top < 0;
+    paint();
+  }).observe(hero);
+
+  if (closing) {
+    new IntersectionObserver(([e]) => {
+      atClosing = e.isIntersecting;
+      paint();
+    }).observe(closing);
+  }
+};
+
+setupMenu();
+setupScroll();
+setupReveals();
+setupScrollHint();
+setupBeforeAfter();
+setupLoopVideo();
+setupTalkVideo();
+setupStickyCta();

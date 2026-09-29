@@ -1,0 +1,134 @@
+/* ==========================================================================
+   Tokens — colour, type, space, depth, motion
+   ==========================================================================
+   Every value the page uses is named here once. Nothing downstream should
+   contain a raw hex, a raw duration or a magic pixel number.
+   ========================================================================== */
+
+:root {
+  /* ---------- Blues. Silk Vision's own, extended into a real ramp ---------- */
+  --ink-900: #001325;
+  --ink-800: #012a47;
+  --ink-700: #013559;   /* their deepest navy   */
+  --ink-600: #00497b;   /* their pre-footer     */
+  --blue-500: #005894;  /* THE brand blue       */
+  --blue-400: #1e7fbe;
+  --cyan-400: #35a7e0;  /* the light in the palette — glows and accents     */
+  --cyan-300: #6cc5f0;
+  --pale-200: #ccdeea;  /* their hero sub-heading                            */
+  --pale-100: #e7eef4;
+
+  /* ---------- Purple. The action colour. ---------- */
+  --plum-700: #5c005c;
+  --plum-600: #6a006a;  /* dark enough to carry text on white — their token */
+  --plum-500: #800080;  /* the brand value                                   */
+  --plum-400: #a626a6;
+  --plum-100: #f5e4f5;
+
+  /* ---------- Neutrals ---------- */
+  --white: #ffffff;
+  --paper: #f5f8fb;
+  --grey-100: #e8eef4;
+  --grey-300: #c3ced8;
+  --grey-500: #5f7276;
+  --grey-700: #45575b;
+  --grey-900: #2a3538;
+
+  /* ---------- Semantic ---------- */
+  --text: var(--grey-900);
+  --text-soft: var(--grey-700);
+  --text-faint: var(--grey-500);
+  --heading: var(--blue-500);
+  --on-dark: var(--white);
+  --on-dark-soft: rgb(255 255 255 / .8);
+  --on-dark-faint: rgb(255 255 255 / .62);
+  --hairline: rgb(1 53 89 / .12);
+  --hairline-dark: rgb(255 255 255 / .16);
+
+  /* ---------- Fills ----------
+     Flat, no gradients anywhere on the page. Each of these replaces one that
+     used to ramp; the value chosen is roughly where the old ramp sat at its
+     midpoint, so nothing shifts hue. */
+  --fill-action: var(--plum-500);   /* buttons, ticks, the OBS table column */
+  --fill-deep: var(--ink-700);      /* the dark bands                      */
+  --fill-accent: var(--plum-500);   /* nav underline, reading progress     */
+  /* The scrim is even, so its alpha is set by the worst case rather than by
+     how it looks over the dark half: at .78, white on the photograph's very
+     brightest pixel still measures 8.1:1, and the 80%-white body copy 5.9:1.
+     Anything heavier buries the operating room behind it. */
+  --fill-scrim: rgb(1 34 58 / .78); /* over the hero photograph            */
+
+  /* ---------- Depth ---------- */
+  --shadow-sm: 0 1px 2px rgb(1 53 89 / .06), 0 2px 8px rgb(1 53 89 / .06);
+  --shadow-md: 0 2px 6px rgb(1 53 89 / .07), 0 12px 28px rgb(1 53 89 / .1);
+  --shadow-lg: 0 6px 16px rgb(1 53 89 / .1), 0 28px 60px rgb(1 53 89 / .17);
+  /* For a white chip on a white card. --shadow-sm is 6%, tuned for a card
+     lifting off the paper band — on white-over-white it is invisible. Two
+     layers, per the depth rule: a tight dark one for the edge and a softer
+     one for the air under it. Sized for a 53px object, not a 500px one.
+
+     Neutral, and the only shadow here that is. The other three are tinted
+     rgb(1 53 89) — a navy tint is usually the better shadow, but this one
+     sits at close range against pure white and read as blue rather than as
+     shade. Blur pulled in from 12px to 5px and opacity from .12 to .07: on a
+     53px object a 12px blur is a quarter of the thing casting it. */
+  --shadow-well: 0 1px 2px rgb(0 0 0 / .05), 0 2px 5px rgb(0 0 0 / .07);
+
+  /* ---------- Type ---------- */
+  --font: 'Poppins', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+
+  /* The reader is usually past sixty and about to have eye surgery. The floor
+     is 17px, not 16, and the ladder is generous the whole way up. */
+  /* --t-xs is for labels only — the hero's fact labels, the scroll cue,
+     the table's group rows. Never for a sentence. */
+  --t-xs:    clamp(.8125rem, .1vw + .79rem, .875rem);    /* 13 → 14 */
+  /* --t-sm carries real copy (card text, table cells, nav), so its floor is
+     16px, not 15. */
+  --t-sm:    clamp(1rem, .15vw + .96rem, 1.0625rem);     /* 16 → 17 */
+  --t-body:  clamp(1.0625rem, .22vw + 1.01rem, 1.1875rem); /* 17 → 19 */
+  --t-lead:  clamp(1.0625rem, .5vw + .9625rem, 1.3125rem); /* 17 → 21 */
+  --t-h3:    clamp(1.3125rem, .7vw + 1.15rem, 1.625rem);  /* 21 → 26 */
+  --t-h2:    clamp(1.625rem, 2.4vw + 1.05rem, 2.625rem);  /* 26 → 42 */
+  --t-h1:    clamp(2rem, 3.8vw + .9rem, 3.875rem);        /* 32 → 62 */
+
+  --lh-tight: 1.06;
+  --lh-head: 1.16;
+  --lh-body: 1.62;
+  --ls-tight: -.03em;
+  --ls-wide: .14em;
+
+  /* ---------- Space ---------- */
+  --s-1: .25rem;  --s-2: .5rem;   --s-3: .75rem;  --s-4: 1rem;
+  --s-5: 1.5rem;  --s-6: 2rem;    --s-7: 2.5rem;  --s-8: 3rem;
+  --s-9: 4rem;    --s-10: 5rem;   --s-11: 7rem;
+
+  --gutter: clamp(1.25rem, 4vw, 2.75rem);
+  --band-y: clamp(3.5rem, 8vw, 7rem);
+  --shell: 78rem;
+  --measure: 62ch;
+
+  /* ---------- Shape ----------
+     The ladder came down about a third: 8/14/20 to 6/10/14. Every rounded
+     box on the page reads off it, so the one edit moves the cards, the
+     buttons, the icon wells, the feature rows, the table's frame and the
+     focus ring together and they stay in proportion to each other.
+
+     --r-xl was on the ladder and nothing used it. */
+  --r-sm: .375rem;   /*  6px — small wells, the focus ring, the skip link */
+  --r-md: .625rem;   /* 10px — buttons, icon wells, feature rows          */
+  --r-lg: .875rem;   /* 14px — cards, the comparison table's frame        */
+  --r-pill: 999px;   /*        circles only: the tick, the seal, the rule */
+
+  /* ---------- Motion ---------- */
+  --ease: cubic-bezier(.22, .9, .3, 1);
+  --ease-spring: cubic-bezier(.34, 1.4, .5, 1);
+  /* For the two ambient loops. `ease-in-out` is cubic-bezier(.42,0,.58,1);
+     this is the softer sine version of the same shape, and it means every
+     curve on the page comes from a token rather than a browser keyword. */
+  --ease-soft: cubic-bezier(.37, 0, .63, 1);
+  --t-fast: .2s;
+  --t-mid: .38s;
+  --t-slow: .7s;
+
+  --tap: 44px;   /* never scales — it is the size of a fingertip */
+}

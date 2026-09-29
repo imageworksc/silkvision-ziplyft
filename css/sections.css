@@ -1,0 +1,429 @@
+/* ==========================================================================
+   Sections — ZipLyft eyelid lift
+   The page's own layouts. The closing band and the footer are carried over
+   unchanged from the office-based surgery page, so the two pages end the
+   same way.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Hero
+   A split, not the photograph-under-a-scrim of the office-based surgery
+   page. That photograph is a room, and a room survives a 78% navy veil. This
+   one is an eyelid held between two fingers — the subject of the page — and
+   any veil over it hides the one thing it is there to show. So the copy gets
+   its own flat navy ground and the photograph sits beside it untouched.
+   -------------------------------------------------------------------------- */
+
+.hero {
+  display: grid;
+  background: var(--fill-deep);
+  overflow: hidden;
+}
+
+.hero-copy {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: var(--s-6);
+  padding: var(--s-9) var(--gutter) var(--s-8);
+}
+
+.hero h1 { color: var(--white); max-width: 16ch; }
+.hero .lead { color: var(--pale-200); max-width: 30ch; font-weight: 600; }
+.hero-intro { color: var(--on-dark-soft); max-width: 58ch; }
+
+.hero-media { position: relative; margin: 0; aspect-ratio: 4 / 3; }
+.hero-media img {
+  position: absolute;
+  inset: 0;
+  inline-size: 100%;
+  block-size: 100%;
+  object-fit: cover;
+  object-position: 45% 50%;
+}
+
+@media (min-width: 60rem) {
+  .hero {
+    grid-template-columns: minmax(0, 1.12fr) minmax(0, .88fr);
+    min-block-size: min(46rem, 100svh);
+  }
+  /* The copy's left edge lines up with every .wrap below it: the shell is
+     centred, so its content starts half the leftover width in, plus the
+     gutter. */
+  .hero-copy {
+    padding-block: var(--s-10);
+    padding-inline: max(var(--gutter), calc((100vw - var(--shell)) / 2 + var(--gutter))) var(--s-9);
+  }
+  .hero-media { aspect-ratio: auto; }
+}
+
+/* Three facts as a line of type — the office-based surgery page's rule,
+   carried over: frosted cards with counters are the house style of every
+   generated landing page, and this reader is nervous enough already. */
+.hero-facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-4) var(--s-6);
+  margin: 0;
+}
+.hero-facts dt { font-size: var(--t-xs); color: var(--on-dark-faint); }
+.hero-facts dd { margin: 0; font-size: var(--t-sm); font-weight: 600; color: var(--white); }
+@media (min-width: 34rem) {
+  .hero-facts > div + div {
+    border-inline-start: 1px solid var(--hairline-dark);
+    padding-inline-start: var(--s-6);
+  }
+}
+
+/* Where the procedure is offered. It was a strip of its own under the hero;
+   it is the hero's last line now, a step down, under a rule. */
+.hero-area {
+  padding-block-start: var(--s-5);
+  border-block-start: 1px solid var(--hairline-dark);
+  font-size: var(--t-sm);
+  color: var(--on-dark-faint);
+}
+
+/* --------------------------------------------------------------------------
+   Section heads — a heading and the paragraph under it
+   -------------------------------------------------------------------------- */
+
+.head { gap: var(--s-4); }
+.head .lead { max-width: 52ch; }
+.head h3 { font-size: var(--t-h3); color: var(--text-soft); font-weight: 600; letter-spacing: -.01em; }
+
+/* Running copy in a column: paragraphs spaced, the first one a step up. */
+.prose { display: grid; gap: var(--s-4); }
+.prose p { color: var(--text-soft); }
+.prose strong { color: var(--heading); font-weight: 600; }
+.prose .first { font-size: var(--t-lead); line-height: 1.5; color: var(--text); }
+
+/* --------------------------------------------------------------------------
+   How it works — the three steps under the video
+   -------------------------------------------------------------------------- */
+
+.steps3 {
+  display: grid;
+  gap: var(--s-2) var(--s-6);
+  counter-reset: st;
+  inline-size: 100%;
+  padding-block-start: var(--s-6);
+  border-block-start: 1px solid var(--hairline);
+}
+@media (min-width: 48rem) { .steps3 { grid-template-columns: repeat(3, 1fr); } }
+.steps3 .feature { counter-increment: st; }
+.steps3 .feature + .feature { margin-block-start: 0; }
+.steps3 .feature h3::before { content: counter(st) '. '; font-weight: 800; }
+
+.band--deep .feature p { color: var(--on-dark-soft); }
+
+/* --------------------------------------------------------------------------
+   The procedure — five steps, the office-based surgery page's timeline:
+   two columns filled top-to-bottom so the order still reads down a column.
+   -------------------------------------------------------------------------- */
+
+.timeline {
+  display: grid;
+  gap: var(--s-2) var(--s-8);
+  counter-reset: tl;
+  inline-size: 100%;
+}
+@media (min-width: 48rem) {
+  .timeline {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: repeat(3, auto);
+    grid-auto-flow: column;
+  }
+}
+.timeline .feature { counter-increment: tl; }
+.timeline .feature + .feature { margin-block-start: 0; }
+.timeline .feature h3::before { content: counter(tl) '. '; font-weight: 800; }
+
+/* --------------------------------------------------------------------------
+   Candidacy
+   -------------------------------------------------------------------------- */
+
+.cand-foot {
+  display: grid;
+  gap: var(--s-6);
+  inline-size: 100%;
+  padding-block-start: var(--s-7);
+  border-block-start: 1px solid var(--hairline);
+}
+@media (min-width: 60rem) {
+  .cand-foot { grid-template-columns: 1fr auto; align-items: center; gap: var(--s-9); }
+}
+
+.list-label { font-size: var(--t-sm); font-weight: 700; color: var(--heading); }
+
+/* --------------------------------------------------------------------------
+   Cost — two questions side by side, and the price the practice has yet to
+   approve, left as a visible gap so it cannot ship blank by accident.
+   -------------------------------------------------------------------------- */
+
+.price-slot {
+  inline-size: 100%;
+  max-width: none;
+  padding: var(--s-4) var(--s-5);
+  border: 2px dashed var(--grey-300);
+  border-radius: var(--r-md);
+  font-size: var(--t-sm);
+  font-weight: 600;
+  color: var(--text-faint);
+}
+
+/* --------------------------------------------------------------------------
+   Video — the physician explains it himself
+   -------------------------------------------------------------------------- */
+
+.video-media { inline-size: 100%; max-inline-size: 26rem; }
+@media (min-width: 60rem) { .video-media { justify-self: end; } }
+
+/* --------------------------------------------------------------------------
+   Physician
+   -------------------------------------------------------------------------- */
+
+.creds dd { font-size: var(--t-body); }
+.creds .creds__name dd { font-size: var(--t-h3); letter-spacing: var(--ls-tight); }
+
+/* --------------------------------------------------------------------------
+   FAQ — the heading holds still while the questions scroll past it
+   -------------------------------------------------------------------------- */
+
+@media (min-width: 60rem) {
+  .faq-split { grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); }
+  .faq-head { position: sticky; inset-block-start: calc(var(--s-11) + var(--s-2)); }
+}
+
+/* --------------------------------------------------------------------------
+   Closing call
+   -------------------------------------------------------------------------- */
+
+.closing .lead { max-width: 56ch; }
+.closing .lead + p { max-width: 56ch; }
+
+/* The offices, as the foot of the closing band. They used to be a white
+   section of their own — and then the footer said the same two addresses
+   again. The heading carries the page's place name for search. */
+.where {
+  display: grid;
+  gap: var(--s-5);
+  justify-items: center;
+  padding-block-start: var(--s-7);
+  border-block-start: 1px solid var(--hairline);
+}
+.where h3 { font-size: var(--t-h3); }
+.where > p { font-size: var(--t-sm); color: var(--on-dark-faint); }
+
+/* The remains of the old contact strip, now the foot of this band. A rule
+   above it and a step down in weight keep it secondary to the two buttons —
+   these are the ways to get in touch that the buttons do not already offer,
+   not a second set of calls to action. */
+.reach {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--s-2) var(--s-8);
+  padding-block-start: var(--s-6);
+  border-block-start: 1px solid var(--hairline);
+}
+.reach a {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+  min-block-size: var(--tap);
+  font-size: var(--t-sm);
+  font-weight: 600;
+  color: var(--on-dark-soft);
+  transition: color var(--t-fast) var(--ease), transform var(--t-fast) var(--ease);
+}
+.reach a:hover { color: var(--white); transform: translateY(-2px); }
+.reach .ico { color: var(--cyan-400); }
+
+/* --------------------------------------------------------------------------
+   Footer
+   One element, two bars: contact above, legal below.
+
+   The footer runs its own type scale, smaller than the page's. Body copy
+   upstairs holds a 16px floor because the reader is usually past sixty;
+   down here the content is contact details and legal, which is reference
+   material rather than reading, and at page sizes it shouted.
+   -------------------------------------------------------------------------- */
+
+.site-footer {
+  /* Darker than the dark bands, so the footer reads as the end of the page
+     rather than as one more band. */
+  background: var(--ink-900);
+  color: rgb(255 255 255 / .6);
+  font-size: .875rem;                /* 14px */
+  line-height: 1.6;
+  --heading: var(--white);
+  --hairline: rgb(255 255 255 / .1);
+}
+.site-footer a { color: rgb(255 255 255 / .72); }
+.site-footer a:hover { color: var(--white); }
+
+.footer-main {
+  display: grid;
+  gap: var(--s-7);
+  padding-block: var(--s-8) var(--s-7);
+}
+@media (min-width: 60rem) {
+  .footer-main {
+    grid-template-columns: minmax(10rem, .8fr) 3fr;
+    gap: var(--s-8);
+  }
+}
+
+.footer-brand {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--s-4);
+}
+.footer-brand img { inline-size: 9.5rem; block-size: auto; }
+
+
+.footer-offices {
+  display: grid;
+  gap: var(--s-6) var(--s-5);
+  grid-template-columns: repeat(auto-fit, minmax(min(9.5rem, 100%), 1fr));
+}
+@media (min-width: 60rem) and (max-width: 74.99rem) {
+  .footer-offices { grid-template-columns: repeat(2, 1fr); }
+}
+@media (min-width: 75rem) {
+  .footer-offices { grid-template-columns: repeat(4, 1fr); }
+}
+
+/* A tracked label, not a heading with a rule under it. The border under
+   every column was four horizontal lines fighting the four addresses. */
+.office h3 {
+  font-size: .6875rem;               /* 11px */
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: rgb(255 255 255 / .42);
+  margin-block-end: var(--s-2);
+}
+.office p { font-size: .875rem; color: rgb(255 255 255 / .78); }
+
+.office a:not(.btn) {
+  display: inline-flex;
+  align-items: center;
+  min-block-size: var(--tap);        /* a standalone target, not a word in a sentence */
+  font-size: .8125rem;               /* 13px */
+  color: rgb(255 255 255 / .55);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.office a:not(.btn):hover { color: var(--white); }
+
+/* Now the last line of the opening-hours block rather than a thing under the
+   logo: when you can reach them is the question the number answers.
+
+   Written as .office a.footer-phone, and placed after the rule it has to
+   beat. `.office a:not(.btn)` is (0,2,1); a lone class is (0,2,0) and loses,
+   which handed the number the office links' 13px, 55% white and underline.
+   It is the one thing in this footer somebody might need in a hurry, so it
+   keeps its own treatment. */
+.office a.footer-phone {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+  min-block-size: var(--tap);
+  margin-block-start: var(--s-1);
+  font-size: .9375rem;               /* 15px */
+  font-weight: 600;
+  color: var(--white);
+  text-decoration: none;
+}
+.footer-phone .ico { inline-size: 1rem; block-size: 1rem; color: rgb(255 255 255 / .45); }
+
+/* The marks sit under the logo, in the brand column. No hairline and no row
+   of their own: five names spelled out needed the separation, five marks read
+   as one object and belong with the mark above them.
+
+   The names are still there as .sr-only, so the accessible name of each link
+   is the network rather than "link". */
+.social {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-1);
+  margin-inline-start: calc(var(--s-3) * -1);
+}
+.social a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  /* Both, because the mark inside is 20px square: without them the target is
+     20px in each direction, well under the fingertip floor. */
+  min-block-size: var(--tap);
+  min-inline-size: var(--tap);
+  color: var(--white);
+  transition: color var(--t-fast) var(--ease), transform var(--t-fast) var(--ease);
+}
+.social .ico { inline-size: 1.25rem; block-size: 1.25rem; }
+.social a:hover { color: var(--cyan-300); transform: translateY(-2px); }
+
+/* The legal bar, centred. It is the one block on the page with no reading
+   order to protect — a disclaimer, a copyright line and two links — so
+   ranging it left only made it look like the start of a column that never
+   arrived.
+
+   max-width:none is still the point of the disclaimer: p carries the 62ch
+   measure by default, which left it stopping halfway across. It stops at the
+   shell's gutters like everything else. */
+.footer-legal {
+  border-block-start: 1px solid var(--hairline);
+  padding-block: var(--s-5) var(--s-6);
+  text-align: center;
+}
+/* The bar stays full width — border, padding and centring are unchanged —
+   but the text inside it stops at 75ch. It was setting 97 characters to the
+   line, which is past the point where the eye reliably finds the start of
+   the next one. Full width was the ask; 97ch was a side effect of it. */
+.footer-disclaimer {
+  max-width: 75ch;
+  margin-inline: auto;
+  font-size: .75rem;                 /* 12px */
+  line-height: 1.65;
+  color: rgb(255 255 255 / .38);
+  text-wrap: pretty;
+}
+/* justify-content, not just text-align: these are flex items, and text-align
+   on the parent does not place them. */
+.footer-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0 var(--s-5);
+  margin-block-start: var(--s-2);
+}
+.footer-meta p {
+  max-width: none;
+  font-size: .75rem;
+  color: rgb(255 255 255 / .38);
+}
+.footer-meta a {
+  display: inline-flex;
+  align-items: center;
+  min-block-size: var(--tap);
+  font-size: .75rem;
+  color: rgb(255 255 255 / .5);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* Inside the closing band's office block the rule is already drawn by
+   .where, so the row does not draw a second one. */
+.where .reach { padding-block-start: 0; border: 0; }
+
+/* On the navy bands the lead and the running copy both step up a tone.
+   --text-soft re-points to 62% white there, which is right for a label and
+   too faint for a paragraph somebody past sixty has to read. */
+.band--deep .lead { color: var(--pale-200); }
+.band--deep .prose p { color: var(--on-dark-soft); }
+.band--deep .prose .first { color: var(--white); }

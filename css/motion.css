@@ -1,0 +1,147 @@
+/* ==========================================================================
+   Motion — keyframes, scroll reveals, and the reduced-motion contract
+   ==========================================================================
+   Loaded last so it can switch everything above off in one place.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Keyframes
+   -------------------------------------------------------------------------- */
+
+/* The hero headline comes into focus. This is the page's one idea: it is
+   what the procedure does. Blur only, no travel — moving a headline while
+   somebody is trying to read it defeats the point. The keyframes run FROM
+   the blurred state, so the finished frame is the element's normal one and
+   the text can never be left soft. */
+@keyframes resolve {
+  from { opacity: 0; filter: blur(1.25rem); }
+  to   { opacity: 1; filter: blur(0); }
+}
+
+@keyframes rise {
+  from { opacity: 0; transform: translateY(1.25rem); }
+  to   { opacity: 1; transform: none; }
+}
+
+@keyframes nudge {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(.3rem); }
+}
+
+@keyframes drop {
+  from { opacity: 0; transform: translateY(-.5rem); }
+  to   { opacity: 1; transform: none; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-.4rem); }
+}
+
+/* --------------------------------------------------------------------------
+   The hero's load sequence
+   -------------------------------------------------------------------------- */
+
+/* The index rides in the attribute rather than an inline custom property, so
+   the markup carries no style of its own. */
+.hero [data-seq] { animation: rise .75s var(--ease) backwards; }
+.hero [data-seq="0"] { animation-delay: .15s; }
+.hero [data-seq="1"] { animation-delay: .3s; }
+.hero [data-seq="2"] { animation-delay: .42s; }
+.hero [data-seq="3"] { animation-delay: .54s; }
+.hero [data-seq="4"] { animation-delay: .66s; }
+
+/* The headline is the exception: it resolves rather than rises. */
+.hero h1[data-seq] {
+  animation-name: resolve;
+  animation-duration: 1s;
+}
+
+/* --------------------------------------------------------------------------
+   Scroll reveals
+   The flag goes on <html> from script, so nothing is ever left hidden when
+   the script does not run.
+   -------------------------------------------------------------------------- */
+
+[data-anim="on"] [data-reveal] {
+  opacity: 0;
+  transform: translateY(1.5rem);
+  transition: opacity var(--t-slow) var(--ease),
+              transform var(--t-slow) var(--ease);
+  transition-delay: var(--d, 0ms);
+}
+[data-anim="on"] [data-reveal].is-in { opacity: 1; transform: none; }
+
+/* Stagger a row of children without an inline style on each one. */
+.stagger > *:nth-child(1) { --d: 0ms; }
+.stagger > *:nth-child(2) { --d: 70ms; }
+.stagger > *:nth-child(3) { --d: 140ms; }
+.stagger > *:nth-child(4) { --d: 210ms; }
+.stagger > *:nth-child(5) { --d: 280ms; }
+.stagger > *:nth-child(6) { --d: 350ms; }
+.stagger > *:nth-child(7) { --d: 420ms; }
+.stagger > *:nth-child(8) { --d: 490ms; }
+
+/* The seal floats only while the pointer is on it — still otherwise. */
+.seal:hover { animation: float 2.4s var(--ease-soft) infinite; }
+
+/* --------------------------------------------------------------------------
+   Reduced motion
+   Everything above goes. Colour and tint changes stay, because they carry
+   state — only travel and looping ambience are removed, and nothing is
+   allowed to end on a frame that hides content.
+   -------------------------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+  }
+
+  .scroll-cue .ico,
+  .seal:hover { animation: none; }
+
+  [data-anim="on"] [data-reveal] { opacity: 1; transform: none; }
+
+  .btn:hover,
+  a.card:hover,
+  .social a:hover,
+  .reach a:hover { transform: none; }
+
+  /* Several hovers move something other than the element under the cursor,
+     and each has to be named or it escapes the contract: the blanket rule
+     above only zeroes the transform on the hovered element itself.
+
+     Audited by listing every `transform` under a `:hover` in the stylesheets
+     against this block. Four were escaping — the logo, the feature's icon
+     well, the button's arrow, and the card's three children. */
+  a.card:hover .ico-well,
+  a.card:hover h3,
+  a.card:hover p,
+  .brand:hover img,
+  .btn:hover .ico--arrow { transform: none; }
+
+  /* The nav underline is deliberately NOT here. It is a reveal, not travel:
+     scaling from 0 to 1 is how the mark appears at all, and the blanket
+     duration override above already makes it instant. Zeroing the transform
+     would leave it permanently drawn under every link. */
+}
+
+/* --------------------------------------------------------------------------
+   The ZipLyft set, under the same contract.
+   Each of these moves something other than the hovered element — the
+   arrow inside a text link, the disc inside the play button, the knob
+   inside the slider — so each has to be named or it escapes the blanket
+   rule. The sticky bar's slide is a reveal and its duration is already
+   zeroed; the chevron's turn is the FAQ's state and stays, instant.
+   -------------------------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .text-link:hover .ico,
+  .play:hover .play__disc,
+  .ba:hover .ba__knob,
+  .ba:has(.ba__range:focus-visible) .ba__knob { transform: none; }
+}

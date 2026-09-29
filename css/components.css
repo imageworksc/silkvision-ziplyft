@@ -1,0 +1,937 @@
+/* ==========================================================================
+   Components — buttons, icons, cards, nav, table, progress, and the ZipLyft set
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Icons
+   Original line drawings, 24×24, 1.8 stroke in currentColor, so every icon
+   takes the colour of whatever it sits in.
+   -------------------------------------------------------------------------- */
+
+.ico {
+  inline-size: 1.375em;
+  block-size: 1.375em;
+  flex: none;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.ico--lg { inline-size: 1.925rem; block-size: 1.925rem; }
+
+/* Brand marks are the exception to everything above. They arrive as filled
+   shapes from the companies that own them and are reproduced as issued, so
+   the fill goes back on and the stroke off — restyling a logo into this
+   page's 1.8 stroke would be redrawing somebody else's trademark. */
+.ico--brand { fill: currentColor; stroke: none; }
+
+/* The well an icon sits in. Flat ground, and it reacts to hover on the card
+   around it. */
+.ico-well {
+  display: grid;
+  place-items: center;
+  inline-size: 3.85rem;
+  block-size: 3.85rem;
+  border-radius: var(--r-md);
+  background: var(--white);
+  color: var(--plum-600);
+  flex: none;
+  box-shadow: var(--shadow-well);
+  transition: transform var(--t-mid) var(--ease-spring),
+              box-shadow var(--t-mid) var(--ease),
+              border-radius var(--t-mid) var(--ease);
+}
+
+.ico-well--sm { inline-size: 2.75rem; block-size: 2.75rem; border-radius: var(--r-sm); }
+
+/* --------------------------------------------------------------------------
+   Buttons
+   --r-md, not --r-pill. A fully rounded button is the default of every page
+   builder and every generated layout, and at 64px tall it was reading as one.
+   10px is off the pill and still soft, and it is the radius the icon wells
+   already use, so the two agree.
+
+   The pill radius is still right for a circle — the tick badge, the seal —
+   and for the nav underline's caps. It is not right for a rectangle.
+   -------------------------------------------------------------------------- */
+
+.btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--s-3);
+  min-block-size: 3.5rem;
+  min-inline-size: var(--tap);
+  padding-inline: var(--s-7);
+  border: 2px solid transparent;
+  border-radius: var(--r-md);
+  font: inherit;
+  font-size: var(--t-sm);
+  font-weight: 700;
+  letter-spacing: .01em;
+  /* Not 1. Most buttons here are one line and min-block-size sets their
+     height anyway, but "Learn about cataract surgery" wraps in a card on a
+     phone, and at a leading of 1 the two lines touch. */
+  line-height: 1.25;
+  text-wrap: balance;
+  text-decoration: none;
+  cursor: pointer;
+  overflow: hidden;
+  isolation: isolate;
+  transition: transform var(--t-fast) var(--ease),
+              background-color var(--t-fast) var(--ease),
+              border-color var(--t-fast) var(--ease),
+              color var(--t-fast) var(--ease);
+}
+.btn--lg { min-block-size: 4rem; padding-inline: var(--s-8); font-size: var(--t-body); }
+
+.btn:hover { transform: translateY(-3px); }
+.btn:active { transform: translateY(-1px); }
+
+/* Flat: no plum glow, at rest or on hover. */
+.btn--solid {
+  background: var(--fill-action);
+  color: var(--white);
+}
+
+.btn--ghost {
+  background: transparent;
+  border-color: var(--hairline);
+  color: var(--heading);
+}
+.btn--ghost:hover { border-color: var(--blue-400); background: var(--pale-100); }
+
+.band--deep .btn--ghost,
+.hero .btn--ghost { border-color: rgb(255 255 255 / .45); color: var(--white); }
+.band--deep .btn--ghost:hover,
+.hero .btn--ghost:hover { background: rgb(255 255 255 / .12); border-color: var(--white); }
+
+/* The arrow slides on hover — the one micro-interaction every CTA shares. */
+.btn .ico--arrow { transition: transform var(--t-mid) var(--ease-spring); }
+.btn:hover .ico--arrow { transform: translateX(.3rem); }
+
+/* --------------------------------------------------------------------------
+   Cards
+   -------------------------------------------------------------------------- */
+
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-4);
+  padding: var(--s-7);
+  border-radius: var(--r-lg);
+  background: var(--white);
+  border: 1px solid var(--hairline);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+  transition: transform .45s var(--ease-spring),
+              box-shadow var(--t-mid) var(--ease),
+              border-color var(--t-fast) var(--ease),
+              background-color var(--t-fast) var(--ease);
+}
+
+/* a.card, not .card. A card that rises under the cursor says "click me", and
+   eighteen of the twenty-one blocks that were saying it had nothing inside to
+   click — the six benefit cards, the four accreditation rows and the eight
+   timeline steps are all <article>, <div> or <li>. decisions/13 called this
+   before any of it was built: "a card that rises under the cursor promises a
+   click that is not there."
+
+   Keyed on the element rather than listed as exceptions, so it enforces
+   itself. Make a card an anchor and it gets the hover back; leave it as an
+   article and it never gets it by accident.
+
+   What it does when it applies: four things in sequence rather than sliding
+   the card as one block — the card rises on a spring, the icon swings up
+   behind it, then the heading and the copy follow. The delays live on :hover
+   only, so entering is orchestrated and leaving snaps straight back; a
+   staggered exit reads as lag.
+
+   --shadow-md, not --shadow-lg: the large one is 0 28px 60px at 17%, which on
+   a grid of cards pools a halo wide enough that rows smudge into each other. */
+a.card:hover {
+  transform: translateY(-10px);
+  background-color: var(--paper);
+  border-color: var(--blue-400);
+  box-shadow: var(--shadow-md);
+}
+
+a.card .ico-well,
+a.card h3,
+a.card p { transition: transform .45s var(--ease-spring); }
+
+a.card:hover .ico-well {
+  transform: translateY(-6px) scale(1.12);
+  transition-delay: 40ms;
+}
+a.card:hover h3 { transform: translateX(6px); transition-delay: 90ms; }
+a.card:hover p  { transform: translateX(4px); transition-delay: 130ms; }
+
+.card h3 { color: var(--heading); }
+.card p { color: var(--text-soft); font-size: var(--t-sm); }
+
+/* A card inside a centred stack centres its own contents too — otherwise
+   the icon well stays hard left while the heading and copy sit centred. */
+.stack--center .card { align-items: center; text-align: center; }
+
+/* A compacter card, for a set that runs two rows deep. The reduction comes
+   out of padding, the icon well and the heading — never the copy, which
+   holds its 16px floor. */
+.cards--sm { gap: var(--s-4); }
+.cards--sm .card { padding: var(--s-5); gap: var(--s-2); }
+.cards--sm .ico-well { inline-size: 2.75rem; block-size: 2.75rem; }
+.cards--sm .ico--lg { inline-size: 1.3rem; block-size: 1.3rem; }
+.cards--sm .card h3 { font-size: var(--t-body); }
+
+/* Cards on a dark band. */
+.band--deep .card {
+  background-color: rgb(255 255 255 / .05);
+  border-color: var(--hairline-dark);
+  box-shadow: none;
+  backdrop-filter: blur(6px);
+}
+.band--deep a.card:hover {
+  background-color: rgb(255 255 255 / .09);
+  border-color: rgb(108 197 240 / .5);
+  /* These carry none at rest and .card:hover was handing them one on the way
+     in — a navy shadow on a navy band, which costs a repaint and shows
+     nothing. The lighter fill is the whole signal here. */
+  box-shadow: none;
+}
+
+/* --------------------------------------------------------------------------
+   Feature rows — an icon, a claim, a hairline
+   -------------------------------------------------------------------------- */
+
+.feature {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--s-4);
+  padding: var(--s-4);
+  margin-inline: calc(var(--s-4) * -1);
+  border-radius: var(--r-md);
+}
+.feature + .feature { margin-block-start: var(--s-2); }
+.feature p { font-size: var(--t-sm); color: var(--text-soft); margin-block-start: var(--s-1); }
+.feature h3 { font-size: var(--t-body); color: var(--heading); }
+
+/* --------------------------------------------------------------------------
+   Header and navigation
+   -------------------------------------------------------------------------- */
+
+.topbar {
+  background: var(--ink-900);
+  color: var(--on-dark-soft);
+  font-size: var(--t-sm);
+}
+.topbar a {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+  min-block-size: var(--tap);
+  color: var(--on-dark-soft);
+  font-weight: 600;
+  transition: color var(--t-fast) var(--ease);
+}
+.topbar a:hover { color: var(--cyan-300); }
+@media (max-width: 47.99rem) { .topbar { display: none; } }
+
+.site-header {
+  position: sticky;
+  inset-block-start: 0;
+  z-index: 100;
+  background: rgb(255 255 255 / .86);
+  backdrop-filter: blur(14px);
+  border-block-end: 1px solid var(--hairline);
+  transition: box-shadow var(--t-mid) var(--ease),
+              background-color var(--t-mid) var(--ease);
+}
+.site-header[data-stuck="true"] { box-shadow: var(--shadow-md); background: rgb(255 255 255 / .96); }
+
+.site-header > .wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-5);
+  padding-block: var(--s-4);
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  min-block-size: var(--tap);
+}
+.brand img { inline-size: 11.5rem; block-size: auto; transition: transform var(--t-mid) var(--ease); }
+.brand:hover img { transform: scale(1.03); }
+
+/* A link that is a target on its own rather than a word inside a sentence.
+   An inline box ignores min-block-size, so it needs a box that does not.
+   (A link inside running prose is exempt from the 44px minimum.) */
+.tap {
+  display: inline-flex;
+  align-items: center;
+  min-block-size: var(--tap);
+}
+
+.nav { display: flex; align-items: center; gap: var(--s-5); }
+.nav a:not(.btn) {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  min-block-size: var(--tap);
+  font-size: var(--t-sm);
+  font-weight: 600;
+  color: var(--heading);
+}
+/* The underline grows from the centre. */
+.nav a:not(.btn)::after {
+  content: '';
+  position: absolute;
+  inset-block-end: .75rem;
+  inset-inline: 0;
+  block-size: 2px;
+  border-radius: var(--r-pill);
+  background: var(--fill-accent);
+  transform: scaleX(0);
+  transition: transform var(--t-mid) var(--ease);
+}
+.nav a:not(.btn):hover::after { transform: scaleX(1); }
+
+.nav-toggle {
+  display: none;
+  align-items: center;
+  gap: var(--s-2);
+  min-block-size: var(--tap);
+  min-inline-size: var(--tap);
+  padding-inline: var(--s-4);
+  border: 1px solid var(--hairline);
+  border-radius: var(--r-md);
+  background: transparent;
+  color: var(--heading);
+  font: inherit;
+  font-size: var(--t-sm);
+  font-weight: 700;
+  cursor: pointer;
+}
+.nav-toggle:hover { background: var(--pale-100); }
+
+/* The trigger shows which state it is in. One mark and one word at a time,
+   swapped off aria-expanded — so the attribute that already carried this for
+   a screen reader now drives the visible half too, and the two can never
+   disagree. */
+.nav-toggle .ico--close,
+.nav-toggle .nav-toggle__open { display: none; }
+.nav-toggle[aria-expanded="true"] .ico--menu,
+.nav-toggle[aria-expanded="true"] .nav-toggle__shut { display: none; }
+.nav-toggle[aria-expanded="true"] .ico--close,
+.nav-toggle[aria-expanded="true"] .nav-toggle__open { display: inline-flex; }
+
+/* The table is 46rem wide and a phone is 24, so it scrolls sideways — and a
+   swipe is an invisible trigger with nothing to discover it by. This is the
+   visible alternative the gesture needs.
+
+   It is a closed loop: it appears once, and the first scroll of the region
+   ends it for good. Scaffolding that stays after the user has shown they do
+   not need it is clutter, not help.
+
+   No edge fade here, which is the usual answer, because that answer is a
+   gradient and this page has none (decision 14). A line of type says the
+   same thing and says it in words. */
+.scroll-hint {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  /* The parent stack is align-items:flex-start, so without this the box
+     shrinks to its content and justify-content has nothing to centre in. */
+  inline-size: 100%;
+  max-width: none;
+  gap: var(--s-2);
+  margin-block-start: var(--s-3);
+  font-size: var(--t-xs);
+  color: var(--text-faint);
+  transition: opacity var(--t-mid) var(--ease);
+}
+.scroll-hint .ico { inline-size: 1rem; block-size: 1rem; }
+@media (max-width: 49.99rem) {
+  .scroll-hint { display: flex; }
+}
+/* Used it once — it has done its job. */
+.table-scroll[data-used="true"] + .scroll-hint { opacity: 0; visibility: hidden; }
+
+@media (max-width: 61.99rem) {
+  .nav-toggle { display: inline-flex; }
+  .site-header { position: relative; }
+  .nav {
+    display: none;
+    position: absolute;
+    inset-inline: 0;
+    inset-block-start: 100%;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    padding: var(--s-4) var(--gutter) var(--s-6);
+    background: var(--white);
+    border-block-end: 1px solid var(--hairline);
+    box-shadow: var(--shadow-lg);
+  }
+  .nav[data-open="true"] { display: flex; animation: drop var(--t-mid) var(--ease); }
+  .nav a:not(.btn) { border-block-end: 1px solid var(--hairline); }
+  .nav a:not(.btn)::after { inset-block-end: .5rem; }
+  .nav .btn { margin-block-start: var(--s-4); }
+}
+
+/* --------------------------------------------------------------------------
+   Reading progress — a hairline that fills as the page is read
+   -------------------------------------------------------------------------- */
+
+.progress {
+  position: fixed;
+  inset-block-start: 0;
+  inset-inline: 0;
+  block-size: 3px;
+  z-index: 200;
+  background: var(--fill-accent);
+  transform: scaleX(var(--p, 0));
+  transform-origin: left;
+  pointer-events: none;
+}
+
+/* --------------------------------------------------------------------------
+   Comparison table
+   -------------------------------------------------------------------------- */
+
+.table-scroll {
+  /* position:relative is load-bearing. The Yes/No in each cell is .sr-only,
+     which is position:absolute; with no positioned ancestor it lays out
+     against the viewport at its static x — up to the table's full width —
+     and is not clipped here, which silently widens the page on a phone. */
+  position: relative;
+  overflow-x: auto;
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-md);
+  background: var(--white);
+}
+
+.compare {
+  inline-size: 100%;
+  min-inline-size: 46rem;
+  border-collapse: collapse;
+  text-align: start;
+}
+.compare th, .compare td {
+  padding: var(--s-4) var(--s-5);
+  font-size: var(--t-sm);
+  font-weight: 400;
+  text-align: start;
+  vertical-align: middle;
+  border-block-end: 1px solid var(--hairline);
+}
+.compare thead th {
+  padding-block: var(--s-5);
+  color: var(--white);
+  font-weight: 700;
+  text-align: center;
+  line-height: var(--lh-head);
+}
+.compare thead th:first-child { background: var(--white); }
+.compare thead th:nth-child(2) { background: var(--fill-action); }
+.compare thead th:nth-child(3) { background: var(--ink-600); }
+
+.compare tbody th { color: var(--text); font-weight: 600; }
+.compare tbody td { text-align: center; color: var(--text-soft); }
+.compare tbody td:nth-of-type(1) { background: rgb(166 38 166 / .07); font-weight: 600; color: var(--plum-600); }
+.compare tbody td:nth-of-type(2) { background: rgb(0 73 123 / .05); }
+
+/* The hover has to be declared per cell, not on the row. The two data columns
+   paint their own tint, and a background on <tr> sits under those — so the
+   row hover was lighting the label column only and stopping dead at the first
+   tinted cell. Each column deepens its own colour instead. */
+.compare tbody th,
+.compare tbody td { transition: background-color var(--t-fast) var(--ease); }
+.compare tbody tr:hover th { background: var(--pale-100); }
+.compare tbody tr:hover td:nth-of-type(1) { background: rgb(166 38 166 / .13); }
+.compare tbody tr:hover td:nth-of-type(2) { background: rgb(0 73 123 / .1); }
+
+/* The group row used to be a solid navy bar across all three columns, which
+   made it heavier than the table's own header — the row that matters most —
+   and cut the two tinted columns into thirds. Pale, with a rule above it, it
+   divides without outranking. */
+.compare .group th {
+  background: var(--pale-100);
+  color: var(--heading);
+  font-size: var(--t-xs);
+  font-weight: 800;
+  letter-spacing: var(--ls-wide);
+  text-transform: uppercase;
+  padding-block: var(--s-3);
+  border-block-start: 1px solid var(--hairline);
+}
+.compare tbody:first-of-type .group th { border-block-start: 0; }
+
+/* inline-flex on a span, not on the th: display:flex on a table cell drops it
+   out of the table's formatting context and the colspan stops spanning. */
+.group-label {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-3);
+}
+/* No colour of its own: currentColor takes the label's --heading, so the mark
+   and the words read as one thing. The brand blue measures 6.3:1 on this pale
+   ground, where a graphic needs 3. The cyan does not — it is 2.3:1 — so if
+   this ever wants to be lighter, it has to darken the ground first.
+
+   Sized in rem, not em. At 1.375em it was a tenth of a 13px label and came
+   out at 18px; the label is the smallest type on the page and the icon should
+   not inherit that. */
+.group-label .ico {
+  inline-size: 1.375rem;
+  block-size: 1.375rem;
+}
+
+.tick {
+  display: inline-grid;
+  place-items: center;
+  inline-size: 1.925rem;
+  block-size: 1.925rem;
+  border-radius: var(--r-pill);
+  background: var(--fill-action);
+  color: var(--white);
+}
+/* The second column's tick is navy, not plum. Plum is the OBS column's colour
+   and it carries the whole comparison — two plum ticks in a row would say the
+   two options are the same thing. */
+.compare td:nth-of-type(2) .tick { background: var(--ink-600); }
+
+/* An empty cell means "no". Left blank it reads as a gap in the data. */
+.dash { color: var(--text-faint); font-weight: 600; }
+
+
+/* ==========================================================================
+   The ZipLyft set
+   Everything below was added for this page. It reads off the same tokens as
+   everything above and introduces no colour, radius or duration of its own.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Text link — a standalone target with an arrow, for the secondary action
+   beside or under a button. Standalone, so it holds the 44px floor.
+   -------------------------------------------------------------------------- */
+
+.text-link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+  min-block-size: var(--tap);
+  font-size: var(--t-sm);
+  font-weight: 700;
+  color: var(--plum-600);
+  transition: color var(--t-fast) var(--ease);
+}
+.text-link .ico { inline-size: 1.125rem; block-size: 1.125rem; transition: transform var(--t-mid) var(--ease-spring); }
+.text-link:hover { color: var(--plum-500); }
+.text-link:hover .ico { transform: translateX(.3rem); }
+.text-link:active { opacity: .62; }
+
+/* On a dark ground plum is 1.35:1 — invisible. White, like everything else. */
+.band--deep .text-link,
+.hero .text-link { color: var(--white); }
+.band--deep .text-link:hover { color: var(--cyan-300); }
+
+/* --------------------------------------------------------------------------
+   Checklist — a claim per line, each behind the table's plum tick.
+   The tick is the same object as the comparison table's, so a "yes" looks
+   the same wherever the page says one.
+   -------------------------------------------------------------------------- */
+
+.checklist {
+  display: grid;
+  gap: var(--s-3) var(--s-7);
+}
+.checklist li {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--s-3);
+  font-size: var(--t-sm);
+  font-weight: 500;
+  color: var(--text);
+}
+.checklist .tick {
+  flex: none;
+  inline-size: 1.5rem;
+  block-size: 1.5rem;
+  margin-block-start: .05rem;
+}
+.checklist .tick .ico { inline-size: 1rem; block-size: 1rem; stroke-width: 2.4; }
+
+@media (min-width: 40rem) {
+  .checklist--2 { grid-template-columns: 1fr 1fr; }
+}
+@media (min-width: 60rem) {
+  .checklist--3 { grid-template-columns: repeat(3, 1fr); }
+}
+@media (min-width: 40rem) and (max-width: 59.99rem) {
+  .checklist--3 { grid-template-columns: 1fr 1fr; }
+}
+
+/* --------------------------------------------------------------------------
+   Facts — label over value, divided by hairlines. The hero's three facts,
+   generalised for the physician's credentials and the video's four claims.
+   -------------------------------------------------------------------------- */
+
+.facts {
+  display: grid;
+  gap: 0;
+  margin: 0;
+  inline-size: 100%;
+}
+.facts > div {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--s-1) var(--s-5);
+  padding-block: var(--s-4);
+  border-block-start: 1px solid var(--hairline);
+}
+.facts > div:last-child { border-block-end: 1px solid var(--hairline); }
+.facts dt { font-size: var(--t-xs); letter-spacing: .02em; color: var(--text-soft); }
+.facts dd { margin: 0; font-size: var(--t-sm); font-weight: 700; color: var(--heading); }
+
+/* --------------------------------------------------------------------------
+   Frame — the box a photograph or a video sits in. --r-lg like a card,
+   --shadow-md like the table.
+   -------------------------------------------------------------------------- */
+
+.frame {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--r-lg);
+  background: var(--ink-800);
+  box-shadow: var(--shadow-md);
+  isolation: isolate;
+}
+.frame > img,
+.frame > video {
+  inline-size: 100%;
+  block-size: 100%;
+  object-fit: cover;
+}
+.frame--wide { aspect-ratio: 16 / 9; }
+.frame--photo { aspect-ratio: 4 / 3; }
+.frame--portrait { aspect-ratio: 4 / 5; }
+
+.band--deep .frame { box-shadow: none; border: 1px solid var(--hairline-dark); }
+
+/* The pause control. A looping video with no way to stop it fails WCAG
+   2.2.2 — and on a page for people about to have eye surgery, something
+   moving in the corner of the eye is not a neutral thing. */
+.vid-btn {
+  position: absolute;
+  inset-block-end: var(--s-3);
+  inset-inline-end: var(--s-3);
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+  min-block-size: var(--tap);
+  padding-inline: var(--s-4);
+  border: 1px solid rgb(255 255 255 / .4);
+  border-radius: var(--r-md);
+  background: var(--fill-scrim);
+  color: var(--white);
+  font: inherit;
+  font-size: var(--t-xs);
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color var(--t-fast) var(--ease), border-color var(--t-fast) var(--ease);
+}
+.vid-btn .ico { inline-size: 1rem; block-size: 1rem; }
+.vid-btn:hover { background: var(--fill-action); border-color: var(--fill-action); }
+.vid-btn:active { opacity: .62; }
+.vid-btn .ico--play,
+.vid-btn[data-state="paused"] .ico--pause { display: none; }
+.vid-btn[data-state="paused"] .ico--play { display: block; }
+
+/* The big play button over a video that waits to be asked. It is the
+   trigger, so it says what it does in words as well as with the mark. */
+.play {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: var(--s-3);
+  inline-size: 100%;
+  border: 0;
+  background: rgb(1 34 58 / .35);
+  color: var(--white);
+  font: inherit;
+  font-size: var(--t-sm);
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color var(--t-mid) var(--ease);
+}
+.play__disc {
+  display: grid;
+  place-items: center;
+  inline-size: 4.5rem;
+  block-size: 4.5rem;
+  border-radius: var(--r-pill);
+  background: var(--fill-action);
+  transition: transform var(--t-mid) var(--ease-spring);
+}
+.play__disc .ico { inline-size: 1.75rem; block-size: 1.75rem; fill: currentColor; translate: .1rem 0; }
+.play:hover { background: rgb(1 34 58 / .5); }
+.play:hover .play__disc { transform: scale(1.08); }
+.play:active .play__disc { transform: none; }
+.play[hidden] { display: none; }
+
+/* --------------------------------------------------------------------------
+   Before / after
+   A native range input laid over the photographs, invisible, so the
+   keyboard, the screen reader and the fingertip all get the real control
+   and nothing has to be re-implemented. Script writes one custom property;
+   the clip and the handle both read it.
+   -------------------------------------------------------------------------- */
+
+.ba {
+  --pos: 50%;
+  position: relative;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-radius: var(--r-lg);
+  background: var(--ink-800);
+  box-shadow: var(--shadow-md);
+  touch-action: pan-y;
+}
+.ba img {
+  position: absolute;
+  inset: 0;
+  inline-size: 100%;
+  block-size: 100%;
+  object-fit: cover;
+}
+.ba__after { clip-path: inset(0 0 0 var(--pos)); }
+
+.ba__tag {
+  position: absolute;
+  inset-block-start: var(--s-3);
+  z-index: 3;
+  padding: var(--s-1) var(--s-3);
+  border-radius: var(--r-sm);
+  background: var(--fill-scrim);
+  color: var(--white);
+  font-size: var(--t-xs);
+  font-weight: 700;
+  letter-spacing: var(--ls-wide);
+  text-transform: uppercase;
+  pointer-events: none;
+}
+.ba__tag--before { inset-inline-start: var(--s-3); }
+.ba__tag--after { inset-inline-end: var(--s-3); }
+
+.ba__handle {
+  position: absolute;
+  inset-block: 0;
+  inset-inline-start: var(--pos);
+  z-index: 4;
+  inline-size: 2px;
+  translate: -1px 0;
+  background: var(--white);
+  pointer-events: none;
+}
+.ba__knob {
+  position: absolute;
+  inset-block-start: 50%;
+  inset-inline-start: 50%;
+  translate: -50% -50%;
+  display: grid;
+  place-items: center;
+  inline-size: var(--tap);
+  block-size: var(--tap);
+  border-radius: var(--r-pill);
+  background: var(--fill-action);
+  color: var(--white);
+  box-shadow: 0 0 0 3px var(--white), var(--shadow-md);
+  transition: transform var(--t-mid) var(--ease-spring);
+}
+.ba__knob .ico { inline-size: 1.25rem; block-size: 1.25rem; }
+
+.ba__range {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  inline-size: 100%;
+  block-size: 100%;
+  margin: 0;
+  opacity: 0;
+  cursor: ew-resize;
+}
+/* The input is invisible, so its focus ring would be too. The ring goes on
+   the frame instead, and the knob grows to say the control is live. */
+.ba:has(.ba__range:focus-visible) { outline: 3px solid var(--cyan-400); outline-offset: 3px; }
+.ba:hover .ba__knob,
+.ba:has(.ba__range:focus-visible) .ba__knob { transform: scale(1.1); }
+
+/* --------------------------------------------------------------------------
+   Recovery rail — the days down a single line. Static: the stages are not
+   interactive, so nothing on them moves (DESIGN.md §5).
+   -------------------------------------------------------------------------- */
+
+.rail {
+  position: relative;
+  display: grid;
+  gap: var(--s-5);
+  padding-inline-start: var(--s-7);
+  inline-size: 100%;
+}
+.rail::before {
+  content: '';
+  position: absolute;
+  inset-block: .6rem .6rem;
+  inset-inline-start: .45rem;
+  inline-size: 2px;
+  background: var(--hairline);
+}
+.rail li { position: relative; display: grid; gap: var(--s-1); }
+.rail li::before {
+  content: '';
+  position: absolute;
+  inset-block-start: .35rem;
+  inset-inline-start: calc(var(--s-7) * -1);
+  inline-size: 1rem;
+  block-size: 1rem;
+  border-radius: var(--r-pill);
+  background: var(--white);
+  border: 3px solid var(--plum-600);
+}
+/* The last stage is the destination, so it is the one filled in. */
+.rail li:last-child::before { background: var(--plum-600); }
+.rail h3 { font-size: var(--t-body); color: var(--plum-600); }
+.rail p { font-size: var(--t-sm); color: var(--text-soft); }
+
+@media (min-width: 48rem) {
+  .rail li { grid-template-columns: 11rem 1fr; gap: var(--s-6); align-items: baseline; }
+}
+
+/* --------------------------------------------------------------------------
+   FAQ — <details name="faq">, so only one is open at a time without a line
+   of script, and every answer is in the document for search and for
+   find-in-page whether it is open or not.
+   -------------------------------------------------------------------------- */
+
+.faq { inline-size: 100%; border-block-start: 1px solid var(--hairline); }
+.faq details { border-block-end: 1px solid var(--hairline); }
+.faq summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-5);
+  min-block-size: var(--tap);
+  padding-block: var(--s-5);
+  font-size: var(--t-body);
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--heading);
+  cursor: pointer;
+  list-style: none;
+  transition: color var(--t-fast) var(--ease);
+}
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary:hover { color: var(--plum-600); }
+.faq summary:active { opacity: .62; }
+/* The chevron is the state: down while shut, up while open. */
+.faq summary .ico {
+  color: var(--plum-600);
+  transition: transform var(--t-mid) var(--ease);
+}
+.faq details[open] summary .ico { transform: rotate(180deg); }
+.faq details p {
+  padding-block-end: var(--s-5);
+  font-size: var(--t-sm);
+  color: var(--text-soft);
+}
+
+/* --------------------------------------------------------------------------
+   Note — an aside that qualifies the copy next to it. A rule, not a box.
+   -------------------------------------------------------------------------- */
+
+.note {
+  display: grid;
+  gap: var(--s-3);
+  padding-inline-start: var(--s-5);
+  border-inline-start: 3px solid var(--plum-600);
+}
+.note h3 { font-size: var(--t-body); }
+.note p { font-size: var(--t-sm); color: var(--text-soft); }
+
+.fine { font-size: var(--t-sm); color: var(--text-faint); }
+
+/* --------------------------------------------------------------------------
+   Callout — the one white panel on a pale band, like the accreditation
+   claim on the office-based surgery page.
+   -------------------------------------------------------------------------- */
+
+.callout {
+  display: grid;
+  gap: var(--s-4);
+  justify-items: start;
+  inline-size: 100%;
+  padding: var(--s-6) var(--s-5);
+  border-radius: var(--r-lg);
+  background: var(--white);
+  box-shadow: var(--shadow-md);
+}
+@media (min-width: 48rem) {
+  .callout { padding: var(--s-7); grid-template-columns: 1fr auto; align-items: center; column-gap: var(--s-8); }
+  .callout > .stack { gap: var(--s-3); }
+}
+.callout p { font-size: var(--t-sm); color: var(--text-soft); }
+
+/* --------------------------------------------------------------------------
+   Sticky call bar — phones only, and only once the hero's own two buttons
+   have scrolled away. Two halves, the same two actions.
+   -------------------------------------------------------------------------- */
+
+.sticky-cta {
+  position: fixed;
+  inset-inline: 0;
+  inset-block-end: 0;
+  z-index: 150;
+  display: none;
+  grid-template-columns: 1fr 1fr;
+  box-shadow: 0 -4px 16px rgb(1 53 89 / .18);
+  transform: translateY(100%);
+  transition: transform var(--t-mid) var(--ease);
+}
+.sticky-cta[data-shown="true"] { transform: none; }
+.sticky-cta a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--s-2);
+  min-block-size: 3.5rem;
+  padding-inline: var(--s-3);
+  font-size: var(--t-sm);
+  font-weight: 700;
+  color: var(--white);
+  text-align: center;
+}
+.sticky-cta a:active { opacity: .8; }
+.sticky-cta__book { background: var(--fill-action); }
+.sticky-cta__call { background: var(--ink-900); }
+.sticky-cta .ico { inline-size: 1.125rem; block-size: 1.125rem; }
+
+@media (max-width: 47.99rem) {
+  .sticky-cta { display: grid; }
+  body { padding-block-end: 3.5rem; }
+}
+
+/* Off screen it is also out of the tab order: visibility waits for the
+   slide to finish on the way out and is restored at once on the way in. */
+.sticky-cta { visibility: hidden; transition: transform var(--t-mid) var(--ease), visibility 0s linear var(--t-mid); }
+.sticky-cta[data-shown="true"] { visibility: visible; transition-delay: 0s; }
