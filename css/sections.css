@@ -1057,8 +1057,15 @@ strong.hl {
    options with Dr. Silk" broke in two inside a 350px button, and the broken
    label took the whole width and shoved the arrow against the edge. */
 
+/* One line, always: less padding, no wrapping, and the four labels that
+   cannot fit a 320px phone at 16px swap to a shorter wording. */
+.lbl-short { display: none; }
 @media (max-width: 47.99rem) {
-  .btn { padding-inline: var(--s-5); text-align: center; text-wrap: balance; }
+  .btn { padding-inline: var(--s-4); gap: var(--s-2); white-space: nowrap; letter-spacing: 0; }
+  .lbl-full { display: none; }
+  .lbl-short { display: inline; }
+  .sticky-cta { grid-template-columns: 3fr 2fr; }
+  .sticky-cta a { white-space: nowrap; }
 }
 
 /* ==========================================================================
