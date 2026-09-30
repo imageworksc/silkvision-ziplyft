@@ -122,52 +122,13 @@
 .band--deep .feature p { color: var(--on-dark-soft); }
 
 /* --------------------------------------------------------------------------
-   The procedure — five steps, the office-based surgery page's timeline:
-   two columns filled top-to-bottom so the order still reads down a column.
-   -------------------------------------------------------------------------- */
-
-.timeline {
-  display: grid;
-  gap: var(--s-2) var(--s-8);
-  counter-reset: tl;
-  inline-size: 100%;
-}
-@media (min-width: 48rem) {
-  .timeline {
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: repeat(3, auto);
-    grid-auto-flow: column;
-  }
-}
-.timeline .feature { counter-increment: tl; }
-.timeline .feature + .feature { margin-block-start: 0; }
-.timeline .feature h3::before { content: counter(tl) '. '; font-weight: 800; }
-
-/* --------------------------------------------------------------------------
-   Candidacy
-   -------------------------------------------------------------------------- */
-
-.cand-foot {
-  display: grid;
-  gap: var(--s-6);
-  inline-size: 100%;
-  padding-block-start: var(--s-7);
-  border-block-start: 1px solid var(--hairline);
-}
-@media (min-width: 60rem) {
-  .cand-foot { grid-template-columns: 1fr auto; align-items: center; gap: var(--s-9); }
-}
-
-.list-label { font-size: var(--t-sm); font-weight: 700; color: var(--heading); }
-
-/* --------------------------------------------------------------------------
-   Cost — two questions side by side, and the price the practice has yet to
+   Cost — the price the practice has yet to
    approve, left as a visible gap so it cannot ship blank by accident.
    -------------------------------------------------------------------------- */
 
 .price-slot {
   inline-size: 100%;
-  max-width: none;
+  max-width: 48rem;
   padding: var(--s-4) var(--s-5);
   border: 2px dashed var(--grey-300);
   border-radius: var(--r-md);
@@ -182,13 +143,6 @@
 
 .video-media { inline-size: 100%; max-inline-size: 26rem; }
 @media (min-width: 60rem) { .video-media { justify-self: end; } }
-
-/* --------------------------------------------------------------------------
-   Physician
-   -------------------------------------------------------------------------- */
-
-.creds dd { font-size: var(--t-body); }
-.creds .creds__name dd { font-size: var(--t-h3); letter-spacing: var(--ls-tight); }
 
 /* --------------------------------------------------------------------------
    FAQ — the heading holds still while the questions scroll past it
@@ -434,31 +388,298 @@
 .band--deep .lead { color: var(--pale-200); }
 .band--deep .prose p { color: var(--on-dark-soft); }
 .band--deep .prose .first { color: var(--white); }
+.band--deep p { color: var(--on-dark-soft); }
+
+/* ==========================================================================
+   The horizontal sections
+   Seven sections that used to sit in two columns — copy on one side, a list
+   or a panel on the other — now read across the page instead: the heading
+   and its description on top, and under them one horizontal object built
+   from the section's own content. None of them is decoration: each row is
+   the thing the section is about, laid out in the order it happens or the
+   order it matters.
+   ========================================================================== */
+
+.measure { max-width: var(--measure); }
+
+/* A small tracked label over a row — the table's group label, reused. */
+.kicker {
+  display: block;
+  font-family: var(--font);
+  font-size: var(--t-xs);
+  font-weight: 800;
+  letter-spacing: var(--ls-wide);
+  text-transform: uppercase;
+  color: var(--plum-600);
+}
+.band--deep .kicker { color: var(--cyan-300); }
 
 /* --------------------------------------------------------------------------
-   The procedure, as a ledger — one column of steps inside a panel, rows
-   divided by hairlines, the heading holding still beside it. The two-column
-   grid it replaces split five steps three and two and left a hole.
+   Benefits — what it leaves out, as a ruled strip of four
    -------------------------------------------------------------------------- */
 
-.ledger { counter-reset: lg; gap: 0; }
-.ledger .feature {
-  counter-increment: lg;
+.absent {
+  display: grid;
+  inline-size: 100%;
+  border-radius: var(--r-lg);
+  background: var(--white);
+  border: 1px solid var(--hairline);
+  box-shadow: var(--shadow-sm);
+}
+.absent li {
+  display: flex;
+  align-items: center;
+  gap: var(--s-4);
+  padding: var(--s-5);
+}
+.absent li + li { border-block-start: 1px solid var(--hairline); }
+.absent h4 { font-size: var(--t-h3); line-height: 1.2; }
+.absent__mark {
+  display: grid;
+  place-items: center;
+  flex: none;
+  inline-size: 2.75rem;
+  block-size: 2.75rem;
+  border-radius: var(--r-pill);
+  background: var(--white);
+  color: var(--grey-700);
+  box-shadow: inset 0 0 0 1.5px var(--grey-300);
+}
+.absent__mark .ico { inline-size: 1.25rem; block-size: 1.25rem; }
+
+@media (min-width: 40rem) {
+  .absent { grid-template-columns: 1fr 1fr; }
+  .absent li:nth-child(2) { border-block-start: 0; }
+  .absent li:nth-child(even) { border-inline-start: 1px solid var(--hairline); }
+}
+@media (min-width: 64rem) {
+  .absent { grid-template-columns: repeat(4, 1fr); }
+  .absent li {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: var(--s-7) var(--s-6);
+  }
+  .absent li + li { border-block-start: 0; border-inline-start: 1px solid var(--hairline); }
+}
+
+/* What it does — the ticks run on like a sentence and wrap where they must. */
+.checklist--flow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-3) var(--s-7);
+}
+
+/* --------------------------------------------------------------------------
+   Physician — the credentials as a strip of four figures
+   -------------------------------------------------------------------------- */
+
+.creds-strip {
+  display: grid;
+  gap: 0;
   margin: 0;
+  inline-size: 100%;
+  border-block: 1px solid var(--hairline);
+}
+.creds-strip > div {
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: flex-end;
+  gap: var(--s-1);
   padding: var(--s-5) 0;
-  border-radius: 0;
 }
-.ledger .feature + .feature { margin-block-start: 0; border-block-start: 1px solid var(--hairline); }
-.ledger .feature:first-child { padding-block-start: 0; }
-.ledger .feature:last-child { padding-block-end: 0; }
-.ledger .feature h3::before { content: counter(lg) '. '; font-weight: 800; }
-
-@media (min-width: 60rem) {
-  .side-head { position: sticky; inset-block-start: calc(var(--s-11) + var(--s-2)); }
+.creds-strip > div + div { border-block-start: 1px solid var(--hairline); }
+.creds-strip dd { margin: 0; font-weight: 700; color: var(--white); }
+.creds-strip dt {
+  font-size: var(--t-copy);
+  line-height: var(--lh-copy);
+  letter-spacing: var(--ls-copy);
+  color: var(--on-dark-soft);
+}
+@media (min-width: 40rem) {
+  .creds-strip { grid-template-columns: 1fr 1fr; }
+  .creds-strip > div:nth-child(2) { border-block-start: 0; }
+  .creds-strip > div:nth-child(even) { border-inline-start: 1px solid var(--hairline); padding-inline-start: var(--s-6); }
+}
+@media (min-width: 64rem) {
+  .creds-strip { grid-template-columns: repeat(4, 1fr); }
+  .creds-strip > div { padding: var(--s-6) var(--s-6) var(--s-6) 0; }
+  .creds-strip > div + div { border-block-start: 0; border-inline-start: 1px solid var(--hairline); padding-inline-start: var(--s-6); }
 }
 
-/* The rail inside its panel: the panel's padding already clears it. */
-.rail.panel { padding-inline-start: calc(var(--s-7) + var(--s-7)); }
-@media (max-width: 47.99rem) { .rail.panel { padding-inline-start: calc(var(--s-5) + var(--s-7)); } }
-.rail.panel::before { inset-inline-start: calc(var(--s-7) + .45rem); inset-block: var(--s-7); }
-@media (max-width: 47.99rem) { .rail.panel::before { inset-inline-start: calc(var(--s-5) + .45rem); inset-block: var(--s-6); } }
+/* --------------------------------------------------------------------------
+   The procedure — five steps along one line
+   -------------------------------------------------------------------------- */
+
+.step__num {
+  display: block;
+  font-family: var(--font);
+  font-size: var(--t-xs);
+  font-weight: 800;
+  letter-spacing: var(--ls-wide);
+  text-transform: uppercase;
+  color: var(--plum-600);
+}
+
+.path {
+  --well: 3.85rem;
+  --gap: var(--s-6);
+  display: grid;
+  gap: var(--gap);
+}
+.path li {
+  position: relative;
+  display: grid;
+  grid-template-columns: var(--well) 1fr;
+  column-gap: var(--s-5);
+  row-gap: var(--s-1);
+  align-content: start;
+}
+.path .ico-well { grid-row: span 3; }
+.path h3 { font-size: var(--t-body); }
+/* The line the steps happen along: down the page on a phone… */
+.path li:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  inset-inline-start: calc(var(--well) / 2 - 1px);
+  inset-block: calc(var(--well) + var(--s-2)) calc(var(--gap) * -1 + var(--s-2));
+  inline-size: 2px;
+  background: var(--grey-300);
+}
+/* …and across it on a wide screen. */
+@media (min-width: 64rem) {
+  .path { grid-template-columns: repeat(5, 1fr); }
+  .path li { grid-template-columns: 1fr; row-gap: var(--s-2); }
+  .path .ico-well { grid-row: auto; margin-block-end: var(--s-3); }
+  .path li:not(:last-child)::after {
+    inset-block: calc(var(--well) / 2 - 1px) auto;
+    inset-inline: calc(var(--well) + var(--s-3)) calc(var(--gap) * -1 + var(--s-3));
+    inline-size: auto;
+    block-size: 2px;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Recovery — a day ruler. Vertical on a phone, horizontal from 64rem.
+   Static: nothing on it is interactive, so nothing on it moves.
+   -------------------------------------------------------------------------- */
+
+.rail {
+  position: relative;
+  display: grid;
+  gap: var(--s-6);
+  padding-inline-start: var(--s-7);
+}
+.rail::before {
+  content: '';
+  position: absolute;
+  inset-block: .6rem;
+  inset-inline-start: .45rem;
+  inline-size: 2px;
+  background: var(--grey-300);
+}
+.rail li { position: relative; display: grid; gap: var(--s-2); align-content: start; }
+.rail li::before {
+  content: '';
+  position: absolute;
+  inset-block-start: .35rem;
+  inset-inline-start: calc(var(--s-7) * -1);
+  inline-size: 1rem;
+  block-size: 1rem;
+  border-radius: var(--r-pill);
+  background: var(--white);
+  border: 3px solid var(--plum-600);
+}
+.rail li:last-child::before { background: var(--plum-600); }
+.rail h3 { font-size: var(--t-body); }
+
+@media (min-width: 64rem) {
+  .rail {
+    grid-template-columns: repeat(5, 1fr);
+    padding-inline-start: 0;
+    padding-block-start: var(--s-7);
+  }
+  /* Starts at the first mark and runs on past the last: healing does. */
+  .rail::before {
+    inset-block: .45rem auto;
+    inset-inline: .5rem 0;
+    inline-size: auto;
+    block-size: 2px;
+  }
+  .rail li::before { inset-block-start: calc(var(--s-7) * -1); inset-inline-start: 0; }
+}
+
+.rail-foot { padding-block-start: var(--s-5); border-block-start: 1px solid var(--hairline); }
+
+/* --------------------------------------------------------------------------
+   Candidacy — the caution as a banner across the band
+   -------------------------------------------------------------------------- */
+
+.banner {
+  display: grid;
+  gap: var(--s-5);
+  justify-items: start;
+  padding: var(--s-6) var(--s-5);
+  border-radius: var(--r-lg);
+  background: var(--white);
+  border: 1px solid var(--hairline);
+  border-inline-start: 4px solid var(--plum-600);
+  box-shadow: var(--shadow-sm);
+}
+.banner__text { gap: var(--s-3); }
+.banner__text h3 { font-size: var(--t-h3); }
+.banner__text p { max-width: 72ch; color: var(--text-soft); }
+@media (min-width: 64rem) {
+  .banner {
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    column-gap: var(--s-7);
+    padding: var(--s-7);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Longevity — three statements across one rule
+   -------------------------------------------------------------------------- */
+
+.over-time { display: grid; gap: var(--s-6); }
+.over-time li {
+  display: grid;
+  gap: var(--s-3);
+  align-content: start;
+  padding-block-start: var(--s-5);
+  border-block-start: 2px solid var(--grey-300);
+}
+.over-time li:first-child { border-block-start-color: var(--plum-600); }
+.over-time h3 { font-size: var(--t-h3); line-height: 1.25; }
+@media (min-width: 48rem) {
+  .over-time { grid-template-columns: repeat(3, 1fr); gap: var(--s-7); }
+}
+
+/* --------------------------------------------------------------------------
+   Closing — what Dr. Silk will do, three across
+   -------------------------------------------------------------------------- */
+
+.three { display: grid; gap: var(--s-5); counter-reset: none; }
+.three li {
+  display: grid;
+  justify-items: center;
+  gap: var(--s-3);
+  padding-block-start: var(--s-5);
+  border-block-start: 1px solid var(--hairline);
+  text-align: center;
+}
+.three .step__num {
+  display: grid;
+  place-items: center;
+  inline-size: 2.5rem;
+  block-size: 2.5rem;
+  border-radius: var(--r-pill);
+  box-shadow: inset 0 0 0 1.5px rgb(255 255 255 / .45);
+  color: var(--white);
+  font-size: var(--t-sm);
+  letter-spacing: 0;
+}
+.three p { color: var(--white); max-width: 26ch; }
+@media (min-width: 48rem) {
+  .three { grid-template-columns: repeat(3, 1fr); gap: var(--s-7); }
+}

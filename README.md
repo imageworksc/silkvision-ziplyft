@@ -14,6 +14,7 @@ css/tokens.css       colour, type, space, radius, motion — shared, unchanged
 css/base.css         reset, layout primitives, dark-ground contract — shared, unchanged
 css/components.css   the shared components, plus the Ziplyft set at the end
 css/sections.css     this page's layouts; closing band and footer shared
+css/type.css         Inter for body text, Poppins for titles; one body size/leading/tracking
 css/motion.css       shared keyframes and reduced-motion contract, plus Ziplyft entries
 js/main.js           shared menu/scroll/reveal code, plus slider, videos, sticky bar
 ```
@@ -29,7 +30,10 @@ CSS/JS link in `index.html` on each deploy that touches them.
 
 ## What changed from the draft
 
-- Inter dropped; Poppins only. All gradients replaced with flat fills.
+- Type: Poppins for headings, subheads, buttons and labels; Inter (self-hosted,
+  `fonts/inter-latin.woff2`) for all body text, at one size, leading and tracking.
+  This departs from the office-based surgery page, which is Poppins throughout.
+- All gradients replaced with flat fills.
 - Hero is a split (flat navy + untouched photograph): a scrim would hide the
   eyelid, which is the point of the image.
 - The "at a glance" box was removed — the comparison table says the same thing.
@@ -38,6 +42,10 @@ CSS/JS link in `index.html` on each deploy that touches them.
 - FAQ uses `<details name="faq">`: one open at a time, no script.
 - The Dr. Silk video waits for a click and plays with sound; the mechanism
   loop plays silently only while on screen, with a pause button.
+
+- Benefits, physician, procedure, recovery, candidacy caveat, longevity and the
+  closing band read horizontally (strips, rows and a day ruler) instead of in
+  two columns. Cost is now its own band.
 
 ## Pending from the practice
 

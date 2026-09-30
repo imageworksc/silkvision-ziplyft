@@ -58,14 +58,15 @@
 <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
 
 <link rel="preconnect" href="https://res.cloudinary.com">
-<link rel="stylesheet" href="css/fonts.css?v=6">
-<link rel="stylesheet" href="css/tokens.css?v=6">
-<link rel="stylesheet" href="css/base.css?v=6">
-<link rel="stylesheet" href="css/components.css?v=6">
-<link rel="stylesheet" href="css/sections.css?v=6">
-<link rel="stylesheet" href="css/motion.css?v=6">
+<link rel="stylesheet" href="css/fonts.css?v=10">
+<link rel="stylesheet" href="css/tokens.css?v=10">
+<link rel="stylesheet" href="css/base.css?v=10">
+<link rel="stylesheet" href="css/components.css?v=10">
+<link rel="stylesheet" href="css/sections.css?v=10">
+<link rel="stylesheet" href="css/type.css?v=10">
+<link rel="stylesheet" href="css/motion.css?v=10">
 
-<script src="js/main.js?v=6" defer></script>
+<script src="js/main.js?v=10" defer></script>
 </head>
 <body>
 
@@ -306,10 +307,10 @@
   </section>
 
   <!-- ===== BENEFITS ========================================================
-       Two panels, because the list was two lists: what the procedure does,
-       and what it leaves out. The second set take a cross in a plain ring
-       rather than the plum tick — the tick means "yes, this", and a tick
-       beside "No sutures" said yes and no in one line.
+       One horizontal composition, read top to bottom: the four things the
+       procedure leaves out, as a ruled strip across the full width — they
+       are the headline of the section — and under it what it does, as a
+       single line of ticks that wraps like a sentence.
        ======================================================================= -->
   <section class="band band--paper" aria-labelledby="benefits-title">
     <div class="wrap stack stack--loose">
@@ -318,28 +319,28 @@
         <p class="lead lead--wide">For the right patient, Ziplyft can provide meaningful upper-eyelid
           rejuvenation without many of the things commonly associated with traditional eyelid surgery.</p>
       </div>
-      <div class="panels full stagger">
-        <article class="panel" data-reveal>
-          <h3>What it does</h3>
-          <ul class="checklist">
-            <li><span class="tick"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg></span>Removes actual excess upper-eyelid skin</li>
-            <li><span class="tick"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg></span>Less than 15-minute procedure</li>
-            <li><span class="tick"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg></span>Performed in the physician’s office</li>
-            <li><span class="tick"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg></span>Local anesthetic only</li>
-            <li><span class="tick"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg></span>Medical adhesive closure</li>
-            <li><span class="tick"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg></span>Minimal bruising and swelling</li>
-            <li><span class="tick"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg></span>Typically event-ready within 7–10 days</li>
-          </ul>
-        </article>
-        <article class="panel" data-reveal>
-          <h3>What it leaves out</h3>
-          <ul class="checklist">
-            <li><span class="tick tick--no"><svg class="ico" aria-hidden="true"><use href="#i-close"/></svg></span>No IV sedation</li>
-            <li><span class="tick tick--no"><svg class="ico" aria-hidden="true"><use href="#i-close"/></svg></span>No general anesthesia</li>
-            <li><span class="tick tick--no"><svg class="ico" aria-hidden="true"><use href="#i-close"/></svg></span>No sutures</li>
-            <li><span class="tick tick--no"><svg class="ico" aria-hidden="true"><use href="#i-close"/></svg></span>No cautery</li>
-          </ul>
-        </article>
+
+      <div class="stack full" data-reveal>
+        <h3 class="kicker">What it leaves out</h3>
+        <ul class="absent stagger">
+          <li><span class="absent__mark"><svg class="ico" aria-hidden="true"><use href="#i-close"/></svg></span><h4>No IV sedation</h4></li>
+          <li><span class="absent__mark"><svg class="ico" aria-hidden="true"><use href="#i-close"/></svg></span><h4>No general anesthesia</h4></li>
+          <li><span class="absent__mark"><svg class="ico" aria-hidden="true"><use href="#i-close"/></svg></span><h4>No sutures</h4></li>
+          <li><span class="absent__mark"><svg class="ico" aria-hidden="true"><use href="#i-close"/></svg></span><h4>No cautery</h4></li>
+        </ul>
+      </div>
+
+      <div class="stack full" data-reveal>
+        <h3 class="kicker">What it does</h3>
+        <ul class="checklist checklist--flow">
+          <li><span class="tick"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg></span>Removes actual excess upper-eyelid skin</li>
+          <li><span class="tick"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg></span>Less than 15-minute procedure</li>
+          <li><span class="tick"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg></span>Performed in the physician’s office</li>
+          <li><span class="tick"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg></span>Local anesthetic only</li>
+          <li><span class="tick"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg></span>Medical adhesive closure</li>
+          <li><span class="tick"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg></span>Minimal bruising and swelling</li>
+          <li><span class="tick"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg></span>Typically event-ready within 7–10 days</li>
+        </ul>
       </div>
     </div>
   </section>
@@ -451,29 +452,37 @@
     </div>
   </section>
 
-  <!-- ===== PHYSICIAN ======================================================= -->
+  <!-- ===== PHYSICIAN =======================================================
+       The credentials as a strip of four across the band — the figure
+       large, what it counts small under it — between the claim and the
+       reasoning, rather than as a list in a column beside them.
+       ======================================================================= -->
   <section class="band band--deep" aria-labelledby="doctor-title">
-    <div class="wrap split split--wide-gutter">
-      <div class="stack" data-reveal>
+    <div class="wrap stack stack--loose">
+      <div class="stack head" data-reveal>
         <h2 id="doctor-title">The technology matters. So does the physician.</h2>
-        <div class="prose">
-          <p class="first">Ziplyft simplifies many parts of upper-eyelid treatment. It does not replace medical judgment.</p>
-          <p>Why your eyelids appear heavy, how much skin should be removed and whether Ziplyft is
-            appropriate at all — each of these shapes the final result.</p>
-          <p>At Silk Vision the goal isn’t to fit every patient into the newest treatment. It’s to
-            understand your eyes first and recommend the approach that makes sense for your anatomy
-            and goals.</p>
-        </div>
+        <p class="lead lead--wide">Ziplyft simplifies many parts of upper-eyelid treatment. It does not
+          replace medical judgment.</p>
+      </div>
+
+      <div class="stack full" data-reveal>
+        <h3 class="kicker">Your surgeon · Wesam Silk, M.D.</h3>
+        <dl class="creds-strip stagger">
+          <div><dt>ophthalmologist</dt><dd>Board-certified</dd></div>
+          <div><dt>cornea specialist</dt><dd>Fellowship-trained</dd></div>
+          <div><dt>eye surgeries performed</dt><dd>26,000+</dd></div>
+          <div><dt>serving Northern Virginia</dt><dd>20+ years</dd></div>
+        </dl>
+      </div>
+
+      <div class="stack" data-reveal>
+        <p class="measure">Why your eyelids appear heavy, how much skin should be removed and whether
+          Ziplyft is appropriate at all — each of these shapes the final result. At Silk Vision the
+          goal isn’t to fit every patient into the newest treatment. It’s to understand your eyes
+          first and recommend the approach that makes sense for your anatomy and goals.</p>
         <a class="btn btn--ghost" href="https://www.silkvision.net/trusted-eye-physicians-and-surgeons-northern-virginia">Meet Dr.&nbsp;Silk
           <svg class="ico ico--arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
       </div>
-      <dl class="facts creds" data-reveal>
-        <div class="creds__name"><dt>Your surgeon</dt><dd>Wesam Silk, M.D.</dd></div>
-        <div><dt>Certification</dt><dd>Board-certified ophthalmologist</dd></div>
-        <div><dt>Training</dt><dd>Fellowship-trained cornea specialist</dd></div>
-        <div><dt>Experience</dt><dd>26,000+ eye surgeries</dd></div>
-        <div><dt>In the community</dt><dd>20+ years in Northern Virginia</dd></div>
-      </dl>
     </div>
   </section>
 
@@ -509,58 +518,78 @@
     </div>
   </section>
 
-  <!-- ===== THE PROCEDURE =================================================== -->
+  <!-- ===== THE PROCEDURE ===================================================
+       Five steps in a row, joined by the line they happen along. Each icon
+       well sits on the line; the step's number, title and description hang
+       under it. On a narrow screen the row turns and runs down the page.
+       ======================================================================= -->
   <section class="band band--paper" aria-labelledby="steps-title">
-    <div class="wrap split split--wide-gutter">
-      <div class="stack head side-head" data-reveal>
+    <div class="wrap stack stack--loose">
+      <div class="stack head" data-reveal>
         <h2 id="steps-title">What happens during a Ziplyft procedure?</h2>
-        <p class="lead">The procedure typically takes less than 15 minutes. Your appointment
+        <p class="lead lead--wide">The procedure typically takes less than 15 minutes. Your appointment
           is longer, to allow for evaluation, preparation, marking, local anesthetic and
           post-treatment instructions.</p>
       </div>
-      <ol class="ledger panel stagger">
-        <li class="feature" data-reveal>
-          <span class="ico-well ico-well--sm"><svg class="ico" aria-hidden="true"><use href="#i-lid"/></svg></span>
-          <div><h3>Your eyelid evaluation</h3><p>Dr.&nbsp;Silk evaluates your eyelids, eye health, anatomy, excess skin and goals to decide whether Ziplyft is appropriate.</p></div>
+      <ol class="path full stagger">
+        <li data-reveal>
+          <span class="ico-well"><svg class="ico ico--lg" aria-hidden="true"><use href="#i-lid"/></svg></span>
+          <span class="step__num">Step 1</span>
+          <h3>Your eyelid evaluation</h3>
+          <p>Dr.&nbsp;Silk evaluates your eyelids, eye health, anatomy, excess skin and goals to decide whether Ziplyft is appropriate.</p>
         </li>
-        <li class="feature" data-reveal>
-          <span class="ico-well ico-well--sm"><svg class="ico" aria-hidden="true"><use href="#i-drops"/></svg></span>
-          <div><h3>Marking &amp; numbing</h3><p>The excess skin to be treated is carefully marked, and local anesthetic numbs the area.</p></div>
+        <li data-reveal>
+          <span class="ico-well"><svg class="ico ico--lg" aria-hidden="true"><use href="#i-drops"/></svg></span>
+          <span class="step__num">Step 2</span>
+          <h3>Marking &amp; numbing</h3>
+          <p>The excess skin to be treated is carefully marked, and local anesthetic numbs the area.</p>
         </li>
-        <li class="feature" data-reveal>
-          <span class="ico-well ico-well--sm"><svg class="ico" aria-hidden="true"><use href="#i-compress"/></svg></span>
-          <div><h3>Compress, remove &amp; seal</h3><p>CoCo&trade; technology compresses the tissue, the excess skin is removed, and the edges are sealed with medical-grade adhesive.</p></div>
+        <li data-reveal>
+          <span class="ico-well"><svg class="ico ico--lg" aria-hidden="true"><use href="#i-compress"/></svg></span>
+          <span class="step__num">Step 3</span>
+          <h3>Compress, remove &amp; seal</h3>
+          <p>CoCo&trade; technology compresses the tissue, the excess skin is removed, and the edges are sealed with medical-grade adhesive.</p>
         </li>
-        <li class="feature" data-reveal>
-          <span class="ico-well ico-well--sm"><svg class="ico" aria-hidden="true"><use href="#i-home"/></svg></span>
-          <div><h3>Go home</h3><p>There is no operating-room recovery, and no later appointment just to remove stitches.</p></div>
+        <li data-reveal>
+          <span class="ico-well"><svg class="ico ico--lg" aria-hidden="true"><use href="#i-home"/></svg></span>
+          <span class="step__num">Step 4</span>
+          <h3>Go home</h3>
+          <p>There is no operating-room recovery, and no later appointment just to remove stitches.</p>
         </li>
-        <li class="feature" data-reveal>
-          <span class="ico-well ico-well--sm"><svg class="ico" aria-hidden="true"><use href="#i-eye"/></svg></span>
-          <div><h3>Heal &amp; see the result</h3><p>Swelling and bruising settle as the eyelids heal; most patients are event-ready in about 7–10 days.</p></div>
+        <li data-reveal>
+          <span class="ico-well"><svg class="ico ico--lg" aria-hidden="true"><use href="#i-eye"/></svg></span>
+          <span class="step__num">Step 5</span>
+          <h3>Heal &amp; see the result</h3>
+          <p>Swelling and bruising settle as the eyelids heal; most patients are event-ready in about 7–10 days.</p>
         </li>
       </ol>
     </div>
   </section>
 
-  <!-- ===== RECOVERY ======================================================== -->
+  <!-- ===== RECOVERY ========================================================
+       A day ruler: the stages laid out left to right along one line, the
+       day above each mark and what to expect below it. The line runs on
+       past the last mark, because healing does too.
+       ======================================================================= -->
   <section class="band" aria-labelledby="recovery-title">
-    <div class="wrap split split--wide-gutter">
+    <div class="wrap stack stack--loose">
       <div class="stack head" data-reveal>
         <h2 id="recovery-title">Ziplyft recovery: what to expect</h2>
-        <p class="lead">One of the biggest reasons patients consider Ziplyft is the shorter,
+        <p class="lead lead--wide">One of the biggest reasons patients consider Ziplyft is the shorter,
           simpler recovery compared with traditional upper eyelid surgery.</p>
-        <p class="fine">Every patient heals differently. Individual results and recovery times vary.</p>
-        <a class="btn btn--ghost" href="#results">See the before &amp; after
-          <svg class="ico ico--arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
       </div>
-      <ol class="rail panel panel--paper" data-reveal>
+      <ol class="rail full" data-reveal>
         <li><h3>Treatment day</h3><p>You leave the office after treatment. Mild swelling, redness or tenderness may begin.</p></li>
         <li><h3>Days 1–3</h3><p>Swelling and some bruising may be visible while the eyelids begin healing.</p></li>
         <li><h3>Days 4–7</h3><p>Bruising and swelling generally keep improving, and the new eyelid contour becomes easier to see.</p></li>
         <li><h3>Days 7–10</h3><p>Many patients are comfortable returning to social events as healing continues.</p></li>
         <li><h3>Following weeks</h3><p>The treatment line continues to mature and become less noticeable as the eyelids settle.</p></li>
       </ol>
+      <div class="cluster cluster--between full rail-foot" data-reveal>
+        <p class="fine">Every patient heals differently. Individual results and recovery times vary.</p>
+        <a class="btn btn--ghost" href="#results">See the before &amp; after
+          <svg class="ico ico--arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      </div>
     </div>
   </section>
 
@@ -587,52 +616,61 @@
         </ul>
       </div>
 
-      <div class="cand-foot" data-reveal>
-        <div class="note">
-          <h3>Not every heavy eyelid is the same.</h3>
+      <!-- A banner across the band: the mark, the caution, the action, in one
+           row — the reader meets the caveat and the next step together. -->
+      <aside class="banner full" data-reveal aria-labelledby="same-title">
+        <span class="ico-well"><svg class="ico ico--lg" aria-hidden="true"><use href="#i-lid"/></svg></span>
+        <div class="stack banner__text">
+          <h3 id="same-title">Not every heavy eyelid is the same.</h3>
           <p>True eyelid ptosis, significant excess fat, muscle involvement, previous eyelid surgery
             and other anatomical conditions can create similar concerns but may need a different or
-            additional treatment.</p>
-          <p>That’s why the first step should be an examination — not choosing a procedure online.</p>
+            additional treatment. That’s why the first step should be an examination — not choosing
+            a procedure online.</p>
         </div>
         <a class="btn btn--solid" href="https://www.mypatientvisit.com/onlinescheduling/#/scheduler/schedule?practiceid=b46123f5-99ee-4f66-969c-fe650949c344">Find out if you’re a candidate
           <svg class="ico ico--arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
-      </div>
+      </aside>
     </div>
   </section>
 
-  <!-- ===== LONGEVITY + COST ================================================ -->
+  <!-- ===== LONGEVITY =======================================================
+       Three statements across one rule: what is permanent, what is not,
+       and what decides the difference. The first carries the plum mark —
+       it is the answer to the heading.
+       ======================================================================= -->
   <section class="band" aria-labelledby="last-title">
-    <div class="wrap split split--wide-gutter">
-      <div class="stack" data-reveal>
+    <div class="wrap stack stack--loose">
+      <div class="stack head" data-reveal>
         <h2 id="last-title">How long do Ziplyft results last?</h2>
-        <p class="lead">Ziplyft physically removes excess upper-eyelid skin rather than
+        <p class="lead lead--wide">Ziplyft physically removes excess upper-eyelid skin rather than
           temporarily tightening its appearance.</p>
-        <!-- The answer to the heading, set as the answer: one sentence, large,
-             on the plum rule the note uses. Not a quote — nobody said it. -->
-        <p class="pull">The skin that is removed does not grow&nbsp;back.</p>
-        <div class="prose">
-          <p>Your eyelids and surrounding tissues will, however, continue to change naturally as
-            you age — and your anatomy, age, skin quality and lifestyle all influence how.</p>
-        </div>
       </div>
-      <div class="panel panel--paper stack" data-reveal>
-        <h2 id="cost-title" class="panel__title">How much does Ziplyft cost?</h2>
-        <div class="prose">
-          <p>The exact cost depends on your anatomy, your treatment needs and whether Ziplyft alone
-            is appropriate for your eyelids. Your consultation lets Dr.&nbsp;Silk evaluate the
-            problem first, explain your options and give you a clear recommendation and cost before
-            you decide.</p>
-        </div>
-        <!-- [PENDING: approved Silk Vision price or starting price] -->
-        <p class="price-slot">[Add approved Silk Vision price or starting price]</p>
+      <ul class="over-time full stagger">
+        <li data-reveal><span class="kicker">The skin removed</span><h3>Does not grow back.</h3></li>
+        <li data-reveal><span class="kicker">Your eyelids</span><h3>Continue to change naturally as you age.</h3></li>
+        <li data-reveal><span class="kicker">What shapes how</span><h3>Your anatomy, age, skin quality and lifestyle.</h3></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ===== COST ============================================================ -->
+  <section class="band band--paper" aria-labelledby="cost-title">
+    <div class="wrap stack stack--loose">
+      <div class="stack head" data-reveal>
+        <h2 id="cost-title">How much does Ziplyft cost?</h2>
+        <p class="lead lead--wide">The exact cost depends on your anatomy, your treatment needs and
+          whether Ziplyft alone is appropriate for your eyelids. Your consultation lets Dr.&nbsp;Silk
+          evaluate the problem first, explain your options and give you a clear recommendation and
+          cost before you decide.</p>
+      </div>
+      <!-- [PENDING: approved Silk Vision price or starting price] -->
+      <p class="price-slot" data-reveal>[Add approved Silk Vision price or starting price]</p>
+      <div class="stack" data-reveal>
         <h3>Is Ziplyft covered by insurance?</h3>
-        <div class="prose">
-          <p>Cosmetic eyelid treatment is generally self-pay. If excess upper-eyelid skin is
-            significantly interfering with vision, further medical evaluation may be needed to decide
-            whether a medically necessary eyelid procedure is appropriate and whether insurance
-            requirements can be met.</p>
-        </div>
+        <p class="measure">Cosmetic eyelid treatment is generally self-pay. If excess upper-eyelid skin
+          is significantly interfering with vision, further medical evaluation may be needed to decide
+          whether a medically necessary eyelid procedure is appropriate and whether insurance
+          requirements can be met.</p>
         <a class="btn btn--ghost" href="https://www.mypatientvisit.com/onlinescheduling/#/scheduler/schedule?practiceid=b46123f5-99ee-4f66-969c-fe650949c344">Get your treatment &amp; pricing recommendation
           <svg class="ico ico--arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
       </div>
@@ -640,7 +678,7 @@
   </section>
 
   <!-- ===== FAQ ============================================================= -->
-  <section class="band band--paper" aria-labelledby="faq-title">
+  <section class="band" aria-labelledby="faq-title">
     <div class="wrap split faq-split">
       <div class="stack faq-head" data-reveal>
         <h2 id="faq-title">Ziplyft frequently asked questions</h2>
@@ -713,8 +751,15 @@
       <p class="lead">If excess upper-eyelid skin is making your eyes look heavier, hooded or more
         tired than you’d like, the next step isn’t guessing which procedure you need. Let
         Dr.&nbsp;Silk take a look.</p>
-      <p class="lead">He can evaluate what’s causing the change, explain whether Ziplyft is appropriate and walk
-        you through what to expect from treatment and recovery.</p>
+
+      <!-- The sentence that used to follow — "He can evaluate…, explain…
+           and walk you through…" — was already three things in order, so it
+           is set as three, across the band. Same words. -->
+      <ol class="three full stagger" aria-label="What Dr. Silk will do">
+        <li><span class="step__num">1</span><p>Evaluate what’s causing the change</p></li>
+        <li><span class="step__num">2</span><p>Explain whether Ziplyft is appropriate</p></li>
+        <li><span class="step__num">3</span><p>Walk you through what to expect from treatment and recovery</p></li>
+      </ol>
 
       <div class="cluster">
         <a class="btn btn--solid btn--lg" href="https://www.mypatientvisit.com/onlinescheduling/#/scheduler/schedule?practiceid=b46123f5-99ee-4f66-969c-fe650949c344">Schedule your Ziplyft consultation

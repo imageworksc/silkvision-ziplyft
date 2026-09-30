@@ -752,47 +752,6 @@ a.card:hover p  { transform: translateX(4px); transition-delay: 130ms; }
 .ba:has(.ba__range:focus-visible) .ba__knob { transform: scale(1.1); }
 
 /* --------------------------------------------------------------------------
-   Recovery rail — the days down a single line. Static: the stages are not
-   interactive, so nothing on them moves (DESIGN.md §5).
-   -------------------------------------------------------------------------- */
-
-.rail {
-  position: relative;
-  display: grid;
-  gap: var(--s-5);
-  padding-inline-start: var(--s-7);
-  inline-size: 100%;
-}
-.rail::before {
-  content: '';
-  position: absolute;
-  inset-block: .6rem .6rem;
-  inset-inline-start: .45rem;
-  inline-size: 2px;
-  background: var(--hairline);
-}
-.rail li { position: relative; display: grid; gap: var(--s-1); }
-.rail li::before {
-  content: '';
-  position: absolute;
-  inset-block-start: .35rem;
-  inset-inline-start: calc(var(--s-7) * -1);
-  inline-size: 1rem;
-  block-size: 1rem;
-  border-radius: var(--r-pill);
-  background: var(--white);
-  border: 3px solid var(--plum-600);
-}
-/* The last stage is the destination, so it is the one filled in. */
-.rail li:last-child::before { background: var(--plum-600); }
-.rail h3 { font-size: var(--t-body); color: var(--heading); }
-.rail p { font-size: var(--t-sm); color: var(--text-soft); }
-
-@media (min-width: 48rem) {
-  .rail li { grid-template-columns: 11rem 1fr; gap: var(--s-6); align-items: baseline; }
-}
-
-/* --------------------------------------------------------------------------
    FAQ — <details name="faq">, so only one is open at a time without a line
    of script, and every answer is in the document for search and for
    find-in-page whether it is open or not.
@@ -935,43 +894,6 @@ a.card:hover p  { transform: translateX(4px); transition-delay: 130ms; }
   font-size: var(--t-body);
   padding-block-end: var(--s-4);
   border-block-end: 1px solid var(--hairline);
-}
-
-/* On a white band a white panel would vanish, so it takes the paper ground
-   and drops the shadow — a shadow on the same colour as the page reads as
-   a smudge. */
-.panel--paper { background: var(--paper); box-shadow: none; }
-/* A step under the page's h2, like the accreditation claim's heading. */
-.panel__title { font-size: clamp(1.25rem, 1.2vw + .825rem, 1.875rem); }
-
-.panels { display: grid; gap: var(--s-5); }
-@media (min-width: 48rem) {
-  /* The first panel holds seven lines and the second four; weighting the
-     columns 3:2 keeps the two about as full as each other. */
-  .panels { grid-template-columns: 3fr 2fr; }
-}
-
-/* The "no" mark: a cross in a plain ring. Neutral on purpose — plum means
-   "yes, this", and the navy fill belongs to the table's other column. */
-.tick--no {
-  background: var(--white);
-  color: var(--grey-700);
-  box-shadow: inset 0 0 0 1.5px var(--grey-300);
-}
-
-/* --------------------------------------------------------------------------
-   Pull — one sentence that answers the heading above it
-   -------------------------------------------------------------------------- */
-
-.pull {
-  padding-inline-start: var(--s-5);
-  border-inline-start: 3px solid var(--plum-600);
-  font-size: var(--t-h3);
-  font-weight: 600;
-  line-height: 1.3;
-  letter-spacing: -.01em;
-  color: var(--heading);
-  text-wrap: balance;
 }
 
 /* --------------------------------------------------------------------------

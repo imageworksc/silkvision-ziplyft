@@ -1,0 +1,62 @@
+/* ==========================================================================
+   Type — the Ziplyft page's two-family rule
+   ==========================================================================
+   Poppins for everything that is a title or a control: headings, subheads,
+   buttons, the nav, the FAQ questions, the table's column heads and labels.
+   Inter for everything that is read: every paragraph, list item, table cell,
+   caption and value on the page.
+
+   And every piece of body text is set the same way — one size, one leading,
+   one tracking. Before this, running copy came in four sizes (--t-sm, the
+   body size, --t-lead, and .first), which read as four different voices
+   where the page only has one. Colour and weight still vary by context; the
+   measurements do not.
+
+   Loaded after sections.css and before motion.css. The body rule is scoped
+   to #main so the footer keeps its own smaller reference scale.
+   ========================================================================== */
+
+:root {
+  --font-body: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --t-copy: var(--t-body);   /* 17 → 19 */
+  --lh-copy: 1.65;
+  /* Inter is drawn for small sizes and runs slightly open at text sizes;
+     a hundredth of an em pulls it back to the colour of Poppins beside it. */
+  --ls-copy: -.01em;
+}
+
+body { font-family: var(--font-body); }
+
+/* Titles and controls stay Poppins. */
+h1, h2, h3, h4,
+.btn, .nav a, .nav-toggle, .topbar a, .skip-link,
+.faq summary, .compare thead th, .group-label,
+.vid-btn, .play, .ba__tag, .sticky-cta a,
+.step__num, .diagram__num, .d-pin text,
+.creds-strip dd, .kicker {
+  font-family: var(--font);
+}
+
+/* Body copy — one size, one leading, one tracking.
+   The id in the selector is deliberate: component rules such as
+   `.card p` and `.compare td` each set their own size, and this has to
+   outrank all of them from one place rather than be restated in each. */
+#main :is(p, li, dd, td, tbody th, figcaption) {
+  font-size: var(--t-copy);
+  line-height: var(--lh-copy);
+  letter-spacing: var(--ls-copy);
+}
+
+/* What is not body copy, set back to its own role. */
+#main .compare .group th,
+#main .scroll-hint {
+  font-size: var(--t-xs);
+  letter-spacing: var(--ls-wide);
+}
+/* A step under --t-h3 (20 → 24): four across has to hold
+   "Fellowship-trained" on one line at the shell's width. */
+#main .creds-strip dd {
+  font-size: clamp(1.25rem, .6vw + 1.05rem, 1.5rem);
+  line-height: 1.2;
+  letter-spacing: var(--ls-tight);
+}
