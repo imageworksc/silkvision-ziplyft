@@ -695,9 +695,6 @@
     background: var(--hairline);
   }
 }
-@media (min-width: 64rem) {
-  .fork__verdict { grid-template-columns: 1fr auto; align-items: center; column-gap: var(--s-7); }
-}
 
 /* --------------------------------------------------------------------------
    Bare icons — the set drawn on its own, no well, no ring, no fill. In the
@@ -1052,3 +1049,28 @@ strong.hl {
     text-wrap: balance;
   }
 }
+
+/* --------------------------------------------------------------------------
+   Phones — full-width buttons keep their label on one line
+   --------------------------------------------------------------------------
+   At the desktop's 48px a side, "Schedule a consultation" and "Compare your
+   options with Dr. Silk" broke in two inside a 350px button, and the broken
+   label took the whole width and shoved the arrow against the edge. */
+
+@media (max-width: 47.99rem) {
+  .btn { padding-inline: var(--s-5); text-align: center; text-wrap: balance; }
+}
+
+/* ==========================================================================
+   Large screens — the page grows with the screen past 1920
+   ==========================================================================
+   Every measure on the page is in rem, so letting the root size follow the
+   viewport past 120rem scales the whole layout as one: a 4K or 5K screen at
+   1x sees the 1920 page, larger and sharper, instead of a 1248px column
+   floating in a field of white. max() keeps a reader's own larger default. */
+
+@media (min-width: 120rem) {
+  html { font-size: max(100%, 100vw / 120); }
+  .hero { background-image: url('https://res.cloudinary.com/dsjbq35es/image/upload/f_auto,q_auto,c_limit,w_3600/v1789669040/SV_ziplyft_hero_ktw80x.jpg'); }
+}
+
