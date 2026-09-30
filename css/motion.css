@@ -140,7 +140,6 @@
    -------------------------------------------------------------------------- */
 
 @media (prefers-reduced-motion: reduce) {
-  .text-link:hover .ico,
   .play:hover .play__disc,
   .ba:hover .ba__knob,
   .ba:has(.ba__range:focus-visible) .ba__knob { transform: none; }

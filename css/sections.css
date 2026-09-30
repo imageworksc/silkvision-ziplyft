@@ -29,8 +29,9 @@
   padding: var(--s-9) var(--gutter) var(--s-8);
 }
 
-.hero h1 { color: var(--white); max-width: 16ch; }
-.hero .lead { color: var(--pale-200); max-width: 30ch; font-weight: 600; }
+/* As on the office-based surgery page: no measure cap on either. */
+.hero h1 { color: var(--white); max-width: none; }
+.hero .lead { color: var(--pale-200); max-width: none; }
 .hero-intro { color: var(--on-dark-soft); max-width: 58ch; }
 
 .hero-media { position: relative; margin: 0; aspect-ratio: 4 / 3; }
@@ -45,7 +46,9 @@
 
 @media (min-width: 60rem) {
   .hero {
-    grid-template-columns: minmax(0, 1.12fr) minmax(0, .88fr);
+    /* Wide enough that the two buttons sit side by side, as they do on the
+       office-based surgery page's hero; the photograph still reads at 40%. */
+    grid-template-columns: minmax(0, 1.25fr) minmax(0, .75fr);
     min-block-size: min(46rem, 100svh);
   }
   /* The copy's left edge lines up with every .wrap below it: the shell is
@@ -53,7 +56,7 @@
      gutter. */
   .hero-copy {
     padding-block: var(--s-10);
-    padding-inline: max(var(--gutter), calc((100vw - var(--shell)) / 2 + var(--gutter))) var(--s-9);
+    padding-inline: max(var(--gutter), calc((100vw - var(--shell)) / 2 + var(--gutter))) var(--s-8);
   }
   .hero-media { aspect-ratio: auto; }
 }
@@ -91,13 +94,13 @@
 
 .head { gap: var(--s-4); }
 .head .lead { max-width: 52ch; }
-.head h3 { font-size: var(--t-h3); color: var(--text-soft); font-weight: 600; letter-spacing: -.01em; }
 
 /* Running copy in a column: paragraphs spaced, the first one a step up. */
 .prose { display: grid; gap: var(--s-4); }
 .prose p { color: var(--text-soft); }
 .prose strong { color: var(--heading); font-weight: 600; }
-.prose .first { font-size: var(--t-lead); line-height: 1.5; color: var(--text); }
+/* The first paragraph takes the page's .lead treatment, not a size of its own. */
+.prose .first { font-size: var(--t-lead); line-height: 1.5; color: var(--text-soft); }
 
 /* --------------------------------------------------------------------------
    How it works — the three steps under the video
@@ -427,3 +430,31 @@
 .band--deep .lead { color: var(--pale-200); }
 .band--deep .prose p { color: var(--on-dark-soft); }
 .band--deep .prose .first { color: var(--white); }
+
+/* --------------------------------------------------------------------------
+   The procedure, as a ledger — one column of steps inside a panel, rows
+   divided by hairlines, the heading holding still beside it. The two-column
+   grid it replaces split five steps three and two and left a hole.
+   -------------------------------------------------------------------------- */
+
+.ledger { counter-reset: lg; gap: 0; }
+.ledger .feature {
+  counter-increment: lg;
+  margin: 0;
+  padding: var(--s-5) 0;
+  border-radius: 0;
+}
+.ledger .feature + .feature { margin-block-start: 0; border-block-start: 1px solid var(--hairline); }
+.ledger .feature:first-child { padding-block-start: 0; }
+.ledger .feature:last-child { padding-block-end: 0; }
+.ledger .feature h3::before { content: counter(lg) '. '; font-weight: 800; }
+
+@media (min-width: 60rem) {
+  .side-head { position: sticky; inset-block-start: calc(var(--s-11) + var(--s-2)); }
+}
+
+/* The rail inside its panel: the panel's padding already clears it. */
+.rail.panel { padding-inline-start: calc(var(--s-7) + var(--s-7)); }
+@media (max-width: 47.99rem) { .rail.panel { padding-inline-start: calc(var(--s-5) + var(--s-7)); } }
+.rail.panel::before { inset-inline-start: calc(var(--s-7) + .45rem); inset-block: var(--s-7); }
+@media (max-width: 47.99rem) { .rail.panel::before { inset-inline-start: calc(var(--s-5) + .45rem); inset-block: var(--s-6); } }
