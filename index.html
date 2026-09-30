@@ -60,15 +60,15 @@
 <link rel="preconnect" href="https://res.cloudinary.com">
 <link rel="preload" as="image" fetchpriority="high"
       href="https://res.cloudinary.com/dsjbq35es/image/upload/f_auto,q_auto,w_1800/v1789669040/SV_ziplyft_hero_ktw80x.jpg">
-<link rel="stylesheet" href="css/fonts.css?v=36">
-<link rel="stylesheet" href="css/tokens.css?v=36">
-<link rel="stylesheet" href="css/base.css?v=36">
-<link rel="stylesheet" href="css/components.css?v=36">
-<link rel="stylesheet" href="css/sections.css?v=36">
-<link rel="stylesheet" href="css/type.css?v=36">
-<link rel="stylesheet" href="css/motion.css?v=36">
+<link rel="stylesheet" href="css/fonts.css?v=39">
+<link rel="stylesheet" href="css/tokens.css?v=39">
+<link rel="stylesheet" href="css/base.css?v=39">
+<link rel="stylesheet" href="css/components.css?v=39">
+<link rel="stylesheet" href="css/sections.css?v=39">
+<link rel="stylesheet" href="css/type.css?v=39">
+<link rel="stylesheet" href="css/motion.css?v=39">
 
-<script src="js/main.js?v=36" defer></script>
+<script src="js/main.js?v=39" defer></script>
 </head>
 <body>
 
@@ -459,9 +459,14 @@
   </section>
 
   <!-- ===== PHYSICIAN =======================================================
-       The credentials as a strip of four across the band — the figure
-       large, what it counts small under it — between the claim and the
-       reasoning, rather than as a list in a column beside them.
+       A profile card on the navy band: Dr. Silk's portrait in a ring, his
+       name and his two specialties, and his two figures side by side. The
+       claim above it, the reasoning and the link to his page below.
+
+       The portrait is a still from his video (the section that follows),
+       cropped to the face — a clean frame, clear of the logo and captions
+       burned into the video — so the two sections do not show the same
+       picture at the same size twice.
        ======================================================================= -->
   <section class="band band--deep" aria-labelledby="doctor-title">
     <div class="wrap stack stack--loose">
@@ -471,13 +476,18 @@
           replace medical judgment.</strong></p>
       </div>
 
-      <div class="stack full" data-reveal>
-        <h3 class="kicker">Your surgeon · Wesam Silk, M.D.</h3>
-        <dl class="creds-strip stagger">
-          <div><dt>ophthalmologist</dt><dd>Board-certified</dd></div>
-          <div><dt>cornea specialist</dt><dd>Fellowship-trained</dd></div>
-          <div><dt>eye surgeries performed</dt><dd>26,000+</dd></div>
-          <div><dt>serving Northern Virginia</dt><dd>20+ years</dd></div>
+      <div class="profile full" data-reveal>
+        <img class="profile__photo" src="https://res.cloudinary.com/dsjbq35es/video/upload/so_10,c_crop,x_300,y_95,w_270,h_270/c_scale,w_320/f_auto,q_auto/v1789671759/SV_DR_SILK_zyplift_l8bkx9.jpg"
+             srcset="https://res.cloudinary.com/dsjbq35es/video/upload/so_10,c_crop,x_300,y_95,w_270,h_270/c_scale,w_160/f_auto,q_auto/v1789671759/SV_DR_SILK_zyplift_l8bkx9.jpg 160w, https://res.cloudinary.com/dsjbq35es/video/upload/so_10,c_crop,x_300,y_95,w_270,h_270/c_scale,w_320/f_auto,q_auto/v1789671759/SV_DR_SILK_zyplift_l8bkx9.jpg 320w" sizes="10rem"
+             width="320" height="320" loading="lazy" alt="Wesam Silk, M.D.">
+        <div class="profile__who">
+          <span class="kicker">Your surgeon</span>
+          <h3>Wesam Silk, M.D.</h3>
+          <p>Board-certified ophthalmologist<span aria-hidden="true"> · </span><br class="profile__br">Fellowship-trained cornea specialist</p>
+        </div>
+        <dl class="profile__stats">
+          <div><dd>26,000+</dd><dt>eye surgeries performed</dt></div>
+          <div><dd>20+ years</dd><dt>serving Northern Virginia</dt></div>
         </dl>
       </div>
 

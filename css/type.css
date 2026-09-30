@@ -33,7 +33,7 @@ h1, h2, h3, h4,
 .faq summary, .compare thead th, .group-label,
 .vid-btn, .play, .ba__tag, .sticky-cta a,
 .step__num, .stepper__tab, .diagram__num, .d-pin text,
-.creds-strip dd, .kicker {
+.profile__stats dd, .kicker {
   font-family: var(--font);
 }
 
@@ -53,10 +53,10 @@ h1, h2, h3, h4,
   font-size: var(--t-xs);
   letter-spacing: var(--ls-wide);
 }
-/* A step under --t-h3 (20 → 24): four across has to hold
-   "Fellowship-trained" on one line at the shell's width. */
-#main .creds-strip dd {
-  font-size: clamp(1.25rem, .6vw + 1.05rem, 1.5rem);
-  line-height: 1.2;
+
+/* The profile card's two figures are display type, not copy. */
+#main .profile__stats dd {
+  font-size: var(--t-h3);
+  line-height: 1.1;
   letter-spacing: var(--ls-tight);
 }

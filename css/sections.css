@@ -476,40 +476,64 @@
 }
 
 /* --------------------------------------------------------------------------
-   Physician — the credentials as a strip of four figures
+   Physician — a profile card
+   --------------------------------------------------------------------------
+   The card is the dark band's card: 5% white, the band's hairline. The
+   portrait sits in a white ring. From 64rem the card is one row —
+   portrait, who he is, his two figures — divided by hairlines.
    -------------------------------------------------------------------------- */
 
-.creds-strip {
+.profile {
   display: grid;
-  gap: 0;
+  gap: var(--s-5);
+  justify-items: start;
+  padding: var(--s-6) var(--s-5);
+  border-radius: var(--r-lg);
+  background: rgb(255 255 255 / .05);
+  border: 1px solid var(--hairline-dark);
+}
+.profile__photo {
+  inline-size: 8rem;
+  block-size: 8rem;
+  border-radius: var(--r-pill);
+  object-fit: cover;
+  box-shadow: 0 0 0 4px var(--white), 0 0 0 9px rgb(255 255 255 / .12);
+}
+.profile__who { display: grid; gap: var(--s-2); }
+.profile__who h3 { font-size: var(--t-h3); color: var(--white); }
+.profile__who p { color: var(--on-dark-soft); }
+.profile__br { display: none; }
+
+.profile__stats { display: flex; flex-wrap: wrap; gap: var(--s-5) var(--s-7); margin: 0; }
+.profile__stats > div { display: grid; gap: var(--s-1); }
+.profile__stats dd {
+  order: -1;
   margin: 0;
-  inline-size: 100%;
-  border-block: 1px solid var(--hairline);
+  font-family: var(--font);
+  font-size: var(--t-h3);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: var(--ls-tight);
+  color: var(--white);
 }
-.creds-strip > div {
-  display: flex;
-  flex-direction: column-reverse;
-  justify-content: flex-end;
-  gap: var(--s-1);
-  padding: var(--s-5) 0;
-}
-.creds-strip > div + div { border-block-start: 1px solid var(--hairline); }
-.creds-strip dd { margin: 0; font-weight: 700; color: var(--white); }
-.creds-strip dt {
+.profile__stats dt {
   font-size: var(--t-copy);
   line-height: var(--lh-copy);
-  letter-spacing: var(--ls-copy);
   color: var(--on-dark-soft);
 }
-@media (min-width: 40rem) {
-  .creds-strip { grid-template-columns: 1fr 1fr; }
-  .creds-strip > div:nth-child(2) { border-block-start: 0; }
-  .creds-strip > div:nth-child(even) { border-inline-start: 1px solid var(--hairline); padding-inline-start: var(--s-6); }
+
+@media (min-width: 48rem) {
+  .profile { grid-template-columns: auto 1fr; align-items: center; column-gap: var(--s-6); padding: var(--s-6) var(--s-7); }
+  .profile__photo { inline-size: 9.5rem; block-size: 9.5rem; min-inline-size: 9.5rem; }
+  .profile__br { display: inline; }
+  .profile__who p span { display: none; }
+  .profile__stats { grid-column: 1 / -1; justify-self: stretch; flex-wrap: nowrap; gap: 0; padding-block-start: var(--s-5); border-block-start: 1px solid var(--hairline-dark); }
+  .profile__stats dt { white-space: nowrap; }
+  .profile__stats > div + div { margin-inline-start: var(--s-6); padding-inline-start: var(--s-6); border-inline-start: 1px solid var(--hairline-dark); }
 }
-@media (min-width: 64rem) {
-  .creds-strip { grid-template-columns: repeat(4, 1fr); }
-  .creds-strip > div { padding: var(--s-6) var(--s-6) var(--s-6) 0; }
-  .creds-strip > div + div { border-block-start: 0; border-inline-start: 1px solid var(--hairline); padding-inline-start: var(--s-6); }
+@media (min-width: 80rem) {
+  .profile { grid-template-columns: auto 1fr auto; }
+  .profile__stats { grid-column: auto; padding-block-start: 0; border-block-start: 0; padding-inline-start: var(--s-6); border-inline-start: 1px solid var(--hairline-dark); }
 }
 
 /* --------------------------------------------------------------------------
@@ -935,4 +959,20 @@ strong.hl {
 .qcard p {
   padding: 0 var(--s-5) var(--s-5);
   color: var(--text-soft);
+}
+
+/* --------------------------------------------------------------------------
+   Section titles — two lines when long
+   --------------------------------------------------------------------------
+   From 48rem a section title is held to 60% of the content width. One that
+   is longer than that breaks — and text-wrap: balance splits it into two
+   even lines rather than a long line and a stub. Short titles are
+   untouched. Titles set in a column of their own already sit inside it.
+   -------------------------------------------------------------------------- */
+
+@media (min-width: 48rem) {
+  #main h2 {
+    max-inline-size: calc((min(100vw, var(--shell)) - var(--gutter) * 2) * .6);
+    text-wrap: balance;
+  }
 }
