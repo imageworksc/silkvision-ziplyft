@@ -419,55 +419,60 @@
 .band--deep .kicker { color: var(--cyan-300); }
 
 /* --------------------------------------------------------------------------
-   Benefits — a typographic statement
+   Benefits — what it does / what it leaves out
    --------------------------------------------------------------------------
-   Eleven claims as one block of h3-size type that wraps like a sentence.
-   A small plum dot sits between each pair; the "No …" claims take the lilac
-   marker. The pale accreditation blue is the ground, so the band reads
-   apart from its neighbours without a box.
+   One white frame, two columns, the comparison table's header colours.
+   Both columns stretch to the frame's height (grid does that), and the
+   shorter list's rows grow to share it (1fr rows), so the two columns
+   close on the same line however many items each has.
    -------------------------------------------------------------------------- */
 
 .band--tint { background: var(--pale-100); }
 
-/* Every claim carries its dot in front of it, and every claim is pulled
-   back by one dot and its gap; the list clips at its own edge. A claim that
-   starts a line therefore has its dot outside the list, clipped, so dots
-   only ever sit between two claims on the same line — never at the start
-   of one, where they read as bullets. The column gap adds the pull back so
-   the space between claims is still one --s-4. */
-.claims {
-  --dot: .4rem;
-  --claims-shift: calc(var(--dot) + var(--s-4));
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  column-gap: calc(var(--s-4) + var(--claims-shift));
-  row-gap: var(--s-2);
+.yesno {
+  display: grid;
+  border-radius: var(--r-lg);
+  background: var(--white);
+  box-shadow: var(--shadow-md);
   overflow: hidden;
 }
-.claims li {
-  display: inline-flex;
-  align-items: baseline;
+@media (min-width: 48rem) { .yesno { grid-template-columns: 1fr 1fr; } }
+
+.yesno__col { display: flex; flex-direction: column; }
+.yesno__col + .yesno__col { border-block-start: 1px solid var(--hairline); }
+@media (min-width: 48rem) {
+  .yesno__col + .yesno__col { border-block-start: 0; border-inline-start: 1px solid var(--hairline); }
+}
+
+.yesno h3 {
+  padding: var(--s-4) var(--s-5);
+  font-size: var(--t-body);
+  color: var(--white);
+}
+.yesno__col--yes h3 { background: var(--fill-action); }
+.yesno__col--no h3 { background: var(--ink-600); }
+
+.yesno ul {
+  flex: 1;
+  display: grid;
+  grid-auto-rows: 1fr;
+}
+.yesno li {
+  display: flex;
+  align-items: center;
   gap: var(--s-4);
-  margin-inline-start: calc(var(--claims-shift) * -1);
-  font-family: var(--font);
-  font-weight: 600;
-  color: var(--ink-700);
+  padding: var(--s-3) var(--s-5);
+  color: var(--text);
 }
-.claims li::before {
-  content: '';
-  flex: none;
-  inline-size: var(--dot);
-  block-size: var(--dot);
-  border-radius: var(--r-pill);
-  background: var(--plum-600);
-  transform: translateY(-.28em);
-}
-/* The four "No …" claims: plum, over the marker — on the words only, not
-   on the dot before them. */
-.claims .claims__no {
-  color: var(--plum-700);
-  background: linear-gradient(var(--hl-mark), var(--hl-mark)) 100% 88% / calc(100% - var(--claims-shift)) .5em no-repeat;
+.yesno li + li { border-block-start: 1px solid var(--hairline); }
+.yesno__col--yes li { background: rgb(166 38 166 / .04); }
+.yesno .tick { flex: none; inline-size: 1.75rem; block-size: 1.75rem; }
+.yesno .tick .ico { inline-size: 1.1rem; block-size: 1.1rem; stroke-width: 2.4; }
+/* No: a cross in a plain ring, in the navy of its column. */
+.yesno .tick--no {
+  background: var(--white);
+  color: var(--ink-600);
+  box-shadow: inset 0 0 0 1.5px var(--ink-600);
 }
 
 /* --------------------------------------------------------------------------

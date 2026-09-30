@@ -60,15 +60,15 @@
 <link rel="preconnect" href="https://res.cloudinary.com">
 <link rel="preload" as="image" fetchpriority="high"
       href="https://res.cloudinary.com/dsjbq35es/image/upload/f_auto,q_auto,w_1800/v1789669040/SV_ziplyft_hero_ktw80x.jpg">
-<link rel="stylesheet" href="css/fonts.css?v=29">
-<link rel="stylesheet" href="css/tokens.css?v=29">
-<link rel="stylesheet" href="css/base.css?v=29">
-<link rel="stylesheet" href="css/components.css?v=29">
-<link rel="stylesheet" href="css/sections.css?v=29">
-<link rel="stylesheet" href="css/type.css?v=29">
-<link rel="stylesheet" href="css/motion.css?v=29">
+<link rel="stylesheet" href="css/fonts.css?v=30">
+<link rel="stylesheet" href="css/tokens.css?v=30">
+<link rel="stylesheet" href="css/base.css?v=30">
+<link rel="stylesheet" href="css/components.css?v=30">
+<link rel="stylesheet" href="css/sections.css?v=30">
+<link rel="stylesheet" href="css/type.css?v=30">
+<link rel="stylesheet" href="css/motion.css?v=30">
 
-<script src="js/main.js?v=29" defer></script>
+<script src="js/main.js?v=30" defer></script>
 </head>
 <body>
 
@@ -313,32 +313,41 @@
   </section>
 
   <!-- ===== BENEFITS ========================================================
-       A typographic statement. The eleven benefits run as one block of large
-       type across the band, like a sentence, a plum dot between them — no
-       boxes, no columns. The four things the procedure leaves out carry the
-       page's lilac marker, so they are what the eye lands on. Still a list
-       underneath, so a screen reader counts eleven items.
+       A two-column comparison in one frame, headed in the comparison
+       table's colours: plum for what Ziplyft does, navy for what it leaves
+       out. Seven rows against four, and the frame still closes square —
+       the four stretch to share the height of the seven.
        ======================================================================= -->
-  <section class="band band--tint band--slim" aria-labelledby="benefits-title">
+  <section class="band band--tint" aria-labelledby="benefits-title">
     <div class="wrap stack stack--loose">
       <div class="stack head" data-reveal>
         <h2 id="benefits-title">A real eyelid lift.<br> A much simpler experience.</h2>
         <p class="lead lead--wide">For the right patient, Ziplyft can provide meaningful upper-eyelid
           rejuvenation without many of the things commonly associated with traditional eyelid surgery.</p>
       </div>
-      <ul class="claims full" data-reveal>
-          <li>Removes actual excess upper-eyelid skin</li>
-          <li>Less than 15-minute procedure</li>
-          <li>Performed in the physician’s office</li>
-          <li>Local anesthetic only</li>
-          <li class="claims__no">No IV sedation</li>
-          <li class="claims__no">No general anesthesia</li>
-          <li class="claims__no">No sutures</li>
-          <li class="claims__no">No cautery</li>
-          <li>Medical adhesive closure</li>
-          <li>Minimal bruising and swelling</li>
-          <li>Typically event-ready within 7–10 days</li>
-      </ul>
+      <div class="yesno full" data-reveal>
+        <div class="yesno__col yesno__col--yes">
+          <h3 id="does-title">What Ziplyft does</h3>
+          <ul aria-labelledby="does-title">
+            <li><span class="tick"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg></span>Removes actual excess upper-eyelid skin</li>
+            <li><span class="tick"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg></span>Less than 15-minute procedure</li>
+            <li><span class="tick"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg></span>Performed in the physician’s office</li>
+            <li><span class="tick"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg></span>Local anesthetic only</li>
+            <li><span class="tick"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg></span>Medical adhesive closure</li>
+            <li><span class="tick"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg></span>Minimal bruising and swelling</li>
+            <li><span class="tick"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg></span>Typically event-ready within 7–10 days</li>
+          </ul>
+        </div>
+        <div class="yesno__col yesno__col--no">
+          <h3 id="leaves-title">What it leaves out</h3>
+          <ul aria-labelledby="leaves-title">
+            <li><span class="tick tick--no"><svg class="ico" aria-hidden="true"><use href="#i-close"/></svg></span>No IV sedation</li>
+            <li><span class="tick tick--no"><svg class="ico" aria-hidden="true"><use href="#i-close"/></svg></span>No general anesthesia</li>
+            <li><span class="tick tick--no"><svg class="ico" aria-hidden="true"><use href="#i-close"/></svg></span>No sutures</li>
+            <li><span class="tick tick--no"><svg class="ico" aria-hidden="true"><use href="#i-close"/></svg></span>No cautery</li>
+          </ul>
+        </div>
+      </div>
     </div>
   </section>
 

@@ -55,13 +55,6 @@ h1, h2, h3, h4,
 }
 /* A step under --t-h3 (20 → 24): four across has to hold
    "Fellowship-trained" on one line at the shell's width. */
-/* The benefits statement is set at the h3 step: it is the section's
-   headline, eleven claims long. */
-#main .claims li {
-  font-size: var(--t-h3);
-  line-height: 1.35;
-  letter-spacing: -.01em;
-}
 #main .creds-strip dd {
   font-size: clamp(1.25rem, .6vw + 1.05rem, 1.5rem);
   line-height: 1.2;
