@@ -141,7 +141,13 @@
    -------------------------------------------------------------------------- */
 
 .video-media { inline-size: 100%; max-inline-size: 26rem; }
-@media (min-width: 60rem) { .video-media { justify-self: end; } }
+/* The video column is exactly the video's width and starts at the shell's
+   left edge; the copy takes the rest. As an even split the video sat at the
+   right of a half-width column, which left a gap on the left that no other
+   section has. */
+@media (min-width: 60rem) {
+  .video-split { grid-template-columns: minmax(0, 26rem) minmax(0, 1fr); }
+}
 
 /* --------------------------------------------------------------------------
    FAQ — the heading holds still while the questions scroll past it
@@ -790,3 +796,47 @@ strong.hl {
 
 /* Longevity on plum: the row's hairlines take the band's light rule. */
 .band--plum .over-time li + li { border-inline-start-color: var(--hairline-dark); }
+
+/* --------------------------------------------------------------------------
+   The procedure — one step's text at a time, on a wide screen with a pointer
+   --------------------------------------------------------------------------
+   Five descriptions side by side was a wall of text. Here the titles carry
+   the row and one description shows at a time: step 1 until the pointer or
+   the keyboard arrives, then whichever step it is on.
+
+   Opacity only, so every description keeps its space (the row never jumps)
+   and stays in the document for a screen reader. Each step takes focus, so
+   Tab walks the row as a pointer would. On a touch screen, or below the
+   width where the row turns vertical, every description is simply open —
+   hover does not exist there.
+   -------------------------------------------------------------------------- */
+
+.path-hint { display: none; }
+
+@media (hover: hover) and (min-width: 64rem) {
+  .path li { cursor: default; border-radius: var(--r-sm); }
+  .path li > p {
+    opacity: 0;
+    transform: translateY(-.35rem);
+    transition: opacity var(--t-mid) var(--ease), transform var(--t-mid) var(--ease);
+  }
+  .path li > :is(.bare, .step__num, h3) { transition: color var(--t-fast) var(--ease), opacity var(--t-fast) var(--ease); }
+
+  /* The active step: the first by default, then whichever is pointed at. */
+  .path:not(:hover):not(:focus-within) li:first-child > p,
+  .path li:is(:hover, :focus) > p {
+    opacity: 1;
+    transform: none;
+  }
+  .path:not(:hover):not(:focus-within) li:first-child > h3,
+  .path li:is(:hover, :focus) > h3 { color: var(--plum-600); }
+
+  /* The ones not being read step back — to .7, which keeps the dimmed
+     titles at 3.6:1 on the paper band; .55 measured 2.7 and failed. */
+  .path:is(:hover, :focus-within) li:not(:hover):not(:focus) > :is(.bare, h3) { opacity: .7; }
+  .path:not(:hover):not(:focus-within) li:not(:first-child) > :is(.bare, h3) { opacity: .7; }
+
+  .path li:focus-visible { outline-offset: .5rem; }
+
+  .path-hint { display: block; margin-block-start: calc(var(--s-5) * -1); }
+}

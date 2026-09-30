@@ -109,6 +109,9 @@
   /* The strike in the benefits band arrives drawn. */
   [data-anim="on"] .struck li::after { transform: none; }
 
+  /* The procedure's step text fades in place; no travel. */
+  .path li > p { transform: none !important; }
+
   .btn:hover,
   a.card:hover,
   .social a:hover,
