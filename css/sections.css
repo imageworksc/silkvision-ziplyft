@@ -543,96 +543,6 @@
   color: var(--plum-600);
 }
 
-.path {
-  --well: 2.25rem;   /* the bare icon's box */
-  --gap: var(--s-6);
-  display: grid;
-  gap: var(--gap);
-}
-.path li {
-  position: relative;
-  display: grid;
-  grid-template-columns: var(--well) 1fr;
-  column-gap: var(--s-5);
-  row-gap: var(--s-1);
-  align-content: start;
-}
-.path .bare { grid-row: span 3; }
-.path h3 { font-size: var(--t-body); }
-/* The line the steps happen along: down the page on a phone… */
-.path li:not(:last-child)::after {
-  content: '';
-  position: absolute;
-  inset-inline-start: calc(var(--well) / 2 - 1px);
-  inset-block: calc(var(--well) + var(--s-2)) calc(var(--gap) * -1 + var(--s-2));
-  inline-size: 2px;
-  background: var(--grey-300);
-}
-/* …and across it on a wide screen. */
-@media (min-width: 64rem) {
-  .path { grid-template-columns: repeat(5, 1fr); }
-  .path li { grid-template-columns: 1fr; row-gap: var(--s-2); }
-  .path .bare { grid-row: auto; margin-block-end: var(--s-3); }
-  .path li:not(:last-child)::after {
-    inset-block: calc(var(--well) / 2 - 1px) auto;
-    inset-inline: calc(var(--well) + var(--s-3)) calc(var(--gap) * -1 + var(--s-3));
-    inline-size: auto;
-    block-size: 2px;
-  }
-}
-
-/* --------------------------------------------------------------------------
-   Recovery — a day ruler. Vertical on a phone, horizontal from 64rem.
-   Static: nothing on it is interactive, so nothing on it moves.
-   -------------------------------------------------------------------------- */
-
-.rail {
-  position: relative;
-  display: grid;
-  gap: var(--s-6);
-  padding-inline-start: var(--s-7);
-}
-.rail::before {
-  content: '';
-  position: absolute;
-  inset-block: .6rem;
-  inset-inline-start: .45rem;
-  inline-size: 2px;
-  background: var(--grey-300);
-}
-.rail li { position: relative; display: grid; gap: var(--s-2); align-content: start; }
-.rail li::before {
-  content: '';
-  position: absolute;
-  inset-block-start: .35rem;
-  inset-inline-start: calc(var(--s-7) * -1);
-  inline-size: 1rem;
-  block-size: 1rem;
-  border-radius: var(--r-pill);
-  background: var(--white);
-  border: 3px solid var(--plum-600);
-}
-.rail li:last-child::before { background: var(--plum-600); }
-.rail h3 { font-size: var(--t-body); }
-
-@media (min-width: 64rem) {
-  .rail {
-    grid-template-columns: repeat(5, 1fr);
-    padding-inline-start: 0;
-    padding-block-start: var(--s-7);
-  }
-  /* Starts at the first mark and runs on past the last: healing does. */
-  .rail::before {
-    inset-block: .45rem auto;
-    inset-inline: .5rem 0;
-    inline-size: auto;
-    block-size: 2px;
-  }
-  .rail li::before { inset-block-start: calc(var(--s-7) * -1); inset-inline-start: 0; }
-}
-
-.rail-foot { padding-block-start: var(--s-5); border-block-start: 1px solid var(--hairline); }
-
 /* --------------------------------------------------------------------------
    Candidacy — the caution as a banner across the band
    -------------------------------------------------------------------------- */
@@ -798,45 +708,118 @@ strong.hl {
 .band--plum .over-time li + li { border-inline-start-color: var(--hairline-dark); }
 
 /* --------------------------------------------------------------------------
-   The procedure — one step's text at a time, on a wide screen with a pointer
+   The procedure — a step bar on the navy band
    --------------------------------------------------------------------------
-   Five descriptions side by side was a wall of text. Here the titles carry
-   the row and one description shows at a time: step 1 until the pointer or
-   the keyboard arrives, then whichever step it is on.
-
-   Opacity only, so every description keeps its space (the row never jumps)
-   and stays in the document for a screen reader. Each step takes focus, so
-   Tab walks the row as a pointer would. On a touch screen, or below the
-   width where the row turns vertical, every description is simply open —
-   hover does not exist there.
+   Five tabs on one rule, then one panel. The lit tab's rule turns cyan —
+   the page's light colour, 4.7:1 against the navy (a graphic needs 3), where plum would be
+   1.35:1 and disappear. Titles hold the body size; the step numbers are the
+   table's tracked label.
    -------------------------------------------------------------------------- */
 
-.path-hint { display: none; }
+.stepper { display: grid; gap: var(--s-6); }
 
-@media (hover: hover) and (min-width: 64rem) {
-  .path li { cursor: default; border-radius: var(--r-sm); }
-  .path li > p {
-    opacity: 0;
-    transform: translateY(-.35rem);
-    transition: opacity var(--t-mid) var(--ease), transform var(--t-mid) var(--ease);
-  }
-  .path li > :is(.bare, .step__num, h3) { transition: color var(--t-fast) var(--ease), opacity var(--t-fast) var(--ease); }
+.stepper__tabs {
+  display: grid;
+  border-block-start: 1px solid var(--hairline-dark);
+}
+@media (min-width: 48rem) {
+  .stepper__tabs { grid-template-columns: repeat(5, 1fr); }
+}
 
-  /* The active step: the first by default, then whichever is pointed at. */
-  .path:not(:hover):not(:focus-within) li:first-child > p,
-  .path li:is(:hover, :focus) > p {
-    opacity: 1;
-    transform: none;
-  }
-  .path:not(:hover):not(:focus-within) li:first-child > h3,
-  .path li:is(:hover, :focus) > h3 { color: var(--plum-600); }
+.stepper__tab {
+  position: relative;
+  display: grid;
+  gap: var(--s-1);
+  align-content: start;
+  min-block-size: var(--tap);
+  padding: var(--s-4) var(--s-4) var(--s-4) 0;
+  border: 0;
+  background: none;
+  color: var(--on-dark-faint);
+  font: inherit;
+  text-align: start;
+  cursor: pointer;
+  transition: color var(--t-fast) var(--ease);
+}
+/* The rule segment over each tab; the lit one fills with cyan. */
+.stepper__tab::before {
+  content: '';
+  position: absolute;
+  inset-block-start: -1px;
+  inset-inline: 0 var(--s-3);
+  block-size: 3px;
+  border-radius: var(--r-pill);
+  background: transparent;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--t-mid) var(--ease), background-color var(--t-fast) var(--ease);
+}
+.stepper__num {
+  font-family: var(--font);
+  font-size: var(--t-xs);
+  font-weight: 800;
+  letter-spacing: var(--ls-wide);
+  color: var(--cyan-300);
+}
+.stepper__title {
+  font-family: var(--font);
+  font-size: var(--t-body);
+  font-weight: 700;
+  line-height: 1.3;
+}
+.stepper__tab:hover { color: var(--on-dark-soft); }
+.stepper__tab[aria-selected="true"] { color: var(--white); }
+.stepper__tab[aria-selected="true"]::before { background: var(--cyan-400); transform: none; }
+.stepper__tab:active { opacity: .62; }
 
-  /* The ones not being read step back — to .7, which keeps the dimmed
-     titles at 3.6:1 on the paper band; .55 measured 2.7 and failed. */
-  .path:is(:hover, :focus-within) li:not(:hover):not(:focus) > :is(.bare, h3) { opacity: .7; }
-  .path:not(:hover):not(:focus-within) li:not(:first-child) > :is(.bare, h3) { opacity: .7; }
+.stepper__panel {
+  display: flex;
+  align-items: center;
+  gap: var(--s-5);
+  min-block-size: 4.5rem;   /* two lines; the band does not jump between steps */
+}
+.stepper__panel p { max-width: 70ch; color: var(--on-dark-soft); }
+.stepper__panel .bare { inline-size: 2.75rem; block-size: 2.75rem; }
+/* Script marks the inactive panels hidden; without it every panel shows. */
+.stepper__panel[hidden] { display: none; }
+[data-anim="on"] .stepper__panel:not([hidden]) { animation: rise var(--t-mid) var(--ease); }
 
-  .path li:focus-visible { outline-offset: .5rem; }
+/* On a phone the tabs stack; each is still a tab, the panel follows. */
+@media (max-width: 47.99rem) {
+  .stepper__tab { padding-inline-start: var(--s-4); border-block-end: 1px solid var(--hairline-dark); }
+  .stepper__tab::before { inset: 0 auto 0 0; inline-size: 3px; block-size: auto; transform: scaleY(0); transform-origin: top; }
+  .stepper__tab[aria-selected="true"]::before { transform: none; }
+}
 
-  .path-hint { display: block; margin-block-start: calc(var(--s-5) * -1); }
+/* --------------------------------------------------------------------------
+   Recovery — the healing bar
+   --------------------------------------------------------------------------
+   Five segments in five flat steps of plum, pale to deep. The day sits on
+   its segment; what to expect sits under it. Measured: plum-700 on the two
+   pale steps 10.7 and 8.2:1, white on the three deep ones 6.1, 11.5, 13.0.
+   -------------------------------------------------------------------------- */
+
+.heal { display: grid; gap: var(--s-5); }
+.heal li { display: grid; gap: var(--s-3); align-content: start; }
+.heal__day {
+  padding: var(--s-3) var(--s-4);
+  border-radius: var(--r-sm);
+  font-size: var(--t-body);
+  line-height: 1.3;
+}
+.heal p { color: var(--text-soft); padding-inline-end: var(--s-4); }
+
+.heal li:nth-child(1) .heal__day { background: var(--plum-100); color: var(--plum-700); }
+.heal li:nth-child(2) .heal__day { background: rgb(166 38 166 / .28); color: var(--plum-700); }
+.heal li:nth-child(3) .heal__day { background: var(--plum-400); color: var(--white); }
+.heal li:nth-child(4) .heal__day { background: var(--plum-600); color: var(--white); }
+.heal li:nth-child(5) .heal__day { background: var(--plum-700); color: var(--white); }
+
+@media (min-width: 64rem) {
+  /* One bar: the segments butt together, square inside, round at the ends. */
+  .heal { grid-template-columns: repeat(5, 1fr); gap: 0; }
+  .heal__day { border-radius: 0; }
+  .heal li:first-child .heal__day { border-start-start-radius: var(--r-md); border-end-start-radius: var(--r-md); }
+  .heal li:last-child .heal__day { border-start-end-radius: var(--r-md); border-end-end-radius: var(--r-md); }
+  .heal li + li .heal__day { box-shadow: inset 2px 0 0 var(--white); }
 }

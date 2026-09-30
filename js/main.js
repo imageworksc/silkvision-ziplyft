@@ -246,6 +246,47 @@ const setupStickyCta = () => {
   }
 };
 
+/* --------------------------------------------------------------------------
+   9 · The procedure's step bar
+   The tabs pattern: one tab in the tab order at a time, arrow keys and
+   Home/End move along the row, and the panels the script hides are the only
+   thing it hides — without it all five stay open. On a device that can
+   hover, pointing at a step lights it too, which is what the row invites.
+   -------------------------------------------------------------------------- */
+const setupStepper = () => {
+  const root = document.getElementById('stepper');
+  if (!root) return;
+  const tabs = [...root.querySelectorAll('[role="tab"]')];
+  const panels = tabs.map((t) => document.getElementById(t.getAttribute('aria-controls')));
+
+  const select = (i, focus = false) => {
+    tabs.forEach((t, j) => {
+      const on = i === j;
+      t.setAttribute('aria-selected', String(on));
+      t.tabIndex = on ? 0 : -1;
+      panels[j].hidden = !on;
+    });
+    if (focus) tabs[i].focus();
+  };
+
+  tabs.forEach((t, i) => {
+    t.addEventListener('click', () => select(i));
+    t.addEventListener('keydown', (e) => {
+      const last = tabs.length - 1;
+      const next = { ArrowRight: i + 1, ArrowDown: i + 1, ArrowLeft: i - 1, ArrowUp: i - 1, Home: 0, End: last }[e.key];
+      if (next === undefined) return;
+      e.preventDefault();
+      select((next + tabs.length) % tabs.length, true);
+    });
+  });
+
+  if (window.matchMedia('(hover: hover)').matches) {
+    tabs.forEach((t, i) => t.addEventListener('mouseenter', () => select(i)));
+  }
+
+  select(0);
+};
+
 setupMenu();
 setupScroll();
 setupReveals();
@@ -254,3 +295,4 @@ setupBeforeAfter();
 setupLoopVideo();
 setupTalkVideo();
 setupStickyCta();
+setupStepper();
