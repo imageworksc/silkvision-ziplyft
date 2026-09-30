@@ -203,8 +203,12 @@
    Closing call
    -------------------------------------------------------------------------- */
 
-.closing .lead { max-width: 56ch; }
-.closing .lead + p { max-width: 56ch; }
+/* Both paragraphs take the page's description size (.lead), and are capped
+   so each sets in exactly two lines on a desktop screen: 72ch was the
+   narrowest that held two lines at every width measured, 74 leaves a margin
+   and stays inside the 75-character measure. Phones wrap them further, as
+   they must. */
+.closing .lead { max-width: 74ch; }
 
 /* The offices, as the foot of the closing band. They used to be a white
    section of their own — and then the footer said the same two addresses
