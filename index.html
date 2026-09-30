@@ -60,15 +60,15 @@
 <link rel="preconnect" href="https://res.cloudinary.com">
 <link rel="preload" as="image" fetchpriority="high"
       href="https://res.cloudinary.com/dsjbq35es/image/upload/f_auto,q_auto,w_1800/v1789669040/SV_ziplyft_hero_ktw80x.jpg">
-<link rel="stylesheet" href="css/fonts.css?v=14">
-<link rel="stylesheet" href="css/tokens.css?v=14">
-<link rel="stylesheet" href="css/base.css?v=14">
-<link rel="stylesheet" href="css/components.css?v=14">
-<link rel="stylesheet" href="css/sections.css?v=14">
-<link rel="stylesheet" href="css/type.css?v=14">
-<link rel="stylesheet" href="css/motion.css?v=14">
+<link rel="stylesheet" href="css/fonts.css?v=16">
+<link rel="stylesheet" href="css/tokens.css?v=16">
+<link rel="stylesheet" href="css/base.css?v=16">
+<link rel="stylesheet" href="css/components.css?v=16">
+<link rel="stylesheet" href="css/sections.css?v=16">
+<link rel="stylesheet" href="css/type.css?v=16">
+<link rel="stylesheet" href="css/motion.css?v=16">
 
-<script src="js/main.js?v=14" defer></script>
+<script src="js/main.js?v=16" defer></script>
 </head>
 <body>
 
@@ -320,12 +320,15 @@
   </section>
 
   <!-- ===== BENEFITS ========================================================
-       One horizontal composition, read top to bottom: the four things the
-       procedure leaves out, as a ruled strip across the full width — they
-       are the headline of the section — and under it what it does, as a
-       single line of ticks that wraps like a sentence.
+       No boxes. The section is about what the procedure takes away, so it
+       takes them away: the four things traditional surgery can involve are
+       set large and struck through in plum — the line draws across as the
+       row comes into view, which is the one piece of motion here and it is
+       the point being made. Under a rule, what remains, as one line of type.
+       The words are real text with "No" for a screen reader; the strike is
+       a pseudo-element, so it is never read out as a deletion.
        ======================================================================= -->
-  <section class="band band--paper" aria-labelledby="benefits-title">
+  <section class="band band--tint subtract" aria-labelledby="benefits-title">
     <div class="wrap stack stack--loose">
       <div class="stack head" data-reveal>
         <h2 id="benefits-title">A real eyelid lift.<br> A much simpler experience.</h2>
@@ -333,26 +336,26 @@
           rejuvenation without many of the things commonly associated with traditional eyelid surgery.</p>
       </div>
 
-      <div class="stack full" data-reveal>
-        <h3 class="kicker">What it leaves out</h3>
-        <ul class="absent stagger">
-          <li><svg class="ico bare" aria-hidden="true"><use href="#i-noiv"/></svg><h4>No IV sedation</h4></li>
-          <li><svg class="ico bare" aria-hidden="true"><use href="#i-nosleep"/></svg><h4>No general anesthesia</h4></li>
-          <li><svg class="ico bare" aria-hidden="true"><use href="#i-nosuture"/></svg><h4>No sutures</h4></li>
-          <li><svg class="ico bare" aria-hidden="true"><use href="#i-nocautery"/></svg><h4>No cautery</h4></li>
+      <div class="subtract__row full">
+        <span class="kicker">Left out</span>
+        <ul class="struck" data-reveal>
+          <li><span class="sr-only">No </span>IV sedation</li>
+          <li><span class="sr-only">No </span>General anesthesia</li>
+          <li><span class="sr-only">No </span>Sutures</li>
+          <li><span class="sr-only">No </span>Cautery</li>
         </ul>
       </div>
 
-      <div class="stack full" data-reveal>
-        <h3 class="kicker">What it does</h3>
-        <ul class="checklist checklist--flow">
-          <li><span class="tick"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg></span>Removes actual excess upper-eyelid skin</li>
-          <li><span class="tick"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg></span>Less than 15-minute procedure</li>
-          <li><span class="tick"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg></span>Performed in the physician’s office</li>
-          <li><span class="tick"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg></span>Local anesthetic only</li>
-          <li><span class="tick"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg></span>Medical adhesive closure</li>
-          <li><span class="tick"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg></span>Minimal bruising and swelling</li>
-          <li><span class="tick"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg></span>Typically event-ready within 7–10 days</li>
+      <div class="subtract__row subtract__row--kept full" data-reveal>
+        <span class="kicker">What remains</span>
+        <ul class="kept">
+          <li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>Removes actual excess upper-eyelid skin</li>
+          <li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>Less than 15-minute procedure</li>
+          <li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>Performed in the physician’s office</li>
+          <li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>Local anesthetic only</li>
+          <li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>Medical adhesive closure</li>
+          <li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>Minimal bruising and swelling</li>
+          <li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>Typically event-ready within 7–10 days</li>
         </ul>
       </div>
     </div>

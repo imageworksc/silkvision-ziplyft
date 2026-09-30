@@ -414,45 +414,76 @@
 .band--deep .kicker { color: var(--cyan-300); }
 
 /* --------------------------------------------------------------------------
-   Benefits — what it leaves out, as a ruled strip of four
+   Benefits — subtraction
+   The pale accreditation blue as the ground, so the band reads apart from
+   the paper and white around it without a box. Two ruled rows.
    -------------------------------------------------------------------------- */
 
-.absent {
+.band--tint { background: var(--pale-100); }
+
+.subtract__row {
   display: grid;
-  inline-size: 100%;
-  border-radius: var(--r-lg);
-  background: var(--white);
-  border: 1px solid var(--hairline);
-  box-shadow: var(--shadow-sm);
-}
-.absent li {
-  display: flex;
-  align-items: center;
   gap: var(--s-4);
-  padding: var(--s-5);
-}
-.absent li + li { border-block-start: 1px solid var(--hairline); }
-.absent h4 { font-size: var(--t-h3); line-height: 1.2; }
-@media (min-width: 40rem) {
-  .absent { grid-template-columns: 1fr 1fr; }
-  .absent li:nth-child(2) { border-block-start: 0; }
-  .absent li:nth-child(even) { border-inline-start: 1px solid var(--hairline); }
-}
-@media (min-width: 64rem) {
-  .absent { grid-template-columns: repeat(4, 1fr); }
-  .absent li {
-    flex-direction: column;
-    align-items: flex-start;
-    padding: var(--s-7) var(--s-6);
-  }
-  .absent li + li { border-block-start: 0; border-inline-start: 1px solid var(--hairline); }
+  padding-block-start: var(--s-6);
+  border-block-start: 1px solid var(--hairline);
 }
 
-/* What it does — the ticks run on like a sentence and wrap where they must. */
-.checklist--flow {
+/* Left out: the words at the h3 step, faded, each struck by a plum rule. */
+.struck {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--s-2);
+}
+@media (min-width: 48rem) {
+  .struck { flex-direction: row; flex-wrap: wrap; align-items: baseline; gap: var(--s-3) var(--s-8); }
+}
+.struck li {
+  position: relative;
+  font-family: var(--font);
+  font-weight: 700;
+  color: var(--grey-500);   /* 4.3:1 on the tint; large text needs 3 */
+}
+.struck li::after {
+  content: '';
+  position: absolute;
+  inset-inline: -.12em;
+  inset-block-start: 54%;
+  block-size: .075em;
+  min-block-size: 2px;
+  border-radius: var(--r-pill);
+  background: var(--plum-600);
+  transform-origin: left center;
+}
+/* Drawn on arrival — only once script has said it can bring it back. */
+[data-anim="on"] .struck li::after {
+  transform: scaleX(0);
+  transition: transform .6s var(--ease);
+}
+[data-anim="on"] .struck.is-in li::after { transform: none; }
+[data-anim="on"] .struck.is-in li:nth-child(2)::after { transition-delay: .15s; }
+[data-anim="on"] .struck.is-in li:nth-child(3)::after { transition-delay: .3s; }
+[data-anim="on"] .struck.is-in li:nth-child(4)::after { transition-delay: .45s; }
+
+/* What remains: one line of type that wraps like a sentence. */
+.kept {
   display: flex;
   flex-wrap: wrap;
   gap: var(--s-3) var(--s-7);
+}
+.kept li {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: var(--s-2);
+  color: var(--text);
+}
+.kept .ico {
+  flex: none;
+  inline-size: 1.25rem;
+  block-size: 1.25rem;
+  margin-block-start: .2em;
+  color: var(--plum-600);
+  stroke-width: 2.2;
 }
 
 /* --------------------------------------------------------------------------
