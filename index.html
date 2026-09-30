@@ -60,15 +60,15 @@
 <link rel="preconnect" href="https://res.cloudinary.com">
 <link rel="preload" as="image" fetchpriority="high"
       href="https://res.cloudinary.com/dsjbq35es/image/upload/f_auto,q_auto,w_1800/v1789669040/SV_ziplyft_hero_ktw80x.jpg">
-<link rel="stylesheet" href="css/fonts.css?v=39">
-<link rel="stylesheet" href="css/tokens.css?v=39">
-<link rel="stylesheet" href="css/base.css?v=39">
-<link rel="stylesheet" href="css/components.css?v=39">
-<link rel="stylesheet" href="css/sections.css?v=39">
-<link rel="stylesheet" href="css/type.css?v=39">
-<link rel="stylesheet" href="css/motion.css?v=39">
+<link rel="stylesheet" href="css/fonts.css?v=40">
+<link rel="stylesheet" href="css/tokens.css?v=40">
+<link rel="stylesheet" href="css/base.css?v=40">
+<link rel="stylesheet" href="css/components.css?v=40">
+<link rel="stylesheet" href="css/sections.css?v=40">
+<link rel="stylesheet" href="css/type.css?v=40">
+<link rel="stylesheet" href="css/motion.css?v=40">
 
-<script src="js/main.js?v=39" defer></script>
+<script src="js/main.js?v=40" defer></script>
 </head>
 <body>
 
@@ -426,7 +426,11 @@
     </div>
   </section>
 
-  <!-- ===== WHICH LIFT ====================================================== -->
+  <!-- ===== WHICH LIFT ======================================================
+       A fork, not three cards: the two anatomies side by side with "or"
+       on the rule between them, and the section's answer under both —
+       don't choose first — with the button beside it.
+       ======================================================================= -->
   <section class="band" aria-labelledby="which-title">
     <div class="wrap stack stack--loose">
       <div class="stack head" data-reveal>
@@ -434,27 +438,31 @@
         <p class="lead lead--wide">Ziplyft isn’t automatically better than traditional blepharoplasty.</p>
       </div>
 
-      <div class="grid grid--3 full cards--sm stagger">
-        <article class="card" data-reveal>
-          <span class="ico-well"><svg class="ico ico--lg" aria-hidden="true"><use href="#i-lid"/></svg></span>
+      <div class="fork full" data-reveal>
+        <div class="fork__path">
+          <svg class="ico bare bare--lg" aria-hidden="true"><use href="#i-lid"/></svg>
+          <span class="kicker">Often a Ziplyft candidate</span>
           <h3>Mainly excess skin</h3>
           <p>Patients primarily bothered by excess upper-eyelid skin may be excellent Ziplyft candidates.</p>
-        </article>
-        <article class="card" data-reveal>
-          <span class="ico-well"><svg class="ico ico--lg" aria-hidden="true"><use href="#i-eye"/></svg></span>
+        </div>
+        <span class="fork__or" aria-hidden="true">or</span>
+        <div class="fork__path fork__path--alt">
+          <svg class="ico bare bare--lg" aria-hidden="true"><use href="#i-eye"/></svg>
+          <span class="kicker">May need another approach</span>
           <h3>Something more going on</h3>
           <p>Ptosis repair, significant fat or muscle correction, revision surgery or more complex
             anatomy may need another or an additional approach.</p>
-        </article>
-        <article class="card" data-reveal>
-          <span class="ico-well"><svg class="ico ico--lg" aria-hidden="true"><use href="#i-shield"/></svg></span>
-          <h3>Don’t choose the procedure first</h3>
-          <p>Let Dr.&nbsp;Silk find what is actually causing the heavy or hooded look, then recommend what makes sense.</p>
-        </article>
+        </div>
       </div>
 
-      <a class="btn btn--solid" href="https://www.mypatientvisit.com/onlinescheduling/#/scheduler/schedule?practiceid=b46123f5-99ee-4f66-969c-fe650949c344" data-reveal>Compare your options with Dr.&nbsp;Silk
-        <svg class="ico ico--arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      <div class="fork__verdict full" data-reveal>
+        <div class="fork__say">
+          <h3>Don’t choose the procedure first.</h3>
+          <p>Let Dr.&nbsp;Silk find what is actually causing the heavy or hooded look, then recommend what makes sense.</p>
+        </div>
+        <a class="btn btn--solid" href="https://www.mypatientvisit.com/onlinescheduling/#/scheduler/schedule?practiceid=b46123f5-99ee-4f66-969c-fe650949c344">Compare your options with Dr.&nbsp;Silk
+          <svg class="ico ico--arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      </div>
     </div>
   </section>
 
