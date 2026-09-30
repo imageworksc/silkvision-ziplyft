@@ -43,8 +43,11 @@
    of that made it the loudest thing on the page by some distance. */
 .hero h1 {
   color: var(--white);
-  max-width: none;
-  font-size: clamp(1.875rem, 2.4vw + 1rem, 3rem);   /* 30 → 48 */
+  /* Two lines: capped in em so the break follows the size, and h1's
+     text-wrap: balance splits it evenly — "Ziplyft™ Eyelid Lift" over
+     "in Northern Virginia". */
+  max-width: 12em;
+  font-size: clamp(1.625rem, 2.4vw + .75rem, 2.75rem);   /* 26 → 44 */
   font-weight: 700;
 }
 .hero .lead { color: var(--pale-200); max-width: none; }
