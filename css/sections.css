@@ -38,7 +38,15 @@
   background: var(--fill-scrim);
 }
 
-.hero h1 { color: var(--white); max-width: none; }
+/* A step down from --t-h1 (32 → 62) and from 800 to 700: across the full
+   shell the 62px line read as a banner rather than a title, and 800 on top
+   of that made it the loudest thing on the page by some distance. */
+.hero h1 {
+  color: var(--white);
+  max-width: none;
+  font-size: clamp(1.875rem, 2.4vw + 1rem, 3rem);   /* 30 → 48 */
+  font-weight: 700;
+}
 .hero .lead { color: var(--pale-200); max-width: none; }
 .hero-intro { color: var(--on-dark-soft); max-width: 62ch; }
 
