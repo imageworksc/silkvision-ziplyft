@@ -513,7 +513,7 @@
 }
 
 /* --------------------------------------------------------------------------
-   The procedure — five steps along one line
+   Step numbers — the tracked label the closing band's three steps use
    -------------------------------------------------------------------------- */
 
 .step__num {
@@ -775,294 +775,120 @@ strong.hl {
 }
 
 /* --------------------------------------------------------------------------
-   Recovery — the days, set as type on the plum band
-   --------------------------------------------------------------------------
-   Five columns divided by the band's hairline. Each opens on a numeral at
-   the h1 step in plum-100 (11.5:1 on plum-700), then the stage in white and
-   what to expect in 80% white. The 7–10 numeral carries the lilac marker.
-   On a phone the columns stack and the hairline runs across instead.
+   Recovery — photograph and five stages
    -------------------------------------------------------------------------- */
 
-.days { display: grid; }
-.days li {
-  display: grid;
-  gap: var(--s-2);
-  align-content: start;
-  padding-block: var(--s-5);
-}
-.days li + li { border-block-start: 1px solid var(--hairline-dark); }
-.days__num {
-  font-family: var(--font);
-  font-size: var(--t-h1);
-  font-weight: 700;
-  line-height: 1;
-  letter-spacing: var(--ls-tight);
-  color: var(--plum-100);
-  margin-block-end: var(--s-3);
-  justify-self: start;
-}
-.days__mark .days__num {
-  color: var(--white);
-  background: linear-gradient(var(--hl-mark-dark), var(--hl-mark-dark)) 0 92% / 100% .4em no-repeat;
-  padding-inline: .06em;
-}
-.days h3 { font-size: var(--t-body); color: var(--white); }
-.days p { color: var(--on-dark-soft); }
-
-@media (min-width: 64rem) {
-  .days { grid-template-columns: repeat(5, 1fr); }
-  .days li { padding: 0 var(--s-5); }
-  .days li:first-child { padding-inline-start: 0; }
-  .days li:last-child { padding-inline-end: 0; }
-  .days li + li { border-block-start: 0; border-inline-start: 1px solid var(--hairline-dark); }
+/* Heading left, its line right, on one row from 60rem. */
+.recover-head { display: grid; gap: var(--s-4); }
+@media (min-width: 60rem) {
+  .recover-head { grid-template-columns: 1fr minmax(0, 26rem); align-items: start; column-gap: var(--s-9); }
+  .recover-head .lead { max-width: none; }
 }
 
-/* --------------------------------------------------------------------------
-   Candidacy — the caution as a banner across the band
-   -------------------------------------------------------------------------- */
+.recover { display: grid; gap: var(--s-6); }
+@media (min-width: 60rem) {
+  .recover { grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: var(--s-8); align-items: stretch; }
+}
 
-.banner {
-  display: grid;
-  gap: var(--s-5);
-  justify-items: start;
-  padding: var(--s-6) var(--s-5);
+/* The photograph fills the height the list gives it. The caption sits on a
+   navy scrim across its foot — the hero's scrim, so it holds white type
+   at 8:1 whatever is under it. */
+.recover__media {
+  position: relative;
+  margin: 0;
+  min-block-size: 22rem;
   border-radius: var(--r-lg);
-  background: var(--white);
-  border: 1px solid var(--hairline);
-  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+  background: var(--ink-800);
+  box-shadow: var(--shadow-md);
 }
-.banner__text { gap: var(--s-3); }
-.banner__text h3 { font-size: var(--t-h3); }
-.banner__text p { max-width: 72ch; color: var(--text-soft); }
-@media (min-width: 64rem) {
-  .banner {
-    grid-template-columns: auto 1fr auto;
-    align-items: center;
-    column-gap: var(--s-7);
-    padding: var(--s-7);
-  }
+.recover__media img {
+  position: absolute;
+  inset: 0;
+  inline-size: 100%;
+  block-size: 100%;
+  object-fit: cover;
 }
-
-/* --------------------------------------------------------------------------
-   Longevity — three statements across one rule
-   -------------------------------------------------------------------------- */
-
-.over-time { display: grid; gap: var(--s-5); }
-.over-time li {
-  display: flex;
-  align-items: flex-start;
-  gap: var(--s-4);
-}
-.over-time li > div { display: grid; gap: var(--s-1); }
-/* A step down from the section's h3: three short statements in a row,
-   not three headlines. */
-.over-time h3 { font-size: var(--t-body); line-height: 1.35; }
-@media (min-width: 48rem) {
-  .over-time { grid-template-columns: repeat(3, 1fr); gap: 0; }
-  .over-time li { padding-inline: var(--s-6); }
-  .over-time li:first-child { padding-inline-start: 0; }
-  .over-time li + li { border-inline-start: 1px solid var(--hairline); }
-}
-
-/* --------------------------------------------------------------------------
-   Closing — what Dr. Silk will do, three across
-   -------------------------------------------------------------------------- */
-
-.three { display: grid; gap: var(--s-5); counter-reset: none; }
-.three li {
+.recover__cap {
+  position: absolute;
+  inset: auto 0 0;
   display: grid;
-  justify-items: center;
   gap: var(--s-3);
-  padding-block-start: var(--s-5);
-  border-block-start: 1px solid var(--hairline);
-  text-align: center;
-}
-/* The number on its own, not in a ring. */
-.three .step__num {
-  color: var(--cyan-300);
-  font-size: var(--t-h3);
-  font-weight: 700;
-  letter-spacing: 0;
-  line-height: 1;
-}
-.three p { color: var(--white); max-width: 26ch; }
-@media (min-width: 48rem) {
-  .three { grid-template-columns: repeat(3, 1fr); gap: var(--s-7); }
-}
-
-/* --------------------------------------------------------------------------
-   Bare icons — the set drawn on its own, no well, no ring, no fill. In the
-   redesigned sections an icon labels the line beside it; a box around it
-   only made each one a small button that did nothing.
-   -------------------------------------------------------------------------- */
-
-.bare {
-  inline-size: 2.25rem;
-  block-size: 2.25rem;
-  flex: none;
-  color: var(--plum-600);
-  stroke-width: 1.6;
-}
-.bare--lg { inline-size: 3rem; block-size: 3rem; stroke-width: 1.4; }
-.band--deep .bare { color: var(--cyan-300); }
-
-/* ==========================================================================
-   Highlight — the marker stroke from the entropion page
-   ==========================================================================
-   One phrase per paragraph, the claim the paragraph exists to make, set a
-   weight up over a lilac stroke across the lower half of the letters.
-
-   The entropion page draws the stroke with linear-gradient(transparent 60%,
-   lilac 60%). Here the fill is one colour at both ends — linear-gradient(c, c)
-   is only the syntax CSS requires for a sized block of colour; it paints a
-   flat bar with no ramp, which is what decision 14 rules out. The bar is
-   sized to the lower 45% of the line box and anchored at the bottom, and
-   box-decoration-break repeats it on every line the phrase wraps to.
-
-   The text is the brand navy, not the heading blue. Blue words with a line
-   under them read as a link, and somebody would click them.
-   -------------------------------------------------------------------------- */
-
-:root {
-  --hl-mark: rgb(220 180 220 / .62);       /* the entropion page's lilac */
-  --hl-mark-dark: rgb(200 140 200 / .5);  /* its value on a dark band */
-}
-
-strong.hl {
-  font-weight: 600;
-  color: var(--ink-700);
-  padding-inline: .08em;
-  background: linear-gradient(var(--hl-mark), var(--hl-mark)) 0 88% / 100% .5em no-repeat;
-  -webkit-box-decoration-break: clone;
-  box-decoration-break: clone;
-}
-:is(.band--deep, .hero, .band--plum) strong.hl {
+  justify-items: start;
+  padding: var(--s-5);
+  background: var(--fill-scrim);
   color: var(--white);
-  background-image: linear-gradient(var(--hl-mark-dark), var(--hl-mark-dark));
 }
+.recover__cap .ba__tag { position: static; }
+.recover__cap p { color: var(--on-dark-soft); max-width: 36ch; }
+.recover__cap .btn--ghost { border-color: rgb(255 255 255 / .45); color: var(--white); }
+.recover__cap .btn--ghost:hover { background: rgb(255 255 255 / .12); border-color: var(--white); }
+.recover__cap :focus-visible { outline-color: var(--white); }
 
-/* ==========================================================================
-   Plum band — the entropion page's trust-band colour, for slim bands
-   ==========================================================================
-   --plum-700 is #5C005C, the same value as that page's --purple-dark. A
-   dark ground, so it takes the same contract as .band--deep: the semantic
-   tokens re-point once and every child follows. Measured against it: white
-   15.6:1, 80% white 10.8:1, the 62% labels 5.2:1.
-   -------------------------------------------------------------------------- */
-
-.band--plum {
-  background: var(--plum-700);
-  color: var(--on-dark-soft);
-  --text: var(--on-dark-soft);
-  --text-soft: var(--on-dark-soft);
-  --text-faint: var(--on-dark-faint);
-  --heading: var(--white);
-  --hairline: var(--hairline-dark);
-}
-.band--plum :is(h1, h2, h3, h4) { color: var(--white); }
-.band--plum .lead { color: var(--plum-100); }
-.band--plum .kicker { color: var(--plum-100); }
-.band--plum .bare { color: var(--plum-100); }
-.band--plum :where(a, button, [tabindex]):focus-visible { outline-color: var(--white); }
-
-/* The solid button would be plum on plum. Inverted: white, plum label. */
-.btn--invert { background: var(--white); color: var(--plum-700); }
-.btn--invert:hover { background: var(--plum-100); }
-
-/* The caveat, on the band itself rather than on a white panel inside it. */
-.band--plum .banner {
-  padding: 0;
-  background: none;
-  border: 0;
-  box-shadow: none;
-}
-.band--plum .banner__text p { color: var(--on-dark-soft); }
-
-/* Longevity on plum: the row's hairlines take the band's light rule. */
-.band--plum .over-time li + li { border-inline-start-color: var(--hairline-dark); }
-
-/* --------------------------------------------------------------------------
-   The procedure — a step bar on the navy band
-   --------------------------------------------------------------------------
-   Five tabs on one rule, then one panel. The lit tab's rule turns cyan —
-   the page's light colour, 4.7:1 against the navy (a graphic needs 3), where plum would be
-   1.35:1 and disappear. Titles hold the body size; the step numbers are the
-   table's tracked label.
-   -------------------------------------------------------------------------- */
-
-.stepper { display: grid; gap: var(--s-6); }
-
-.stepper__tabs {
-  display: grid;
-  border-block-start: 1px solid var(--hairline-dark);
-}
-@media (min-width: 48rem) {
-  .stepper__tabs { grid-template-columns: repeat(5, 1fr); }
-}
-
-.stepper__tab {
+/* The five stages. */
+.stages { display: grid; align-content: start; }
+.stages li {
   position: relative;
   display: grid;
-  gap: var(--s-1);
-  align-content: start;
-  min-block-size: var(--tap);
-  padding: var(--s-4) var(--s-4) var(--s-4) 0;
-  border: 0;
-  background: none;
-  color: var(--on-dark-faint);
-  font: inherit;
-  text-align: start;
-  cursor: pointer;
-  transition: color var(--t-fast) var(--ease);
+  grid-template-columns: 3rem 1fr;
+  column-gap: var(--s-5);
+  align-items: start;
+  padding: var(--s-5);
+  border-radius: var(--r-lg);
+  transition: background-color var(--t-mid) var(--ease);
 }
-/* The rule segment over each tab; the lit one fills with cyan. */
-.stepper__tab::before {
+/* A straight hairline between stages, inset to the card's padding so it
+   never meets the rounded corners. */
+.stages li + li::before {
   content: '';
   position: absolute;
-  inset-block-start: -1px;
-  inset-inline: 0 var(--s-3);
-  block-size: 3px;
+  inset: 0 var(--s-5) auto;
+  block-size: 1px;
+  background: var(--hairline);
+}
+.stages__num {
+  display: grid;
+  place-items: center;
+  inline-size: 3rem;
+  block-size: 3rem;
   border-radius: var(--r-pill);
-  background: transparent;
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform var(--t-mid) var(--ease), background-color var(--t-fast) var(--ease);
-}
-.stepper__num {
+  box-shadow: inset 0 0 0 1.5px var(--hairline);
+  background: var(--white);
   font-family: var(--font);
-  font-size: var(--t-xs);
-  font-weight: 800;
-  letter-spacing: var(--ls-wide);
-  color: var(--cyan-300);
-}
-.stepper__title {
-  font-family: var(--font);
-  font-size: var(--t-body);
+  font-size: var(--t-sm);
   font-weight: 700;
-  line-height: 1.3;
+  color: var(--heading);
+  transition: background-color var(--t-mid) var(--ease), color var(--t-mid) var(--ease);
 }
-.stepper__tab:hover { color: var(--on-dark-soft); }
-.stepper__tab[aria-selected="true"] { color: var(--white); }
-.stepper__tab[aria-selected="true"]::before { background: var(--cyan-400); transform: none; }
-.stepper__tab:active { opacity: .62; }
+.stages h3 { font-size: var(--t-h3); margin-block-end: var(--s-1); }
+.stages p { color: var(--text-soft); }
 
-.stepper__panel {
-  display: flex;
-  align-items: center;
-  gap: var(--s-5);
-  min-block-size: 4.5rem;   /* two lines; the band does not jump between steps */
+/* The stage being read: the first until the pointer or keyboard arrives. */
+.stages:not(:hover):not(:focus-within) li:first-child,
+.stages li:is(:hover, :focus) {
+  background: var(--plum-100);
 }
-.stepper__panel p { max-width: 70ch; color: var(--on-dark-soft); }
-.stepper__panel .bare { inline-size: 2.75rem; block-size: 2.75rem; }
-/* Script marks the inactive panels hidden; without it every panel shows. */
-.stepper__panel[hidden] { display: none; }
-[data-anim="on"] .stepper__panel:not([hidden]) { animation: rise var(--t-mid) var(--ease); }
+/* No hairline touching the lit card, above or below it. */
+.stages:not(:hover):not(:focus-within) li:first-child + li::before,
+.stages li:is(:hover, :focus)::before,
+.stages li:is(:hover, :focus) + li::before { display: none; }
+.stages:not(:hover):not(:focus-within) li:first-child .stages__num,
+.stages li:is(:hover, :focus) .stages__num {
+  background: var(--plum-600);
+  box-shadow: none;
+  color: var(--white);
+}
+.stages li:focus { outline: none; }
+.stages li:focus-visible { outline: 3px solid var(--cyan-400); outline-offset: 3px; }
 
-/* On a phone the tabs stack; each is still a tab, the panel follows. */
-@media (max-width: 47.99rem) {
-  .stepper__tab { padding-inline-start: var(--s-4); border-block-end: 1px solid var(--hairline-dark); }
-  .stepper__tab::before { inset: 0 auto 0 0; inline-size: 3px; block-size: auto; transform: scaleY(0); transform-origin: top; }
-  .stepper__tab[aria-selected="true"]::before { transform: none; }
+/* On a phone the caption leaves the photograph and sits under it, on the
+   same navy, so the photograph is seen whole. */
+@media (max-width: 59.99rem) {
+  .recover__media { min-block-size: 0; display: flex; flex-direction: column; }
+  .recover__media img { position: relative; inset: auto; aspect-ratio: 4 / 3; block-size: auto; }
+  .recover__cap { position: static; background: var(--ink-700); }
+  .stages li { padding: var(--s-4); }
+  .stages li + li::before { inset-inline: var(--s-4); }
 }
 
 /* --------------------------------------------------------------------------
