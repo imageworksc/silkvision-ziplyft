@@ -60,15 +60,15 @@
 <link rel="preconnect" href="https://res.cloudinary.com">
 <link rel="preload" as="image" fetchpriority="high"
       href="https://res.cloudinary.com/dsjbq35es/image/upload/f_auto,q_auto,w_1800/v1789669040/SV_ziplyft_hero_ktw80x.jpg">
-<link rel="stylesheet" href="css/fonts.css?v=13">
-<link rel="stylesheet" href="css/tokens.css?v=13">
-<link rel="stylesheet" href="css/base.css?v=13">
-<link rel="stylesheet" href="css/components.css?v=13">
-<link rel="stylesheet" href="css/sections.css?v=13">
-<link rel="stylesheet" href="css/type.css?v=13">
-<link rel="stylesheet" href="css/motion.css?v=13">
+<link rel="stylesheet" href="css/fonts.css?v=14">
+<link rel="stylesheet" href="css/tokens.css?v=14">
+<link rel="stylesheet" href="css/base.css?v=14">
+<link rel="stylesheet" href="css/components.css?v=14">
+<link rel="stylesheet" href="css/sections.css?v=14">
+<link rel="stylesheet" href="css/type.css?v=14">
+<link rel="stylesheet" href="css/motion.css?v=14">
 
-<script src="js/main.js?v=13" defer></script>
+<script src="js/main.js?v=14" defer></script>
 </head>
 <body>
 
@@ -103,6 +103,15 @@
   <symbol id="i-office" viewBox="0 0 24 24"><path d="M5.2 20.6V6.6L12 3.2l6.8 3.4v14"/><path d="M2.8 20.6h18.4"/><path d="M9.3 10.2h1.2M13.5 10.2h1.2M9.3 13.8h1.2M13.5 13.8h1.2"/><path d="M10.4 20.6v-3.4h3.2v3.4"/></symbol>
 
   <!-- Drawn for this page. -->
+  <!-- The four things Ziplyft leaves out, each the object itself struck
+       through — the set's convention for "no", from the office-based
+       surgery page's no-IV mark. -->
+  <symbol id="i-noiv" viewBox="0 0 24 24"><path d="M12 2v1.6"/><rect x="7.4" y="3.6" width="9.2" height="9.2" rx="1.6"/><path d="M12 12.8V18M10.2 18h3.6"/><path d="M4.2 4.2l15.6 15.6"/></symbol>
+  <symbol id="i-nosleep" viewBox="0 0 24 24"><path d="M19.6 14.6A8.2 8.2 0 019.4 4.4a8.2 8.2 0 1010.2 10.2z"/><path d="M4.2 4.2l15.6 15.6"/></symbol>
+  <symbol id="i-nosuture" viewBox="0 0 24 24"><path d="M6 18.4C6 11 10.6 5.8 17.6 5.6"/><circle cx="18.6" cy="5.6" r="1.2"/><path d="M6 18.4c1.6 1.4 3.6 1.6 5.4.6"/><path d="M4.2 4.2l15.6 15.6"/></symbol>
+  <symbol id="i-nocautery" viewBox="0 0 24 24"><path d="M15.4 3.6l5 5-9.6 9.6-5 1 1-5z"/><path d="M4.4 19.6l1.4-1.4"/><path d="M4.2 4.2l15.6 15.6"/></symbol>
+  <!-- Time passing: a clock face with the set's rings at its hub. -->
+  <symbol id="i-time" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.6"/><path d="M12 6.8V12l3.4 2"/></symbol>
   <!-- The hooded lid: the set's eye, with the fold of skin drawn above it
        that the whole page is about. -->
   <symbol id="i-lid" viewBox="0 0 24 24"><path d="M2.6 13.4S6.6 8.2 12 8.2s9.4 5.2 9.4 5.2-4 5.2-9.4 5.2-9.4-5.2-9.4-5.2z"/><circle cx="12" cy="13.4" r="3.4"/><circle cx="12" cy="13.4" r="1"/><path d="M3.4 8.6C6 5.6 8.8 4.4 12 4.4s6 1.2 8.6 4.2"/></symbol>
@@ -327,10 +336,10 @@
       <div class="stack full" data-reveal>
         <h3 class="kicker">What it leaves out</h3>
         <ul class="absent stagger">
-          <li><span class="absent__mark"><svg class="ico" aria-hidden="true"><use href="#i-close"/></svg></span><h4>No IV sedation</h4></li>
-          <li><span class="absent__mark"><svg class="ico" aria-hidden="true"><use href="#i-close"/></svg></span><h4>No general anesthesia</h4></li>
-          <li><span class="absent__mark"><svg class="ico" aria-hidden="true"><use href="#i-close"/></svg></span><h4>No sutures</h4></li>
-          <li><span class="absent__mark"><svg class="ico" aria-hidden="true"><use href="#i-close"/></svg></span><h4>No cautery</h4></li>
+          <li><svg class="ico bare" aria-hidden="true"><use href="#i-noiv"/></svg><h4>No IV sedation</h4></li>
+          <li><svg class="ico bare" aria-hidden="true"><use href="#i-nosleep"/></svg><h4>No general anesthesia</h4></li>
+          <li><svg class="ico bare" aria-hidden="true"><use href="#i-nosuture"/></svg><h4>No sutures</h4></li>
+          <li><svg class="ico bare" aria-hidden="true"><use href="#i-nocautery"/></svg><h4>No cautery</h4></li>
         </ul>
       </div>
 
@@ -537,31 +546,31 @@
       </div>
       <ol class="path full stagger">
         <li data-reveal>
-          <span class="ico-well"><svg class="ico ico--lg" aria-hidden="true"><use href="#i-lid"/></svg></span>
+          <svg class="ico bare" aria-hidden="true"><use href="#i-lid"/></svg>
           <span class="step__num">Step 1</span>
           <h3>Your eyelid evaluation</h3>
           <p>Dr.&nbsp;Silk evaluates your eyelids, eye health, anatomy, excess skin and goals to decide whether Ziplyft is appropriate.</p>
         </li>
         <li data-reveal>
-          <span class="ico-well"><svg class="ico ico--lg" aria-hidden="true"><use href="#i-drops"/></svg></span>
+          <svg class="ico bare" aria-hidden="true"><use href="#i-drops"/></svg>
           <span class="step__num">Step 2</span>
           <h3>Marking &amp; numbing</h3>
           <p>The excess skin to be treated is carefully marked, and local anesthetic numbs the area.</p>
         </li>
         <li data-reveal>
-          <span class="ico-well"><svg class="ico ico--lg" aria-hidden="true"><use href="#i-compress"/></svg></span>
+          <svg class="ico bare" aria-hidden="true"><use href="#i-compress"/></svg>
           <span class="step__num">Step 3</span>
           <h3>Compress, remove &amp; seal</h3>
           <p>CoCo&trade; technology compresses the tissue, the excess skin is removed, and the edges are sealed with medical-grade adhesive.</p>
         </li>
         <li data-reveal>
-          <span class="ico-well"><svg class="ico ico--lg" aria-hidden="true"><use href="#i-home"/></svg></span>
+          <svg class="ico bare" aria-hidden="true"><use href="#i-home"/></svg>
           <span class="step__num">Step 4</span>
           <h3>Go home</h3>
           <p>There is no operating-room recovery, and no later appointment just to remove stitches.</p>
         </li>
         <li data-reveal>
-          <span class="ico-well"><svg class="ico ico--lg" aria-hidden="true"><use href="#i-eye"/></svg></span>
+          <svg class="ico bare" aria-hidden="true"><use href="#i-eye"/></svg>
           <span class="step__num">Step 5</span>
           <h3>Heal &amp; see the result</h3>
           <p>Swelling and bruising settle as the eyelids heal; most patients are event-ready in about 7–10 days.</p>
@@ -623,7 +632,7 @@
       <!-- A banner across the band: the mark, the caution, the action, in one
            row — the reader meets the caveat and the next step together. -->
       <aside class="banner full" data-reveal aria-labelledby="same-title">
-        <span class="ico-well"><svg class="ico ico--lg" aria-hidden="true"><use href="#i-lid"/></svg></span>
+        <svg class="ico bare bare--lg" aria-hidden="true"><use href="#i-lid"/></svg>
         <div class="stack banner__text">
           <h3 id="same-title">Not every heavy eyelid is the same.</h3>
           <p>True eyelid ptosis, significant excess fat, muscle involvement, previous eyelid surgery
@@ -638,11 +647,11 @@
   </section>
 
   <!-- ===== LONGEVITY =======================================================
-       Three statements across one rule: what is permanent, what is not,
-       and what decides the difference. The first carries the plum mark —
-       it is the answer to the heading.
+       Slim: a heading, its line, and one row of three statements — what is
+       permanent, what is not, what decides the difference — each led by a
+       bare icon and divided by a hairline. No boxes, no wells.
        ======================================================================= -->
-  <section class="band" aria-labelledby="last-title">
+  <section class="band band--slim" aria-labelledby="last-title">
     <div class="wrap stack stack--loose">
       <div class="stack head" data-reveal>
         <h2 id="last-title">How long do Ziplyft results last?</h2>
@@ -650,9 +659,18 @@
           temporarily tightening its appearance.</p>
       </div>
       <ul class="over-time full stagger">
-        <li data-reveal><span class="kicker">The skin removed</span><h3>Does not grow back.</h3></li>
-        <li data-reveal><span class="kicker">Your eyelids</span><h3>Continue to change naturally as you age.</h3></li>
-        <li data-reveal><span class="kicker">What shapes how</span><h3>Your anatomy, age, skin quality and lifestyle.</h3></li>
+        <li data-reveal>
+          <svg class="ico bare" aria-hidden="true"><use href="#i-remove"/></svg>
+          <div><span class="kicker">The skin removed</span><h3>Does not grow back.</h3></div>
+        </li>
+        <li data-reveal>
+          <svg class="ico bare" aria-hidden="true"><use href="#i-time"/></svg>
+          <div><span class="kicker">Your eyelids</span><h3>Continue to change naturally as you age.</h3></div>
+        </li>
+        <li data-reveal>
+          <svg class="ico bare" aria-hidden="true"><use href="#i-lid"/></svg>
+          <div><span class="kicker">What shapes how</span><h3>Your anatomy, age, skin quality and lifestyle.</h3></div>
+        </li>
       </ul>
     </div>
   </section>

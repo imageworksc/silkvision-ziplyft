@@ -532,13 +532,17 @@ a.card:hover p  { transform: translateX(4px); transition-delay: 130ms; }
   font-size: var(--t-sm);
   color: var(--text);
 }
+/* The check on its own — no plum disc behind it. The table keeps its
+   badges; they sit in a grid of cells where a bare mark would float. */
 .checklist .tick {
   flex: none;
   inline-size: 1.5rem;
   block-size: 1.5rem;
-  margin-block-start: .05rem;
+  margin-block-start: .1rem;
+  background: none;
+  color: var(--plum-600);
 }
-.checklist .tick .ico { inline-size: 1rem; block-size: 1rem; stroke-width: 2.4; }
+.checklist .tick .ico { inline-size: 1.375rem; block-size: 1.375rem; stroke-width: 2.2; }
 
 @media (min-width: 40rem) {
   .checklist--2 { grid-template-columns: 1fr 1fr; }

@@ -433,19 +433,6 @@
 }
 .absent li + li { border-block-start: 1px solid var(--hairline); }
 .absent h4 { font-size: var(--t-h3); line-height: 1.2; }
-.absent__mark {
-  display: grid;
-  place-items: center;
-  flex: none;
-  inline-size: 2.75rem;
-  block-size: 2.75rem;
-  border-radius: var(--r-pill);
-  background: var(--white);
-  color: var(--grey-700);
-  box-shadow: inset 0 0 0 1.5px var(--grey-300);
-}
-.absent__mark .ico { inline-size: 1.25rem; block-size: 1.25rem; }
-
 @media (min-width: 40rem) {
   .absent { grid-template-columns: 1fr 1fr; }
   .absent li:nth-child(2) { border-block-start: 0; }
@@ -520,7 +507,7 @@
 }
 
 .path {
-  --well: 3.85rem;
+  --well: 2.25rem;   /* the bare icon's box */
   --gap: var(--s-6);
   display: grid;
   gap: var(--gap);
@@ -533,7 +520,7 @@
   row-gap: var(--s-1);
   align-content: start;
 }
-.path .ico-well { grid-row: span 3; }
+.path .bare { grid-row: span 3; }
 .path h3 { font-size: var(--t-body); }
 /* The line the steps happen along: down the page on a phone… */
 .path li:not(:last-child)::after {
@@ -548,7 +535,7 @@
 @media (min-width: 64rem) {
   .path { grid-template-columns: repeat(5, 1fr); }
   .path li { grid-template-columns: 1fr; row-gap: var(--s-2); }
-  .path .ico-well { grid-row: auto; margin-block-end: var(--s-3); }
+  .path .bare { grid-row: auto; margin-block-end: var(--s-3); }
   .path li:not(:last-child)::after {
     inset-block: calc(var(--well) / 2 - 1px) auto;
     inset-inline: calc(var(--well) + var(--s-3)) calc(var(--gap) * -1 + var(--s-3));
@@ -621,7 +608,6 @@
   border-radius: var(--r-lg);
   background: var(--white);
   border: 1px solid var(--hairline);
-  border-inline-start: 4px solid var(--plum-600);
   box-shadow: var(--shadow-sm);
 }
 .banner__text { gap: var(--s-3); }
@@ -640,18 +626,21 @@
    Longevity — three statements across one rule
    -------------------------------------------------------------------------- */
 
-.over-time { display: grid; gap: var(--s-6); }
+.over-time { display: grid; gap: var(--s-5); }
 .over-time li {
-  display: grid;
-  gap: var(--s-3);
-  align-content: start;
-  padding-block-start: var(--s-5);
-  border-block-start: 2px solid var(--grey-300);
+  display: flex;
+  align-items: flex-start;
+  gap: var(--s-4);
 }
-.over-time li:first-child { border-block-start-color: var(--plum-600); }
-.over-time h3 { font-size: var(--t-h3); line-height: 1.25; }
+.over-time li > div { display: grid; gap: var(--s-1); }
+/* A step down from the section's h3: three short statements in a row,
+   not three headlines. */
+.over-time h3 { font-size: var(--t-body); line-height: 1.35; }
 @media (min-width: 48rem) {
-  .over-time { grid-template-columns: repeat(3, 1fr); gap: var(--s-7); }
+  .over-time { grid-template-columns: repeat(3, 1fr); gap: 0; }
+  .over-time li { padding-inline: var(--s-6); }
+  .over-time li:first-child { padding-inline-start: 0; }
+  .over-time li + li { border-inline-start: 1px solid var(--hairline); }
 }
 
 /* --------------------------------------------------------------------------
@@ -667,18 +656,31 @@
   border-block-start: 1px solid var(--hairline);
   text-align: center;
 }
+/* The number on its own, not in a ring. */
 .three .step__num {
-  display: grid;
-  place-items: center;
-  inline-size: 2.5rem;
-  block-size: 2.5rem;
-  border-radius: var(--r-pill);
-  box-shadow: inset 0 0 0 1.5px rgb(255 255 255 / .45);
-  color: var(--white);
-  font-size: var(--t-sm);
+  color: var(--cyan-300);
+  font-size: var(--t-h3);
+  font-weight: 700;
   letter-spacing: 0;
+  line-height: 1;
 }
 .three p { color: var(--white); max-width: 26ch; }
 @media (min-width: 48rem) {
   .three { grid-template-columns: repeat(3, 1fr); gap: var(--s-7); }
 }
+
+/* --------------------------------------------------------------------------
+   Bare icons — the set drawn on its own, no well, no ring, no fill. In the
+   redesigned sections an icon labels the line beside it; a box around it
+   only made each one a small button that did nothing.
+   -------------------------------------------------------------------------- */
+
+.bare {
+  inline-size: 2.25rem;
+  block-size: 2.25rem;
+  flex: none;
+  color: var(--plum-600);
+  stroke-width: 1.6;
+}
+.bare--lg { inline-size: 3rem; block-size: 3rem; stroke-width: 1.4; }
+.band--deep .bare { color: var(--cyan-300); }
