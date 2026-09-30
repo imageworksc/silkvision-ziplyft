@@ -715,3 +715,78 @@
 }
 .bare--lg { inline-size: 3rem; block-size: 3rem; stroke-width: 1.4; }
 .band--deep .bare { color: var(--cyan-300); }
+
+/* ==========================================================================
+   Highlight — the marker stroke from the entropion page
+   ==========================================================================
+   One phrase per paragraph, the claim the paragraph exists to make, set a
+   weight up over a lilac stroke across the lower half of the letters.
+
+   The entropion page draws the stroke with linear-gradient(transparent 60%,
+   lilac 60%). Here the fill is one colour at both ends — linear-gradient(c, c)
+   is only the syntax CSS requires for a sized block of colour; it paints a
+   flat bar with no ramp, which is what decision 14 rules out. The bar is
+   sized to the lower 45% of the line box and anchored at the bottom, and
+   box-decoration-break repeats it on every line the phrase wraps to.
+
+   The text is the brand navy, not the heading blue. Blue words with a line
+   under them read as a link, and somebody would click them.
+   -------------------------------------------------------------------------- */
+
+:root {
+  --hl-mark: rgb(220 180 220 / .62);       /* the entropion page's lilac */
+  --hl-mark-dark: rgb(200 140 200 / .5);  /* its value on a dark band */
+}
+
+strong.hl {
+  font-weight: 600;
+  color: var(--ink-700);
+  padding-inline: .08em;
+  background: linear-gradient(var(--hl-mark), var(--hl-mark)) 0 88% / 100% .5em no-repeat;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+:is(.band--deep, .hero, .band--plum) strong.hl {
+  color: var(--white);
+  background-image: linear-gradient(var(--hl-mark-dark), var(--hl-mark-dark));
+}
+
+/* ==========================================================================
+   Plum band — the entropion page's trust-band colour, for slim bands
+   ==========================================================================
+   --plum-700 is #5C005C, the same value as that page's --purple-dark. A
+   dark ground, so it takes the same contract as .band--deep: the semantic
+   tokens re-point once and every child follows. Measured against it: white
+   15.6:1, 80% white 10.8:1, the 62% labels 5.2:1.
+   -------------------------------------------------------------------------- */
+
+.band--plum {
+  background: var(--plum-700);
+  color: var(--on-dark-soft);
+  --text: var(--on-dark-soft);
+  --text-soft: var(--on-dark-soft);
+  --text-faint: var(--on-dark-faint);
+  --heading: var(--white);
+  --hairline: var(--hairline-dark);
+}
+.band--plum :is(h1, h2, h3, h4) { color: var(--white); }
+.band--plum .lead { color: var(--plum-100); }
+.band--plum .kicker { color: var(--plum-100); }
+.band--plum .bare { color: var(--plum-100); }
+.band--plum :where(a, button, [tabindex]):focus-visible { outline-color: var(--white); }
+
+/* The solid button would be plum on plum. Inverted: white, plum label. */
+.btn--invert { background: var(--white); color: var(--plum-700); }
+.btn--invert:hover { background: var(--plum-100); }
+
+/* The caveat, on the band itself rather than on a white panel inside it. */
+.band--plum .banner {
+  padding: 0;
+  background: none;
+  border: 0;
+  box-shadow: none;
+}
+.band--plum .banner__text p { color: var(--on-dark-soft); }
+
+/* Longevity on plum: the row's hairlines take the band's light rule. */
+.band--plum .over-time li + li { border-inline-start-color: var(--hairline-dark); }
