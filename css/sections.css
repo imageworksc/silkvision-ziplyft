@@ -778,13 +778,6 @@ strong.hl {
    Recovery — photograph and five stages
    -------------------------------------------------------------------------- */
 
-/* Heading left, its line right, on one row from 60rem. */
-.recover-head { display: grid; gap: var(--s-4); }
-@media (min-width: 60rem) {
-  .recover-head { grid-template-columns: 1fr minmax(0, 26rem); align-items: start; column-gap: var(--s-9); }
-  .recover-head .lead { max-width: none; }
-}
-
 .recover { display: grid; gap: var(--s-6); }
 @media (min-width: 60rem) {
   .recover { grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: var(--s-8); align-items: stretch; }
@@ -808,6 +801,7 @@ strong.hl {
   inline-size: 100%;
   block-size: 100%;
   object-fit: cover;
+  object-position: 50% 45%;   /* the crop centres the eye; keep it clear of the caption */
 }
 .recover__cap {
   position: absolute;
@@ -860,7 +854,8 @@ strong.hl {
   color: var(--heading);
   transition: background-color var(--t-mid) var(--ease), color var(--t-mid) var(--ease);
 }
-.stages h3 { font-size: var(--t-h3); margin-block-end: var(--s-1); }
+/* Two points under --t-h3 (21 → 26): 19 → 24. */
+.stages h3 { font-size: clamp(1.1875rem, .7vw + 1.025rem, 1.5rem); margin-block-end: var(--s-1); }
 .stages p { color: var(--text-soft); }
 
 /* The stage being read: the first until the pointer or keyboard arrives. */
