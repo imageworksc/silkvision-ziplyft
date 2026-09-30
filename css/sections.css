@@ -126,12 +126,11 @@
    -------------------------------------------------------------------------- */
 
 .price-slot {
-  inline-size: 100%;
-  max-width: 48rem;
+  flex: 1 1 22rem;
+  max-width: 40rem;
   padding: var(--s-4) var(--s-5);
   border: 2px dashed var(--grey-300);
   border-radius: var(--r-md);
-  font-size: var(--t-sm);
   font-weight: 600;
   color: var(--text-faint);
 }
@@ -420,76 +419,55 @@
 .band--deep .kicker { color: var(--cyan-300); }
 
 /* --------------------------------------------------------------------------
-   Benefits — subtraction
-   The pale accreditation blue as the ground, so the band reads apart from
-   the paper and white around it without a box. Two ruled rows.
+   Benefits — a typographic statement
+   --------------------------------------------------------------------------
+   Eleven claims as one block of h3-size type that wraps like a sentence.
+   A small plum dot sits between each pair; the "No …" claims take the lilac
+   marker. The pale accreditation blue is the ground, so the band reads
+   apart from its neighbours without a box.
    -------------------------------------------------------------------------- */
 
 .band--tint { background: var(--pale-100); }
 
-.subtract__row {
-  display: grid;
-  gap: var(--s-4);
-  padding-block-start: var(--s-6);
-  border-block-start: 1px solid var(--hairline);
-}
-
-/* Left out: the words at the h3 step, faded, each struck by a plum rule. */
-.struck {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: var(--s-2);
-}
-@media (min-width: 48rem) {
-  .struck { flex-direction: row; flex-wrap: wrap; align-items: baseline; gap: var(--s-3) var(--s-8); }
-}
-.struck li {
-  position: relative;
-  font-family: var(--font);
-  font-weight: 700;
-  color: var(--grey-500);   /* 4.3:1 on the tint; large text needs 3 */
-}
-.struck li::after {
-  content: '';
-  position: absolute;
-  inset-inline: -.12em;
-  inset-block-start: 54%;
-  block-size: .075em;
-  min-block-size: 2px;
-  border-radius: var(--r-pill);
-  background: var(--plum-600);
-  transform-origin: left center;
-}
-/* Drawn on arrival — only once script has said it can bring it back. */
-[data-anim="on"] .struck li::after {
-  transform: scaleX(0);
-  transition: transform .6s var(--ease);
-}
-[data-anim="on"] .struck.is-in li::after { transform: none; }
-[data-anim="on"] .struck.is-in li:nth-child(2)::after { transition-delay: .15s; }
-[data-anim="on"] .struck.is-in li:nth-child(3)::after { transition-delay: .3s; }
-[data-anim="on"] .struck.is-in li:nth-child(4)::after { transition-delay: .45s; }
-
-/* What remains: one line of type that wraps like a sentence. */
-.kept {
+/* Every claim carries its dot in front of it, and every claim is pulled
+   back by one dot and its gap; the list clips at its own edge. A claim that
+   starts a line therefore has its dot outside the list, clipped, so dots
+   only ever sit between two claims on the same line — never at the start
+   of one, where they read as bullets. The column gap adds the pull back so
+   the space between claims is still one --s-4. */
+.claims {
+  --dot: .4rem;
+  --claims-shift: calc(var(--dot) + var(--s-4));
   display: flex;
   flex-wrap: wrap;
-  gap: var(--s-3) var(--s-7);
+  align-items: baseline;
+  column-gap: calc(var(--s-4) + var(--claims-shift));
+  row-gap: var(--s-2);
+  overflow: hidden;
 }
-.kept li {
+.claims li {
   display: inline-flex;
-  align-items: flex-start;
-  gap: var(--s-2);
-  color: var(--text);
+  align-items: baseline;
+  gap: var(--s-4);
+  margin-inline-start: calc(var(--claims-shift) * -1);
+  font-family: var(--font);
+  font-weight: 600;
+  color: var(--ink-700);
 }
-.kept .ico {
+.claims li::before {
+  content: '';
   flex: none;
-  inline-size: 1.25rem;
-  block-size: 1.25rem;
-  margin-block-start: .2em;
-  color: var(--plum-600);
-  stroke-width: 2.2;
+  inline-size: var(--dot);
+  block-size: var(--dot);
+  border-radius: var(--r-pill);
+  background: var(--plum-600);
+  transform: translateY(-.28em);
+}
+/* The four "No …" claims: plum, over the marker — on the words only, not
+   on the dot before them. */
+.claims .claims__no {
+  color: var(--plum-700);
+  background: linear-gradient(var(--hl-mark), var(--hl-mark)) 100% 88% / calc(100% - var(--claims-shift)) .5em no-repeat;
 }
 
 /* --------------------------------------------------------------------------
@@ -822,4 +800,31 @@ strong.hl {
   .heal li:first-child .heal__day { border-start-start-radius: var(--r-md); border-end-start-radius: var(--r-md); }
   .heal li:last-child .heal__day { border-start-end-radius: var(--r-md); border-end-end-radius: var(--r-md); }
   .heal li + li .heal__day { box-shadow: inset 2px 0 0 var(--white); }
+}
+
+/* --------------------------------------------------------------------------
+   Cost — an answer sheet
+   -------------------------------------------------------------------------- */
+
+.price-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-4) var(--s-6);
+}
+
+.answers { display: grid; gap: var(--s-6); }
+.answers li {
+  display: grid;
+  gap: var(--s-2);
+  align-content: start;
+  padding-block-start: var(--s-5);
+  border-block-start: 2px solid var(--grey-300);
+}
+.answers li:first-child { border-block-start-color: var(--plum-600); }
+.answers h3 { font-size: var(--t-body); }
+.answers p { color: var(--text-soft); }
+@media (min-width: 60rem) {
+  .answers { grid-template-columns: repeat(3, 1fr); gap: var(--s-7); }
 }

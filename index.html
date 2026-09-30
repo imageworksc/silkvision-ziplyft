@@ -60,15 +60,15 @@
 <link rel="preconnect" href="https://res.cloudinary.com">
 <link rel="preload" as="image" fetchpriority="high"
       href="https://res.cloudinary.com/dsjbq35es/image/upload/f_auto,q_auto,w_1800/v1789669040/SV_ziplyft_hero_ktw80x.jpg">
-<link rel="stylesheet" href="css/fonts.css?v=24">
-<link rel="stylesheet" href="css/tokens.css?v=24">
-<link rel="stylesheet" href="css/base.css?v=24">
-<link rel="stylesheet" href="css/components.css?v=24">
-<link rel="stylesheet" href="css/sections.css?v=24">
-<link rel="stylesheet" href="css/type.css?v=24">
-<link rel="stylesheet" href="css/motion.css?v=24">
+<link rel="stylesheet" href="css/fonts.css?v=27">
+<link rel="stylesheet" href="css/tokens.css?v=27">
+<link rel="stylesheet" href="css/base.css?v=27">
+<link rel="stylesheet" href="css/components.css?v=27">
+<link rel="stylesheet" href="css/sections.css?v=27">
+<link rel="stylesheet" href="css/type.css?v=27">
+<link rel="stylesheet" href="css/motion.css?v=27">
 
-<script src="js/main.js?v=24" defer></script>
+<script src="js/main.js?v=27" defer></script>
 </head>
 <body>
 
@@ -103,13 +103,6 @@
   <symbol id="i-office" viewBox="0 0 24 24"><path d="M5.2 20.6V6.6L12 3.2l6.8 3.4v14"/><path d="M2.8 20.6h18.4"/><path d="M9.3 10.2h1.2M13.5 10.2h1.2M9.3 13.8h1.2M13.5 13.8h1.2"/><path d="M10.4 20.6v-3.4h3.2v3.4"/></symbol>
 
   <!-- Drawn for this page. -->
-  <!-- The four things Ziplyft leaves out, each the object itself struck
-       through — the set's convention for "no", from the office-based
-       surgery page's no-IV mark. -->
-  <symbol id="i-noiv" viewBox="0 0 24 24"><path d="M12 2v1.6"/><rect x="7.4" y="3.6" width="9.2" height="9.2" rx="1.6"/><path d="M12 12.8V18M10.2 18h3.6"/><path d="M4.2 4.2l15.6 15.6"/></symbol>
-  <symbol id="i-nosleep" viewBox="0 0 24 24"><path d="M19.6 14.6A8.2 8.2 0 019.4 4.4a8.2 8.2 0 1010.2 10.2z"/><path d="M4.2 4.2l15.6 15.6"/></symbol>
-  <symbol id="i-nosuture" viewBox="0 0 24 24"><path d="M6 18.4C6 11 10.6 5.8 17.6 5.6"/><circle cx="18.6" cy="5.6" r="1.2"/><path d="M6 18.4c1.6 1.4 3.6 1.6 5.4.6"/><path d="M4.2 4.2l15.6 15.6"/></symbol>
-  <symbol id="i-nocautery" viewBox="0 0 24 24"><path d="M15.4 3.6l5 5-9.6 9.6-5 1 1-5z"/><path d="M4.4 19.6l1.4-1.4"/><path d="M4.2 4.2l15.6 15.6"/></symbol>
   <!-- Time passing: a clock face with the set's rings at its hub. -->
   <symbol id="i-time" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.6"/><path d="M12 6.8V12l3.4 2"/></symbol>
   <!-- The hooded lid: the set's eye, with the fold of skin drawn above it
@@ -320,44 +313,32 @@
   </section>
 
   <!-- ===== BENEFITS ========================================================
-       No boxes. The section is about what the procedure takes away, so it
-       takes them away: the four things traditional surgery can involve are
-       set large and struck through in plum — the line draws across as the
-       row comes into view, which is the one piece of motion here and it is
-       the point being made. Under a rule, what remains, as one line of type.
-       The words are real text with "No" for a screen reader; the strike is
-       a pseudo-element, so it is never read out as a deletion.
+       A typographic statement. The eleven benefits run as one block of large
+       type across the band, like a sentence, a plum dot between them — no
+       boxes, no columns. The four things the procedure leaves out carry the
+       page's lilac marker, so they are what the eye lands on. Still a list
+       underneath, so a screen reader counts eleven items.
        ======================================================================= -->
-  <section class="band band--tint subtract" aria-labelledby="benefits-title">
+  <section class="band band--tint band--slim" aria-labelledby="benefits-title">
     <div class="wrap stack stack--loose">
       <div class="stack head" data-reveal>
         <h2 id="benefits-title">A real eyelid lift.<br> A much simpler experience.</h2>
         <p class="lead lead--wide">For the right patient, Ziplyft can provide meaningful upper-eyelid
           rejuvenation without many of the things commonly associated with traditional eyelid surgery.</p>
       </div>
-
-      <div class="subtract__row full">
-        <span class="kicker">Left out</span>
-        <ul class="struck" data-reveal>
-          <li><span class="sr-only">No </span>IV sedation</li>
-          <li><span class="sr-only">No </span>General anesthesia</li>
-          <li><span class="sr-only">No </span>Sutures</li>
-          <li><span class="sr-only">No </span>Cautery</li>
-        </ul>
-      </div>
-
-      <div class="subtract__row subtract__row--kept full" data-reveal>
-        <span class="kicker">What remains</span>
-        <ul class="kept">
-          <li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>Removes actual excess upper-eyelid skin</li>
-          <li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>Less than 15-minute procedure</li>
-          <li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>Performed in the physician’s office</li>
-          <li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>Local anesthetic only</li>
-          <li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>Medical adhesive closure</li>
-          <li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>Minimal bruising and swelling</li>
-          <li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>Typically event-ready within 7–10 days</li>
-        </ul>
-      </div>
+      <ul class="claims full" data-reveal>
+          <li>Removes actual excess upper-eyelid skin</li>
+          <li>Less than 15-minute procedure</li>
+          <li>Performed in the physician’s office</li>
+          <li>Local anesthetic only</li>
+          <li class="claims__no">No IV sedation</li>
+          <li class="claims__no">No general anesthesia</li>
+          <li class="claims__no">No sutures</li>
+          <li class="claims__no">No cautery</li>
+          <li>Medical adhesive closure</li>
+          <li>Minimal bruising and swelling</li>
+          <li>Typically event-ready within 7–10 days</li>
+      </ul>
     </div>
   </section>
 
@@ -673,27 +654,42 @@
     </div>
   </section>
 
-  <!-- ===== COST ============================================================ -->
-  <section class="band band--paper" aria-labelledby="cost-title">
+  <!-- ===== COST ============================================================
+       An answer sheet. The price and the action on one line; under it three
+       answers across one rule — what the cost depends on, what the
+       consultation gives you, and whether insurance covers it. The same
+       words as before, split into the three things they were saying.
+       ======================================================================= -->
+  <section class="band band--paper band--slim" aria-labelledby="cost-title">
     <div class="wrap stack stack--loose">
-      <div class="stack head" data-reveal>
-        <h2 id="cost-title">How much does Ziplyft cost?</h2>
-        <p class="lead lead--wide">The exact cost depends on your anatomy, your treatment needs and
-          whether Ziplyft alone is appropriate for your eyelids. Your consultation lets Dr.&nbsp;Silk
-          evaluate the problem first, explain your options and give you <strong class="hl">a clear recommendation and
-          cost before you decide</strong>.</p>
-      </div>
-      <!-- [PENDING: approved Silk Vision price or starting price] -->
-      <p class="price-slot" data-reveal>[Add approved Silk Vision price or starting price]</p>
-      <div class="stack" data-reveal>
-        <h3>Is Ziplyft covered by insurance?</h3>
-        <p class="measure">Cosmetic eyelid treatment is generally self-pay. If excess upper-eyelid skin
-          is significantly interfering with vision, further medical evaluation may be needed to decide
-          whether a medically necessary eyelid procedure is appropriate and whether insurance
-          requirements can be met.</p>
-        <a class="btn btn--ghost" href="https://www.mypatientvisit.com/onlinescheduling/#/scheduler/schedule?practiceid=b46123f5-99ee-4f66-969c-fe650949c344">Get your treatment &amp; pricing recommendation
+      <h2 id="cost-title" data-reveal>How much does Ziplyft cost?</h2>
+
+      <div class="price-row full" data-reveal>
+        <!-- [PENDING: approved Silk Vision price or starting price] -->
+        <p class="price-slot">[Add approved Silk Vision price or starting price]</p>
+        <a class="btn btn--solid" href="https://www.mypatientvisit.com/onlinescheduling/#/scheduler/schedule?practiceid=b46123f5-99ee-4f66-969c-fe650949c344">Get your treatment &amp; pricing recommendation
           <svg class="ico ico--arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
       </div>
+
+      <ul class="answers full stagger">
+        <li data-reveal>
+          <h3>What it depends on</h3>
+          <p>The exact cost depends on your anatomy, your treatment needs and whether Ziplyft alone is
+            appropriate for your eyelids.</p>
+        </li>
+        <li data-reveal>
+          <h3>What your consultation gives you</h3>
+          <p>Dr.&nbsp;Silk evaluates the problem first, explains your options and gives you
+            <strong class="hl">a clear recommendation and cost before you decide</strong>.</p>
+        </li>
+        <li data-reveal>
+          <h3>Is Ziplyft covered by insurance?</h3>
+          <p>Cosmetic eyelid treatment is generally self-pay. If excess upper-eyelid skin is
+            significantly interfering with vision, further medical evaluation may be needed to decide
+            whether a medically necessary eyelid procedure is appropriate and whether insurance
+            requirements can be met.</p>
+        </li>
+      </ul>
     </div>
   </section>
 

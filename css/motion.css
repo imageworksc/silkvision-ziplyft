@@ -106,8 +106,6 @@
 
   [data-anim="on"] [data-reveal] { opacity: 1; transform: none; }
 
-  /* The strike in the benefits band arrives drawn. */
-  [data-anim="on"] .struck li::after { transform: none; }
   .stepper__tab::before { transform: none; }
   .stepper__tab:not([aria-selected="true"])::before { background: transparent; }
 

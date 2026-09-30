@@ -55,14 +55,12 @@ h1, h2, h3, h4,
 }
 /* A step under --t-h3 (20 → 24): four across has to hold
    "Fellowship-trained" on one line at the shell's width. */
-/* The struck words in the benefits band are titles, not copy. */
-/* The struck words in the benefits band are set at the section-title
-   step — they are the headline of that band, and a line through a small
-   word is a typo; through a large one it is a statement. */
-#main .struck li {
-  font-size: var(--t-h2);
-  line-height: 1.15;
-  letter-spacing: var(--ls-tight);
+/* The benefits statement is set at the h3 step: it is the section's
+   headline, eleven claims long. */
+#main .claims li {
+  font-size: var(--t-h3);
+  line-height: 1.35;
+  letter-spacing: -.01em;
 }
 #main .creds-strip dd {
   font-size: clamp(1.25rem, .6vw + 1.05rem, 1.5rem);
