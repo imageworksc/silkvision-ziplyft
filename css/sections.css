@@ -770,37 +770,47 @@ strong.hl {
 }
 
 /* --------------------------------------------------------------------------
-   Recovery — the healing bar
+   Recovery — five stage cards, each with a meter
    --------------------------------------------------------------------------
-   Five segments in five flat steps of plum, pale to deep. The day sits on
-   its segment; what to expect sits under it. Measured: plum-700 on the two
-   pale steps 10.7 and 8.2:1, white on the three deep ones 6.1, 11.5, 13.0.
+   Soft cards on the white band: paper ground, no border, no shadow. A meter
+   across the top fills 20% further at each stage; the fill is plum-600 on a
+   grey-300 track (a graphic, 3:1 needed, 7.2:1 measured).
    -------------------------------------------------------------------------- */
 
-.heal { display: grid; gap: var(--s-5); }
-.heal li { display: grid; gap: var(--s-3); align-content: start; }
-.heal__day {
-  padding: var(--s-3) var(--s-4);
-  border-radius: var(--r-sm);
-  font-size: var(--t-body);
-  line-height: 1.3;
+.heal { display: grid; gap: var(--s-4); }
+.heal li {
+  display: grid;
+  gap: var(--s-3);
+  align-content: start;
+  padding: var(--s-5);
+  border-radius: var(--r-lg);
+  background: var(--paper);
 }
-.heal p { color: var(--text-soft); padding-inline-end: var(--s-4); }
-
-.heal li:nth-child(1) .heal__day { background: var(--plum-100); color: var(--plum-700); }
-.heal li:nth-child(2) .heal__day { background: rgb(166 38 166 / .28); color: var(--plum-700); }
-.heal li:nth-child(3) .heal__day { background: var(--plum-400); color: var(--white); }
-.heal li:nth-child(4) .heal__day { background: var(--plum-600); color: var(--white); }
-.heal li:nth-child(5) .heal__day { background: var(--plum-700); color: var(--white); }
-
-@media (min-width: 64rem) {
-  /* One bar: the segments butt together, square inside, round at the ends. */
-  .heal { grid-template-columns: repeat(5, 1fr); gap: 0; }
-  .heal__day { border-radius: 0; }
-  .heal li:first-child .heal__day { border-start-start-radius: var(--r-md); border-end-start-radius: var(--r-md); }
-  .heal li:last-child .heal__day { border-start-end-radius: var(--r-md); border-end-end-radius: var(--r-md); }
-  .heal li + li .heal__day { box-shadow: inset 2px 0 0 var(--white); }
+.heal__meter {
+  display: block;
+  block-size: 4px;
+  border-radius: var(--r-pill);
+  background: var(--grey-300);
+  overflow: hidden;
 }
+.heal__meter span {
+  display: block;
+  block-size: 100%;
+  inline-size: calc(var(--n) * 20%);
+  border-radius: inherit;
+  background: var(--plum-600);
+}
+.heal li:nth-child(1) { --n: 1; }
+.heal li:nth-child(2) { --n: 2; }
+.heal li:nth-child(3) { --n: 3; }
+.heal li:nth-child(4) { --n: 4; }
+.heal li:nth-child(5) { --n: 5; }
+.heal__day { font-size: var(--t-body); color: var(--plum-600); margin-block-start: var(--s-2); }
+.heal p { color: var(--text-soft); }
+
+@media (min-width: 40rem) and (max-width: 63.99rem) { .heal { grid-template-columns: 1fr 1fr; } }
+@media (min-width: 64rem) { .heal { grid-template-columns: repeat(5, 1fr); } }
+
 
 /* --------------------------------------------------------------------------
    Cost — an answer sheet
@@ -814,17 +824,41 @@ strong.hl {
   gap: var(--s-4) var(--s-6);
 }
 
-.answers { display: grid; gap: var(--s-6); }
-.answers li {
-  display: grid;
-  gap: var(--s-2);
-  align-content: start;
-  padding-block-start: var(--s-5);
-  border-block-start: 2px solid var(--grey-300);
+/* Three question cards in a row, each a <details>. They open on their own
+   and do not stretch each other: the row aligns to the top. */
+.qcards { display: grid; gap: var(--s-4); align-items: start; }
+@media (min-width: 60rem) { .qcards { grid-template-columns: repeat(3, 1fr); } }
+
+.qcard {
+  border-radius: var(--r-lg);
+  background: var(--white);
+  border: 1px solid var(--hairline);
+  box-shadow: var(--shadow-sm);
+  transition: border-color var(--t-fast) var(--ease), box-shadow var(--t-mid) var(--ease);
 }
-.answers li:first-child { border-block-start-color: var(--plum-600); }
-.answers h3 { font-size: var(--t-body); }
-.answers p { color: var(--text-soft); }
-@media (min-width: 60rem) {
-  .answers { grid-template-columns: repeat(3, 1fr); gap: var(--s-7); }
+.qcard:hover { border-color: var(--blue-400); }
+.qcard[open] { box-shadow: var(--shadow-md); border-color: var(--plum-600); }
+.qcard summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-4);
+  /* Room for a two-line question, so the three closed cards match. */
+  min-block-size: calc(2.6em + var(--s-5) * 2);
+  padding: var(--s-5);
+  font-family: var(--font);
+  font-size: var(--t-body);
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--heading);
+  cursor: pointer;
+  list-style: none;
+}
+.qcard summary::-webkit-details-marker { display: none; }
+.qcard summary .ico { flex: none; color: var(--plum-600); transition: transform var(--t-mid) var(--ease); }
+.qcard[open] summary .ico { transform: rotate(180deg); }
+.qcard summary:active { opacity: .62; }
+.qcard p {
+  padding: 0 var(--s-5) var(--s-5);
+  color: var(--text-soft);
 }
