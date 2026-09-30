@@ -7,86 +7,74 @@
 
 /* --------------------------------------------------------------------------
    Hero
-   A split, not the photograph-under-a-scrim of the office-based surgery
-   page. That photograph is a room, and a room survives a 78% navy veil. This
-   one is an eyelid held between two fingers — the subject of the page — and
-   any veil over it hides the one thing it is there to show. So the copy gets
-   its own flat navy ground and the photograph sits beside it untouched.
+   The office-based surgery page's construction: the photograph as the
+   background, one flat navy scrim over all of it, the copy on top. The
+   scrim is the shared --fill-scrim (.78). Its worst case does not depend
+   on the photograph: over a pure-white pixel it leaves white type at 8.1:1
+   and the 80%-white intro at 5.9:1, the same figures as that page.
+
+   Slimmer than that page's hero: no minimum height, just the band's own
+   padding around four lines of copy and the buttons.
    -------------------------------------------------------------------------- */
 
 .hero {
-  display: grid;
-  background: var(--fill-deep);
-  overflow: hidden;
-}
-
-.hero-copy {
+  position: relative;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  gap: var(--s-6);
-  padding: var(--s-9) var(--gutter) var(--s-8);
+  align-items: center;
+  padding-block: var(--s-9);
+  /* Anchored low and right so the eye and the lifted fold of skin stay in
+     frame as the band gets wider and shallower. */
+  background: var(--ink-800) url('https://res.cloudinary.com/dsjbq35es/image/upload/f_auto,q_auto,w_1800/v1789669040/SV_ziplyft_hero_ktw80x.jpg') 70% 62% / cover no-repeat;
+  overflow: hidden;
+  isolation: isolate;
 }
+@media (min-width: 60rem) { .hero { padding-block: var(--s-10); } }
 
-/* As on the office-based surgery page: no measure cap on either. */
-.hero h1 { color: var(--white); max-width: none; }
-.hero .lead { color: var(--pale-200); max-width: none; }
-.hero-intro { color: var(--on-dark-soft); max-width: 58ch; }
-
-.hero-media { position: relative; margin: 0; aspect-ratio: 4 / 3; }
-.hero-media img {
+.hero::before {
+  content: '';
   position: absolute;
   inset: 0;
-  inline-size: 100%;
-  block-size: 100%;
-  object-fit: cover;
-  object-position: 45% 50%;
+  z-index: -1;
+  background: var(--fill-scrim);
 }
 
-@media (min-width: 60rem) {
-  .hero {
-    /* Wide enough that the two buttons sit side by side, as they do on the
-       office-based surgery page's hero; the photograph still reads at 40%. */
-    grid-template-columns: minmax(0, 1.25fr) minmax(0, .75fr);
-    min-block-size: min(46rem, 100svh);
-  }
-  /* The copy's left edge lines up with every .wrap below it: the shell is
-     centred, so its content starts half the leftover width in, plus the
-     gutter. */
-  .hero-copy {
-    padding-block: var(--s-10);
-    padding-inline: max(var(--gutter), calc((100vw - var(--shell)) / 2 + var(--gutter))) var(--s-8);
-  }
-  .hero-media { aspect-ratio: auto; }
-}
+.hero h1 { color: var(--white); max-width: none; }
+.hero .lead { color: var(--pale-200); max-width: none; }
+.hero-intro { color: var(--on-dark-soft); max-width: 62ch; }
 
-/* Three facts as a line of type — the office-based surgery page's rule,
-   carried over: frosted cards with counters are the house style of every
-   generated landing page, and this reader is nervous enough already. */
+/* --------------------------------------------------------------------------
+   Facts bar — the hero's three facts and the service area, now the line
+   the first section opens on. Same markup as before (.hero-facts), moved
+   onto a light ground, so the colours re-point.
+   -------------------------------------------------------------------------- */
+
+.facts-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-5) var(--s-8);
+  padding-block-end: var(--s-6);
+  border-block-end: 1px solid var(--hairline);
+}
 .hero-facts {
   display: flex;
   flex-wrap: wrap;
   gap: var(--s-4) var(--s-6);
   margin: 0;
 }
-.hero-facts dt { font-size: var(--t-xs); color: var(--on-dark-faint); }
-.hero-facts dd { margin: 0; font-size: var(--t-sm); font-weight: 600; color: var(--white); }
+.hero-facts dt { font-size: var(--t-xs); color: var(--text-soft); }
+.hero-facts dd { margin: 0; font-weight: 600; color: var(--heading); }
 @media (min-width: 34rem) {
   .hero-facts > div + div {
-    border-inline-start: 1px solid var(--hairline-dark);
+    border-inline-start: 1px solid var(--hairline);
     padding-inline-start: var(--s-6);
   }
 }
+#main .facts-bar__area { max-width: 52ch; color: var(--text-soft); }
 
-/* Where the procedure is offered. It was a strip of its own under the hero;
-   it is the hero's last line now, a step down, under a rule. */
-.hero-area {
-  padding-block-start: var(--s-5);
-  border-block-start: 1px solid var(--hairline-dark);
-  font-size: var(--t-sm);
-  color: var(--on-dark-faint);
-}
+/* The first band after a slim hero starts closer to it. */
+.band--open { padding-block-start: var(--s-8); }
 
 /* --------------------------------------------------------------------------
    Section heads — a heading and the paragraph under it

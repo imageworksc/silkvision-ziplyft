@@ -58,15 +58,17 @@
 <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
 
 <link rel="preconnect" href="https://res.cloudinary.com">
-<link rel="stylesheet" href="css/fonts.css?v=10">
-<link rel="stylesheet" href="css/tokens.css?v=10">
-<link rel="stylesheet" href="css/base.css?v=10">
-<link rel="stylesheet" href="css/components.css?v=10">
-<link rel="stylesheet" href="css/sections.css?v=10">
-<link rel="stylesheet" href="css/type.css?v=10">
-<link rel="stylesheet" href="css/motion.css?v=10">
+<link rel="preload" as="image" fetchpriority="high"
+      href="https://res.cloudinary.com/dsjbq35es/image/upload/f_auto,q_auto,w_1800/v1789669040/SV_ziplyft_hero_ktw80x.jpg">
+<link rel="stylesheet" href="css/fonts.css?v=11">
+<link rel="stylesheet" href="css/tokens.css?v=11">
+<link rel="stylesheet" href="css/base.css?v=11">
+<link rel="stylesheet" href="css/components.css?v=11">
+<link rel="stylesheet" href="css/sections.css?v=11">
+<link rel="stylesheet" href="css/type.css?v=11">
+<link rel="stylesheet" href="css/motion.css?v=11">
 
-<script src="js/main.js?v=10" defer></script>
+<script src="js/main.js?v=11" defer></script>
 </head>
 <body>
 
@@ -153,9 +155,14 @@
 
 <main id="main">
 
-  <!-- ===== HERO ============================================================ -->
+  <!-- ===== HERO ============================================================
+       The office-based surgery page's hero: the photograph under one flat
+       navy scrim (--fill-scrim, .78), the copy on top. Only the promise and
+       the two actions stay here; the three facts and the service area open
+       the next section, so the hero stays slim.
+       ======================================================================= -->
   <section class="hero" aria-labelledby="hero-title">
-    <div class="hero-copy">
+    <div class="wrap stack stack--loose">
       <div class="stack">
         <h1 id="hero-title" data-seq="0">Ziplyft&trade; Eyelid Lift in Northern Virginia</h1>
         <p class="lead" data-seq="1">A less invasive way to lift heavy, hooded upper eyelids.</p>
@@ -172,30 +179,26 @@
         <a class="btn btn--ghost btn--lg" href="tel:+17038769700">
           <svg class="ico" aria-hidden="true"><use href="#i-phone"/></svg>(703)&nbsp;876-9700</a>
       </div>
-
-      <dl class="hero-facts" data-seq="4">
-        <div><dt>Procedure</dt><dd>Under 15 minutes</dd></div>
-        <div><dt>Anesthetic</dt><dd>Local only</dd></div>
-        <div><dt>Closure</dt><dd>No sutures</dd></div>
-      </dl>
-
-      <p class="hero-area" data-seq="4">Available through Silk Vision for patients in Annandale,
-        Manassas and throughout Northern Virginia and the Washington, DC area.</p>
     </div>
-
-    <figure class="hero-media">
-      <img src="https://res.cloudinary.com/dsjbq35es/image/upload/f_auto,q_auto,w_1200/v1789669040/SV_ziplyft_hero_ktw80x.jpg"
-           srcset="https://res.cloudinary.com/dsjbq35es/image/upload/f_auto,q_auto,w_700/v1789669040/SV_ziplyft_hero_ktw80x.jpg 700w,
-                   https://res.cloudinary.com/dsjbq35es/image/upload/f_auto,q_auto,w_1200/v1789669040/SV_ziplyft_hero_ktw80x.jpg 1200w"
-           sizes="(min-width: 60rem) 44vw, 100vw"
-           width="1200" height="1285" fetchpriority="high"
-           alt="A finger lifting the excess skin of an upper eyelid above a hazel eye">
-    </figure>
   </section>
 
   <!-- ===== WHAT IS ZIPLYFT ================================================= -->
-  <section class="band" aria-labelledby="what-title">
-    <div class="wrap split split--middle split--wide-gutter">
+  <section class="band band--open" aria-labelledby="what-title">
+    <div class="wrap stack stack--loose">
+
+      <!-- Moved down from the hero: the three facts and where the procedure
+           is offered, as the ruled line this section opens on. -->
+      <div class="facts-bar full" data-reveal>
+        <dl class="hero-facts">
+          <div><dt>Procedure</dt><dd>Under 15 minutes</dd></div>
+          <div><dt>Anesthetic</dt><dd>Local only</dd></div>
+          <div><dt>Closure</dt><dd>No sutures</dd></div>
+        </dl>
+        <p class="facts-bar__area">Available through Silk Vision for patients in Annandale,
+          Manassas and throughout Northern Virginia and the Washington, DC area.</p>
+      </div>
+
+      <div class="split split--middle split--wide-gutter full">
       <div class="stack" data-reveal>
         <div class="stack head">
           <h2 id="what-title">What is Ziplyft?</h2>
@@ -239,6 +242,7 @@
           </ol>
         </figcaption>
       </figure>
+      </div>
     </div>
   </section>
 
