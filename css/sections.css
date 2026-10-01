@@ -1056,7 +1056,17 @@ strong.hl {
   transition: background-color var(--t-mid) var(--ease), color var(--t-mid) var(--ease);
 }
 /* Two points under --t-h3 (21 → 26): 19 → 24. */
-.stages h3 { font-size: clamp(1.1875rem, .7vw + 1.025rem, 1.5rem); margin-block-end: var(--s-1); }
+/* Stage titles set like the comparison's group titles ("Closing the
+   eyelid"): the small tracked capitals, the brand blue at 60%. */
+.stages h3 {
+  font-size: var(--t-xs);
+  font-weight: 800;
+  line-height: 1.4;
+  letter-spacing: var(--ls-wide);
+  text-transform: uppercase;
+  color: rgb(0 88 148 / .6);
+  margin-block: .35rem var(--s-2);
+}
 .stages p { color: var(--text-soft); }
 
 /* The stage being read: the first until the pointer or keyboard arrives. */
