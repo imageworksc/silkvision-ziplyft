@@ -73,3 +73,11 @@ h1, h2, h3, h4,
   letter-spacing: var(--ls-copy);
   color: var(--heading);
 }
+
+/* The video section's four facts: label and value at one size, halfway
+   between the label's old 13–14px and the value's 17–19px — 16 → 16.5px,
+   on the 16px floor. Weight and colour still tell them apart. */
+#main .facts :is(dt, dd) {
+  font-size: clamp(1rem, .15vw + .95rem, 1.03125rem);
+  line-height: 1.5;
+}
