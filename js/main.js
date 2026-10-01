@@ -287,6 +287,75 @@ const setupStepper = () => {
   select(0);
 };
 
+/* --------------------------------------------------------------------------
+   10 · Accordions — the FAQ and the cost questions open softly
+   <details> opens in one frame: the answer appears and everything under it
+   jumps. Here the row's height eases between closed and open, the answer
+   fades in a beat behind it, and the chevron turns as the move starts, not
+   when it ends. The script keeps the one-open-at-a-time rule that `name`
+   gave, because the browser's own version would shut the other row in one
+   frame and cut its animation short. Without the script, or under reduced
+   motion, the native toggle is left alone.
+   -------------------------------------------------------------------------- */
+const setupAccordions = () => {
+  const EASE = 'cubic-bezier(.4, 0, .2, 1)';   // eases in and out: no snap at the start
+  const OPEN_MS = 560;
+  const CLOSE_MS = 440;
+
+  const move = (d, open) => {
+    const summary = d.querySelector('summary');
+    // Measure before cancelling, so a click mid-move reverses from where
+    // the row is rather than from where it was headed.
+    const from = d.getBoundingClientRect().height;
+    if (d._anim) d._anim.cancel();
+    d.classList.toggle('is-closing', !open);
+    if (open) d.open = true;
+    const to = open
+      ? d.getBoundingClientRect().height
+      : summary.getBoundingClientRect().height + (d.offsetHeight - d.clientHeight);
+    d.style.overflow = 'hidden';
+    const anim = d.animate(
+      { height: [`${from}px`, `${to}px`] },
+      { duration: open ? OPEN_MS : CLOSE_MS, easing: EASE }
+    );
+    d._anim = anim;
+    if (open) {
+      [...d.children].filter((el) => el !== summary).forEach((el) => el.animate(
+        [{ opacity: 0, transform: 'translateY(-.5rem)' }, { opacity: 1, transform: 'none' }],
+        { duration: OPEN_MS - 80, delay: 80, easing: EASE, fill: 'backwards' }
+      ));
+    }
+    const done = () => {
+      if (!open) d.open = false;
+      d.classList.remove('is-closing');
+      d.style.overflow = '';
+      d._anim = null;
+    };
+    anim.onfinish = done;
+    anim.oncancel = () => { d.style.overflow = ''; };
+  };
+
+  document.querySelectorAll('.faq').forEach((group) => {
+    const items = [...group.querySelectorAll(':scope > details')];
+    items.forEach((d) => {
+      const exclusive = d.hasAttribute('name');
+      d.removeAttribute('name');
+      d.querySelector('summary').addEventListener('click', (e) => {
+        if (reduced.matches) {
+          if (exclusive && !d.open) items.forEach((o) => { if (o !== d) o.open = false; });
+          return;
+        }
+        e.preventDefault();
+        const opening = !d.open || d.classList.contains('is-closing');
+        move(d, opening);
+        if (opening && exclusive) {
+          items.forEach((o) => { if (o !== d && o.open && !o.classList.contains('is-closing')) move(o, false); });
+        }
+      });
+    });
+  });
+};
+
 setupMenu();
 setupScroll();
 setupReveals();
@@ -296,3 +365,4 @@ setupLoopVideo();
 setupTalkVideo();
 setupStickyCta();
 setupStepper();
+setupAccordions();

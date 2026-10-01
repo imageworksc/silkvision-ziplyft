@@ -787,6 +787,8 @@ a.card:hover p  { transform: translateX(4px); transition-delay: 130ms; }
   transition: transform var(--t-mid) var(--ease);
 }
 .faq details[open] summary .ico { transform: rotate(180deg); }
+/* Closing: the chevron turns back as the row starts to shut (main.js). */
+.faq details.is-closing summary .ico { transform: none; }
 .faq details p {
   padding-block-end: var(--s-5);
   font-size: var(--t-sm);
