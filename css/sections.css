@@ -502,6 +502,8 @@
 .profile__who { display: grid; gap: var(--s-2); }
 .profile__who h3 { font-size: var(--t-h3); color: var(--white); }
 .profile__who p { color: var(--on-dark-soft); }
+/* The same fade on the navy band: the band's cyan label at 60%. */
+.profile__who .kicker { color: rgb(108 197 240 / .6); }
 .profile__br { display: none; }
 
 .profile__stats { display: flex; flex-wrap: wrap; gap: var(--s-5) var(--s-7); margin: 0; }
@@ -679,7 +681,9 @@
 .fork__path { display: grid; align-content: start; gap: var(--s-2); }
 .fork__path h3 { font-size: var(--t-body); line-height: 1.35; }
 .fork__path p { max-width: 46ch; }
-.fork__path--alt .kicker { color: var(--ink-700); }
+/* Both path labels set like the comparison's group titles just above:
+   the brand blue at 60%, on the text only. */
+.fork__path .kicker { color: rgb(0 88 148 / .6); }
 .fork__path--alt { padding-block-start: var(--s-5); border-block-start: 1px solid var(--hairline); }
 
 .fork__verdict {
