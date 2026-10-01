@@ -173,12 +173,12 @@
    again. The heading carries the page's place name for search. */
 .where {
   display: grid;
-  gap: var(--s-5);
+  gap: var(--s-3);
   justify-items: center;
-  padding-block-start: var(--s-7);
-  border-block-start: 1px solid var(--hairline);
+  padding-block-start: var(--s-6);
+  border-block-start: 1px solid var(--hairline-dark);
 }
-.where h3 { font-size: var(--t-h3); }
+.where h3 { font-size: var(--t-body); }
 .where > p { font-size: var(--t-sm); color: var(--on-dark-faint); }
 
 /* The remains of the old contact strip, now the foot of this band. A rule
@@ -608,27 +608,31 @@
    Closing — what Dr. Silk will do, three across
    -------------------------------------------------------------------------- */
 
-.three { display: grid; gap: var(--s-5); counter-reset: none; }
+/* One row of three numbered phrases, divided by hairlines; the number
+   sits in front of its phrase in the muted light blue. No rules above. */
+.three { display: grid; gap: var(--s-3); justify-items: start; inline-size: fit-content; max-inline-size: 100%; margin-inline: auto; }
+.closing .cluster { justify-content: center; }
 .three li {
-  display: grid;
-  justify-items: center;
+  display: flex;
+  align-items: baseline;
   gap: var(--s-3);
-  padding-block-start: var(--s-5);
-  border-block-start: 1px solid var(--hairline);
-  text-align: center;
+  text-align: start;
 }
-/* The number on its own, not in a ring. */
 .three .step__num {
-  color: var(--cyan-300);
-  font-size: var(--t-h3);
+  color: var(--sky-muted);
+  font-size: var(--t-sm);
   font-weight: 700;
   letter-spacing: 0;
   line-height: 1;
 }
-.three p { color: var(--white); max-width: 26ch; }
-@media (min-width: 48rem) {
-  .three { grid-template-columns: repeat(3, 1fr); gap: var(--s-7); }
+.three p { color: var(--white); }
+@media (min-width: 64rem) {
+  .three { display: flex; justify-content: center; gap: 0; }
+  .three li { flex: 1 1 0; max-inline-size: 22rem; padding-inline: var(--s-6); }
+  .three p { text-wrap: balance; }
+  .three li + li { border-inline-start: 1px solid var(--hairline-dark); }
 }
+
 
 /* --------------------------------------------------------------------------
    Comparison — the table, simplified
