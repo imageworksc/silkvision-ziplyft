@@ -979,8 +979,26 @@ strong.hl {
 }
 .recover__cap .kicker { color: var(--cyan-300); }
 .recover__cap p { color: var(--white); max-width: 36ch; }
-.recover__cap .btn--ghost { background: transparent; border-color: rgb(255 255 255 / .6); color: var(--white); }
-.recover__cap .btn--ghost:hover { background: transparent; border-color: var(--white); }
+/* A link, not a button: the label on an underline, no frame. The padding
+   keeps the 44px target the frame used to give it. */
+.recover__link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+  min-block-size: var(--tap);
+  font-family: var(--font);
+  font-size: var(--t-sm);
+  font-weight: 700;
+  color: var(--white);
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: .4em;
+  text-decoration-color: rgb(255 255 255 / .6);
+  transition: text-decoration-color var(--t-mid) var(--ease);
+}
+.recover__link:hover { text-decoration-color: var(--white); }
+.recover__link .ico--arrow { transition: transform var(--t-mid) var(--ease-spring); }
+.recover__link:hover .ico--arrow { transform: translateX(.3rem); }
 .recover__cap :focus-visible { outline-color: var(--white); }
 
 /* The five stages. */
