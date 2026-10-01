@@ -700,8 +700,8 @@
    Candidacy — seven reasons on hairlines
    --------------------------------------------------------------------------
    Was a white panel holding tick badges: a box inside the band, a circle
-   inside the box. Now the band is the only ground. A short plum rule opens
-   the list, the lead-in sits on it, and each reason is one ruled line with
+   inside the box. Now the band is the only ground. The eyelid icon opens
+   the list beside the lead-in, and each reason is one ruled line with
    the tick drawn bare beside it.
    -------------------------------------------------------------------------- */
 
@@ -712,12 +712,12 @@
   gap: var(--s-4);
   color: var(--plum-600);
 }
-.fit__lead::before {
-  content: "";
+.fit__mark {
   flex: none;
-  inline-size: 2.5rem;
-  block-size: 3px;
-  background: var(--plum-600);
+  inline-size: 2.25rem;
+  block-size: 2.25rem;
+  color: var(--plum-600);
+  stroke-width: 1.6;
 }
 .fit__list { display: grid; margin: 0; padding: 0; list-style: none; border-block-start: 1px solid var(--hairline); }
 .fit__list li {
@@ -726,7 +726,7 @@
   gap: var(--s-4);
   padding-block: var(--s-4);
   border-block-end: 1px solid var(--hairline);
-  color: var(--ink-700);
+  color: var(--text-soft);   /* the lead paragraph's colour */
 }
 .fit__tick {
   flex: none;
