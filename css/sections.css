@@ -621,9 +621,6 @@
 .fork__path { display: grid; align-content: start; gap: var(--s-2); }
 .fork__path h3 { font-size: var(--t-body); line-height: 1.35; }
 .fork__path p { max-width: 46ch; }
-/* Both path labels set like the comparison's group titles just above:
-   the brand blue at 60%, on the text only. */
-.fork__path .kicker { color: rgb(0 88 148 / .6); font-weight: 600; }
 .fork__path--alt { padding-block-start: var(--s-5); border-block-start: 1px solid var(--hairline); }
 
 .fork__verdict {
