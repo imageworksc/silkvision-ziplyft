@@ -62,7 +62,8 @@ h1, h2, h3, h4,
 }
 
 /* A subhead that only qualifies the title above it: set in the reading
-   face, one step up from body copy, in the paragraph's grey — so it reads
+   face, one step up from body copy, in the title's blue but at regular
+   weight — so it reads
    as the question the section answers, not as a second headline. */
 .head .subhead {
   font-family: var(--font-body);
@@ -70,5 +71,5 @@ h1, h2, h3, h4,
   font-weight: 400;
   line-height: 1.45;
   letter-spacing: var(--ls-copy);
-  color: var(--text-soft);
+  color: var(--heading);
 }
