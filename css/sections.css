@@ -86,6 +86,9 @@
 
 /* The first band after a slim hero starts closer to it. */
 .band--open { padding-block-start: var(--s-8); }
+/* Under the facts line, the two columns sit centred in what is left of the
+   band: as much air above them as the band leaves below. */
+.band--open .split { margin-block-start: calc(var(--band-y) - var(--s-7)); }
 
 /* --------------------------------------------------------------------------
    Section heads — a heading and the paragraph under it
