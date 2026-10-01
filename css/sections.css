@@ -1088,45 +1088,6 @@ strong.hl {
   gap: var(--s-4) var(--s-6);
 }
 
-/* Three question cards in a row, each a <details>. They open on their own
-   and do not stretch each other: the row aligns to the top. */
-.qcards { display: grid; gap: var(--s-4); align-items: start; }
-@media (min-width: 60rem) { .qcards { grid-template-columns: repeat(3, 1fr); } }
-
-.qcard {
-  border-radius: var(--r-lg);
-  background: var(--white);
-  border: 1px solid var(--hairline);
-  box-shadow: var(--shadow-sm);
-  transition: border-color var(--t-fast) var(--ease), box-shadow var(--t-mid) var(--ease);
-}
-.qcard:hover { border-color: var(--blue-400); }
-.qcard[open] { box-shadow: var(--shadow-md); border-color: var(--plum-600); }
-.qcard summary {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--s-4);
-  /* Room for a two-line question, so the three closed cards match. */
-  min-block-size: calc(2.6em + var(--s-5) * 2);
-  padding: var(--s-5);
-  font-family: var(--font);
-  font-size: var(--t-body);
-  font-weight: 700;
-  line-height: 1.3;
-  color: var(--heading);
-  cursor: pointer;
-  list-style: none;
-}
-.qcard summary::-webkit-details-marker { display: none; }
-.qcard summary .ico { flex: none; color: var(--plum-600); transition: transform var(--t-mid) var(--ease); }
-.qcard[open] summary .ico { transform: rotate(180deg); }
-.qcard summary:active { opacity: .62; }
-.qcard p {
-  padding: 0 var(--s-5) var(--s-5);
-  color: var(--text-soft);
-}
-
 /* --------------------------------------------------------------------------
    Section titles — two lines when long
    --------------------------------------------------------------------------
