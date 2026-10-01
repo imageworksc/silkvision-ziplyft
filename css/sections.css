@@ -546,7 +546,7 @@
 .over-time li > div { display: grid; gap: var(--s-1); }
 /* A step down from the section's h3: three short statements in a row,
    not three headlines. */
-.over-time h3 { font-size: var(--t-body); line-height: 1.35; }
+.over-time h3 { font-size: var(--t-body); font-weight: 500; line-height: 1.35; }
 @media (min-width: 48rem) {
   .over-time { grid-template-columns: repeat(3, 1fr); gap: 0; }
   .over-time li { padding-inline: var(--s-6); }
