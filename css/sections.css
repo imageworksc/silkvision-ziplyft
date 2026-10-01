@@ -864,10 +864,13 @@ strong.hl {
 @media (min-width: 48rem) {
   .stepper__tabs { grid-template-columns: repeat(5, minmax(0, 1fr)); }
 }
-/* Desktop: each title on one line; the columns may give a few pixels to
-   the longest ("Compress, remove & seal") rather than break it. */
+/* Desktop: each title on one line, and the five spaced by their own
+   width — equal gaps between them rather than equal columns, which left
+   "Compress, remove & seal" 16px from step 4. */
 @media (min-width: 80rem) {
-  .stepper__tabs { grid-template-columns: repeat(5, 1fr); }
+  .stepper__tabs { display: flex; justify-content: space-between; gap: var(--s-6); }
+  .stepper__tab { padding-inline-end: 0; }
+  .stepper__tab::before { inset-inline-end: 0; }
 }
 
 .stepper__tab {
