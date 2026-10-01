@@ -932,26 +932,56 @@ strong.hl {
   .recover { grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: var(--s-8); align-items: stretch; }
 }
 
-/* The photograph fills the height the list gives it; the caption sits
-   under it on the band itself — a plain label, the note, an outlined
-   button — with no scrim or panel behind any of it. */
+/* The photograph fills the height the list gives it. The caption sits on
+   its foot, over a navy wash that runs from clear at the top — the photo at
+   full colour — to deep navy behind the type, so white text holds whatever
+   skin tone is under it. The one gradient on the page, asked for by name;
+   it is a single navy fading out, not a blend of two colours. */
 .recover__media {
+  position: relative;
   display: flex;
   flex-direction: column;
-  gap: var(--s-5);
+  justify-content: flex-end;
   margin: 0;
+  min-block-size: 26rem;
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  background: var(--ink-800);
+  box-shadow: var(--shadow-md);
+  isolation: isolate;
 }
 .recover__media img {
-  flex: 1 1 0;
+  position: absolute;
+  inset: 0;
+  z-index: -2;
   inline-size: 100%;
-  min-block-size: 18rem;
+  block-size: 100%;
   object-fit: cover;
-  object-position: 50% 45%;   /* the crop centres the eye */
-  border-radius: var(--r-lg);
-  box-shadow: var(--shadow-md);
+  object-position: 50% 40%;   /* the crop centres the eye; keep it above the caption */
 }
-.recover__cap { display: grid; gap: var(--s-3); justify-items: start; }
-.recover__cap p { color: var(--text-soft); max-width: 40ch; }
+.recover__media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(to top,
+    rgb(1 42 71 / .95) 0%,
+    rgb(1 42 71 / .85) 26%,
+    rgb(1 42 71 / .4) 42%,
+    rgb(1 42 71 / 0) 58%);
+}
+.recover__cap {
+  display: grid;
+  gap: var(--s-3);
+  justify-items: start;
+  padding: var(--s-6) var(--s-5) var(--s-5);
+  color: var(--white);
+}
+.recover__cap .kicker { color: var(--cyan-300); }
+.recover__cap p { color: var(--white); max-width: 36ch; }
+.recover__cap .btn--ghost { background: transparent; border-color: rgb(255 255 255 / .6); color: var(--white); }
+.recover__cap .btn--ghost:hover { background: transparent; border-color: var(--white); }
+.recover__cap :focus-visible { outline-color: var(--white); }
 
 /* The five stages. */
 .stages { display: grid; align-content: start; }
@@ -1010,9 +1040,20 @@ strong.hl {
 .stages li:focus { outline: none; }
 .stages li:focus-visible { outline: 3px solid var(--cyan-400); outline-offset: 3px; }
 
-/* Below 60rem the photograph takes a fixed 4:3 instead of the list's height. */
+/* Below 60rem there is no list beside it to set the height. The photo goes
+   back into the flow as a square, and the caption rides up over its last
+   sixth on the same navy wash, so the eye stays clear above the type. */
 @media (max-width: 59.99rem) {
-  .recover__media img { flex: none; aspect-ratio: 4 / 3; block-size: auto; min-block-size: 0; }
+  .recover__media { min-block-size: 0; }
+  .recover__media img { position: relative; inset: auto; block-size: auto; aspect-ratio: 1; object-position: 50% 45%; margin-block-end: -6rem; }
+  .recover__media::after {
+    background: linear-gradient(to top,
+      rgb(1 42 71) 0%,
+      rgb(1 42 71) 32%,       /* solid over the photo's bottom edge: no seam */
+      rgb(1 42 71 / .9) 44%,
+      rgb(1 42 71 / .35) 58%,
+      rgb(1 42 71 / 0) 68%);
+  }
   .stages li { padding: var(--s-4); }
   .stages li + li::before { inset-inline: var(--s-4); }
 }
