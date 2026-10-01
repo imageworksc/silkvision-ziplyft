@@ -862,7 +862,7 @@ strong.hl {
 }
 
 /* --------------------------------------------------------------------------
-   Recovery — five stages across one rule
+   Recovery — four stages across one rule
    --------------------------------------------------------------------------
    Below 64rem: a numbered list down the page. From 64rem: five columns, the
    numbers sitting on one horizontal hairline that runs behind them, the
@@ -919,7 +919,7 @@ strong.hl {
 .stages li:focus-visible { outline: 3px solid var(--cyan-400); outline-offset: 6px; border-radius: var(--r-sm); }
 
 @media (min-width: 64rem) {
-  .stages { grid-template-columns: repeat(5, minmax(0, 1fr)); gap: var(--s-6); }
+  .stages { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--s-6); }
   .stages li { grid-template-columns: none; row-gap: var(--s-3); }
   .stages h3 { margin-block-start: 0; }
   /* The rule the numbers sit on: from each number's centre to the next. */
