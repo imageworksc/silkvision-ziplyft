@@ -125,8 +125,7 @@
   a.card:hover h3,
   a.card:hover p,
   .brand:hover img,
-  .btn:hover .ico--arrow,
-  .recover__link:hover .ico--arrow { transform: none; }
+  .btn:hover .ico--arrow { transform: none; }
 
   /* The nav underline is deliberately NOT here. It is a reveal, not travel:
      scaling from 0 to 1 is how the mark appears at all, and the blanket

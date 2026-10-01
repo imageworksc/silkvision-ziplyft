@@ -943,109 +943,30 @@ strong.hl {
 }
 
 /* --------------------------------------------------------------------------
-   Recovery — photograph and five stages
+   Recovery — five stages across one rule
+   --------------------------------------------------------------------------
+   Below 64rem: a numbered list down the page. From 64rem: five columns, the
+   numbers sitting on one horizontal hairline that runs behind them, the
+   title and the line under each. No photograph, no cards.
    -------------------------------------------------------------------------- */
 
-.recover { display: grid; gap: var(--s-6); }
-@media (min-width: 60rem) {
-  .recover { grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: var(--s-8); align-items: stretch; }
-}
-
-/* The photograph fills the height the list gives it. The caption sits on
-   its foot, over a navy wash that runs from clear at the top — the photo at
-   full colour — to deep navy behind the type, so white text holds whatever
-   skin tone is under it. The one gradient on the page, asked for by name;
-   it is a single navy fading out, not a blend of two colours. */
-.recover__media {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  margin: 0;
-  min-block-size: 26rem;
-  border-radius: var(--r-lg);
-  overflow: hidden;
-  background: var(--ink-800);
-  box-shadow: var(--shadow-md);
-  isolation: isolate;
-}
-.recover__media img {
-  position: absolute;
-  inset: 0;
-  z-index: -2;
-  inline-size: 100%;
-  block-size: 100%;
-  object-fit: cover;
-  object-position: 50% 40%;   /* the crop centres the eye; keep it above the caption */
-}
-.recover__media::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  background: linear-gradient(to top,
-    rgb(1 42 71 / .95) 0%,
-    rgb(1 42 71 / .85) 26%,
-    rgb(1 42 71 / .4) 42%,
-    rgb(1 42 71 / 0) 58%);
-}
-.recover__cap {
-  display: grid;
-  gap: var(--s-3);
-  justify-items: start;
-  padding: var(--s-6) var(--s-5) var(--s-5);
-  color: var(--white);
-}
-.recover__cap .kicker { color: var(--cyan-300); }
-.recover__cap p { color: var(--white); max-width: 36ch; }
-/* A link, not a button: the label on an underline, no frame. The padding
-   keeps the 44px target the frame used to give it. */
-.recover__link {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--s-2);
-  min-block-size: var(--tap);
-  font-family: var(--font);
-  font-size: var(--t-sm);
-  font-weight: 700;
-  color: var(--white);
-  text-decoration: underline;
-  text-decoration-thickness: 2px;
-  text-underline-offset: .4em;
-  text-decoration-color: rgb(255 255 255 / .6);
-  transition: text-decoration-color var(--t-mid) var(--ease);
-}
-.recover__link:hover { text-decoration-color: var(--white); }
-.recover__link .ico--arrow { transition: transform var(--t-mid) var(--ease-spring); }
-.recover__link:hover .ico--arrow { transform: translateX(.3rem); }
-.recover__cap :focus-visible { outline-color: var(--white); }
-
-/* The five stages. */
-.stages { display: grid; align-content: start; }
+.stages { display: grid; gap: var(--s-5); counter-reset: none; }
 .stages li {
   position: relative;
   display: grid;
-  grid-template-columns: 3rem 1fr;
-  column-gap: var(--s-5);
+  grid-template-columns: 2.5rem 1fr;
+  column-gap: var(--s-4);
   align-items: start;
-  padding: var(--s-5);
-  border-radius: var(--r-lg);
-  transition: background-color var(--t-mid) var(--ease);
+  align-content: start;
 }
-/* A straight hairline between stages, inset to the card's padding so it
-   never meets the rounded corners. */
-.stages li + li::before {
-  content: '';
-  position: absolute;
-  inset: 0 var(--s-5) auto;
-  block-size: 1px;
-  background: var(--hairline);
-}
+.stages li > div { display: grid; gap: var(--s-1); align-content: start; }
 .stages__num {
+  position: relative;
+  z-index: 1;
   display: grid;
   place-items: center;
-  inline-size: 3rem;
-  block-size: 3rem;
+  inline-size: 2.5rem;
+  block-size: 2.5rem;
   border-radius: var(--r-pill);
   box-shadow: inset 0 0 0 1.5px var(--hairline);
   background: var(--white);
@@ -1053,9 +974,8 @@ strong.hl {
   font-size: var(--t-sm);
   font-weight: 700;
   color: var(--heading);
-  transition: background-color var(--t-mid) var(--ease), color var(--t-mid) var(--ease);
+  transition: background-color var(--t-mid) var(--ease), color var(--t-mid) var(--ease), box-shadow var(--t-mid) var(--ease);
 }
-/* Two points under --t-h3 (21 → 26): 19 → 24. */
 /* Stage titles set like the comparison's group titles ("Closing the
    eyelid"): the small tracked capitals, the brand blue at 60%. */
 .stages h3 {
@@ -1065,19 +985,11 @@ strong.hl {
   letter-spacing: var(--ls-wide);
   text-transform: uppercase;
   color: rgb(0 88 148 / .6);
-  margin-block: .35rem var(--s-2);
+  margin-block-start: .7rem;
 }
 .stages p { color: var(--text-soft); }
 
 /* The stage being read: the first until the pointer or keyboard arrives. */
-.stages:not(:hover):not(:focus-within) li:first-child,
-.stages li:is(:hover, :focus) {
-  background: var(--plum-100);
-}
-/* No hairline touching the lit card, above or below it. */
-.stages:not(:hover):not(:focus-within) li:first-child + li::before,
-.stages li:is(:hover, :focus)::before,
-.stages li:is(:hover, :focus) + li::before { display: none; }
 .stages:not(:hover):not(:focus-within) li:first-child .stages__num,
 .stages li:is(:hover, :focus) .stages__num {
   background: var(--plum-600);
@@ -1085,24 +997,23 @@ strong.hl {
   color: var(--white);
 }
 .stages li:focus { outline: none; }
-.stages li:focus-visible { outline: 3px solid var(--cyan-400); outline-offset: 3px; }
+.stages li:focus-visible { outline: 3px solid var(--cyan-400); outline-offset: 6px; border-radius: var(--r-sm); }
 
-/* Below 60rem there is no list beside it to set the height. The photo goes
-   back into the flow as a square, and the caption rides up over its last
-   sixth on the same navy wash, so the eye stays clear above the type. */
-@media (max-width: 59.99rem) {
-  .recover__media { min-block-size: 0; }
-  .recover__media img { position: relative; inset: auto; block-size: auto; aspect-ratio: 1; object-position: 50% 45%; margin-block-end: -6rem; }
-  .recover__media::after {
-    background: linear-gradient(to top,
-      rgb(1 42 71) 0%,
-      rgb(1 42 71) 32%,       /* solid over the photo's bottom edge: no seam */
-      rgb(1 42 71 / .9) 44%,
-      rgb(1 42 71 / .35) 58%,
-      rgb(1 42 71 / 0) 68%);
+@media (min-width: 64rem) {
+  .stages { grid-template-columns: repeat(5, minmax(0, 1fr)); gap: var(--s-6); }
+  .stages li { grid-template-columns: none; row-gap: var(--s-3); }
+  .stages h3 { margin-block-start: 0; }
+  /* The rule the numbers sit on: from each number's centre to the next. */
+  .stages li + li::before {
+    content: '';
+    position: absolute;
+    inset-block-start: 1.25rem;
+    /* From the previous number's right edge to this one's left edge. */
+    inset-inline-start: calc(2.5rem - 100% - var(--s-6));
+    inline-size: calc(100% + var(--s-6) - 2.5rem);
+    block-size: 1px;
+    background: var(--hairline);
   }
-  .stages li { padding: var(--s-4); }
-  .stages li + li::before { inset-inline: var(--s-4); }
 }
 
 /* --------------------------------------------------------------------------
