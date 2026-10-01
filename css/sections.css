@@ -119,6 +119,8 @@
 .steps3 .feature h3::before { content: counter(st) '. '; font-weight: 800; }
 
 .band--deep .feature p { color: var(--on-dark-soft); }
+/* The three marks drawn bare in white: no well behind them. */
+.steps3__ico { flex: none; inline-size: 1.75rem; block-size: 1.75rem; color: var(--white); stroke-width: 1.6; }
 
 /* --------------------------------------------------------------------------
    Cost — the price the practice has yet to
