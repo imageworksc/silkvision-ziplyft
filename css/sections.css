@@ -697,6 +697,58 @@
 }
 
 /* --------------------------------------------------------------------------
+   Candidacy — seven reasons on hairlines
+   --------------------------------------------------------------------------
+   Was a white panel holding tick badges: a box inside the band, a circle
+   inside the box. Now the band is the only ground. A short plum rule opens
+   the list, the lead-in sits on it, and each reason is one ruled line with
+   the tick drawn bare beside it.
+   -------------------------------------------------------------------------- */
+
+.fit { display: grid; gap: var(--s-5); }
+.fit__lead {
+  display: flex;
+  align-items: center;
+  gap: var(--s-4);
+  color: var(--plum-600);
+}
+.fit__lead::before {
+  content: "";
+  flex: none;
+  inline-size: 2.5rem;
+  block-size: 3px;
+  background: var(--plum-600);
+}
+.fit__list { display: grid; margin: 0; padding: 0; list-style: none; border-block-start: 1px solid var(--hairline); }
+.fit__list li {
+  display: flex;
+  align-items: baseline;
+  gap: var(--s-4);
+  padding-block: var(--s-4);
+  border-block-end: 1px solid var(--hairline);
+  color: var(--ink-700);
+}
+.fit__tick {
+  flex: none;
+  inline-size: 1.25rem;
+  block-size: 1.25rem;
+  color: var(--plum-600);
+  stroke-width: 2.2;
+  transform: translateY(.2em);
+}
+@media (min-width: 48rem) {
+  .fit__list {
+    grid-template-rows: repeat(4, auto);
+    grid-auto-flow: column;
+    grid-template-columns: 1fr 1fr;
+    column-gap: var(--s-8);
+    border-block-start: 0;
+  }
+  /* Each column opens on its own rule. */
+  .fit__list li:nth-child(1), .fit__list li:nth-child(5) { border-block-start: 1px solid var(--hairline); }
+}
+
+/* --------------------------------------------------------------------------
    Bare icons — the set drawn on its own, no well, no ring, no fill. In the
    redesigned sections an icon labels the line beside it; a box around it
    only made each one a small button that did nothing.
