@@ -958,6 +958,13 @@ strong.hl {
   }
 }
 
+/* Phones: the four facts all stack, label over value. Side by side, the
+   two longer pairs wrapped and the two shorter did not, so the list
+   changed shape halfway down. */
+@media (max-width: 47.99rem) {
+  .facts > div { flex-direction: column; align-items: start; gap: var(--s-1); padding-block: var(--s-3); }
+}
+
 /* --------------------------------------------------------------------------
    Phones — full-width buttons keep their label on one line
    --------------------------------------------------------------------------
