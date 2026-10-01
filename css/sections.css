@@ -624,6 +624,49 @@
 }
 
 /* --------------------------------------------------------------------------
+   Comparison — the table, simplified
+   --------------------------------------------------------------------------
+   The table's frame, its filled header bars, the tinted columns and the
+   ticks in discs all came off. What tells the two options apart now is one
+   rule under each name, in its colour, and the colour of the words.
+   -------------------------------------------------------------------------- */
+
+#compare .table-scroll { border-radius: 0; box-shadow: none; background: transparent; }
+#compare .compare thead th { background: transparent; padding-block: var(--s-3) var(--s-4); }
+#compare .compare thead th:nth-child(2) { color: var(--plum-600); border-block-end: 2px solid var(--plum-600); }
+#compare .compare thead th:nth-child(3) { color: var(--ink-700); border-block-end: 2px solid var(--ink-700); }
+#compare .compare thead th:first-child { border-block-end: 2px solid transparent; }
+#compare .compare tbody th,
+#compare .compare tbody td,
+#compare .compare tbody tr:hover th,
+#compare .compare tbody tr:hover td { background: transparent; }
+#compare .compare tbody th { padding-inline-start: 0; }
+#compare .compare .group th {
+  background: transparent;
+  color: var(--text-soft);
+  padding: var(--s-5) 0 var(--s-2);
+  border-block-start: 0;
+}
+#compare .tick { inline-size: auto; block-size: auto; background: transparent; color: var(--plum-600); }
+#compare .compare td:nth-of-type(2) .tick { background: transparent; color: var(--ink-700); }
+#compare .tick .ico { inline-size: 1.375rem; block-size: 1.375rem; stroke-width: 2.4; }
+/* Phones: with no frame to say "this scrolls", a clipped table read as a
+   broken one, and three columns squeezed to fit broke words in half. Each
+   row stacks instead: its name across the top, the two answers side by
+   side under the two names they belong to. */
+@media (max-width: 47.99rem) {
+  #compare .compare, #compare .compare thead, #compare .compare tbody { display: block; min-inline-size: 0; }
+  #compare .compare tr { display: grid; grid-template-columns: 1fr 1fr; column-gap: var(--s-5); }
+  #compare .compare thead th:first-child { display: none; }
+  #compare .compare th, #compare .compare td { padding-inline: 0; text-align: start; }
+  #compare .compare tbody th[scope="row"] { grid-column: 1 / -1; padding-block: var(--s-4) var(--s-1); border-block-end: 0; }
+  #compare .compare tbody td { padding-block: 0 var(--s-4); }
+  #compare .compare .group th { grid-column: 1 / -1; }
+  #compare .tick { justify-content: start; }
+  #compare ~ .scroll-hint, #compare .scroll-hint { display: none; }
+}
+
+/* --------------------------------------------------------------------------
    Which lift — two paths and the answer
    --------------------------------------------------------------------------
    Kept to type and hairlines: no icons, no frames. One rule over both
