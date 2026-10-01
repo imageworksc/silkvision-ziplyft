@@ -60,3 +60,15 @@ h1, h2, h3, h4,
   line-height: 1.1;
   letter-spacing: var(--ls-tight);
 }
+
+/* A subhead that only qualifies the title above it: set in the reading
+   face, one step up from body copy, in the paragraph's grey — so it reads
+   as the question the section answers, not as a second headline. */
+.head .subhead {
+  font-family: var(--font-body);
+  font-size: var(--t-lead);
+  font-weight: 400;
+  line-height: 1.45;
+  letter-spacing: var(--ls-copy);
+  color: var(--text-soft);
+}
