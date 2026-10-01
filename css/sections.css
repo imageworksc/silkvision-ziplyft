@@ -641,12 +641,11 @@
 #compare .compare tbody tr:hover th,
 #compare .compare tbody tr:hover td { background: transparent; }
 #compare .compare tbody th { padding-inline-start: 0; color: var(--heading); }
-/* Group titles in the lighter blue, a step up from the row names. On the
-   paper band --blue-400 measures 4.1:1 — under AA's 4.5 for type this
-   small, kept because a darker mix read as the same blue as the rows. */
+/* Group titles: the row names' blue, faded. The alpha is on the colour,
+   not `opacity`, so only the words lighten — the rule above stays as is. */
 #compare .compare .group th {
   background: transparent;
-  color: var(--blue-400);
+  color: rgb(0 88 148 / .6);   /* --blue-500 at 60% */
   padding: var(--s-5) 0 var(--s-2);
   border-block-start: 0;
 }
