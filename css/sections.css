@@ -582,6 +582,11 @@
    Longevity — three statements across one rule
    -------------------------------------------------------------------------- */
 
+/* The page's light blue with most of its saturation taken out — the
+   accent on the navy bands (≈ 7:1 on the navy), shared with the steps. */
+:root { --sky-muted: #93b6cf; }
+.band--deep .over-time .kicker { color: var(--sky-muted); }
+
 .over-time { display: grid; gap: var(--s-5); }
 .over-time li {
   display: flex;
@@ -891,7 +896,7 @@ strong.hl {
 }
 /* A greyed, quieter cyan for the numbers and the lit rule: the page's
    light blue with most of its saturation taken out (≈ 7:1 on the navy). */
-.stepper { --step-accent: #93b6cf; }
+.stepper { --step-accent: var(--sky-muted); }
 .stepper__num {
   font-family: var(--font);
   font-size: var(--t-xs);
