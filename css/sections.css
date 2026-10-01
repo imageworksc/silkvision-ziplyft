@@ -168,44 +168,6 @@
    they must. */
 .closing .lead { max-width: 74ch; }
 
-/* The offices, as the foot of the closing band. They used to be a white
-   section of their own — and then the footer said the same two addresses
-   again. The heading carries the page's place name for search. */
-.where {
-  display: grid;
-  gap: var(--s-3);
-  justify-items: center;
-  padding-block-start: var(--s-6);
-  border-block-start: 1px solid var(--hairline-dark);
-}
-.where h3 { font-size: var(--t-body); }
-.where > p { font-size: var(--t-sm); color: var(--on-dark-faint); }
-
-/* The remains of the old contact strip, now the foot of this band. A rule
-   above it and a step down in weight keep it secondary to the two buttons —
-   these are the ways to get in touch that the buttons do not already offer,
-   not a second set of calls to action. */
-.reach {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: var(--s-2) var(--s-8);
-  padding-block-start: var(--s-6);
-  border-block-start: 1px solid var(--hairline);
-}
-.reach a {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--s-2);
-  min-block-size: var(--tap);
-  font-size: var(--t-sm);
-  font-weight: 600;
-  color: var(--on-dark-soft);
-  transition: color var(--t-fast) var(--ease), transform var(--t-fast) var(--ease);
-}
-.reach a:hover { color: var(--white); transform: translateY(-2px); }
-.reach .ico { color: var(--cyan-400); }
-
 /* --------------------------------------------------------------------------
    Footer
    One element, two bars: contact above, legal below.
@@ -382,9 +344,6 @@
   text-underline-offset: 3px;
 }
 
-/* Inside the closing band's office block the rule is already drawn by
-   .where, so the row does not draw a second one. */
-.where .reach { padding-block-start: 0; border: 0; }
 
 /* On the navy bands the lead and the running copy both step up a tone.
    --text-soft re-points to 62% white there, which is right for a label and
@@ -539,20 +498,6 @@
 }
 
 /* --------------------------------------------------------------------------
-   Step numbers — the tracked label the closing band's three steps use
-   -------------------------------------------------------------------------- */
-
-.step__num {
-  display: block;
-  font-family: var(--font);
-  font-size: var(--t-xs);
-  font-weight: 800;
-  letter-spacing: var(--ls-wide);
-  text-transform: uppercase;
-  color: var(--plum-600);
-}
-
-/* --------------------------------------------------------------------------
    Candidacy — the caution as a banner across the band
    -------------------------------------------------------------------------- */
 
@@ -604,35 +549,7 @@
   .over-time li + li { border-inline-start: 1px solid var(--hairline); }
 }
 
-/* --------------------------------------------------------------------------
-   Closing — what Dr. Silk will do, three across
-   -------------------------------------------------------------------------- */
-
-/* One row of three numbered phrases, divided by hairlines; the number
-   sits in front of its phrase in the muted light blue. No rules above. */
-.three { display: grid; gap: var(--s-3); justify-items: start; inline-size: fit-content; max-inline-size: 100%; margin-inline: auto; }
 .closing .cluster { justify-content: center; }
-.three li {
-  display: flex;
-  align-items: baseline;
-  gap: var(--s-3);
-  text-align: start;
-}
-.three .step__num {
-  color: var(--sky-muted);
-  font-size: var(--t-sm);
-  font-weight: 700;
-  letter-spacing: 0;
-  line-height: 1;
-}
-.three p { color: var(--white); }
-@media (min-width: 64rem) {
-  .three { display: flex; justify-content: center; gap: 0; }
-  .three li { flex: 1 1 0; max-inline-size: 22rem; padding-inline: var(--s-6); }
-  .three p { text-wrap: balance; }
-  .three li + li { border-inline-start: 1px solid var(--hairline-dark); }
-}
-
 
 /* --------------------------------------------------------------------------
    Comparison — the table, simplified

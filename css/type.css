@@ -32,7 +32,7 @@ h1, h2, h3, h4,
 .btn, .nav a, .nav-toggle, .topbar a, .skip-link,
 .faq summary, .compare thead th, .group-label,
 .vid-btn, .play, .ba__tag, .sticky-cta a,
-.step__num, .stepper__tab, .diagram__num, .d-pin text,
+.stepper__tab, .diagram__num, .d-pin text,
 .profile__stats dd, .kicker {
   font-family: var(--font);
 }

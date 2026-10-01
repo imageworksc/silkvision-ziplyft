@@ -171,7 +171,7 @@ strong, b { font-weight: 700; }
    lifts seats back down: pressing a thing should settle it, not launch it
    further. Anything that only recolours dips instead, because there is no
    travel to undo. Both are transform/opacity, so both composite. */
-:where(.nav a, .brand, .social a, .reach a, .strip a):active {
+:where(.nav a, .brand, .social a, .strip a):active {
   transform: none;
 }
 :where(.topbar a, .site-footer a, .compare a, .nav a:not(.btn)):active {
