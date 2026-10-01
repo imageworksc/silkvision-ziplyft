@@ -640,10 +640,13 @@
 #compare .compare tbody td,
 #compare .compare tbody tr:hover th,
 #compare .compare tbody tr:hover td { background: transparent; }
-#compare .compare tbody th { padding-inline-start: 0; }
+#compare .compare tbody th { padding-inline-start: 0; color: var(--heading); }
+/* Group titles in the lighter blue, a step up from the row names. On the
+   paper band --blue-400 measures 4.1:1 — under AA's 4.5 for type this
+   small, kept because a darker mix read as the same blue as the rows. */
 #compare .compare .group th {
   background: transparent;
-  color: var(--text-soft);
+  color: var(--blue-400);
   padding: var(--s-5) 0 var(--s-2);
   border-block-start: 0;
 }
