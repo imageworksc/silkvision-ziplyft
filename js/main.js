@@ -123,24 +123,7 @@ const setupReveals = () => {
 };
 
 /* --------------------------------------------------------------------------
-   4 · The comparison table's swipe hint
-   A closed loop: it runs once and ends. The hint exists because a horizontal
-   swipe is an invisible trigger; the moment the region is actually scrolled
-   the user has discovered it, so the hint retires and the listener with it.
-   -------------------------------------------------------------------------- */
-const setupScrollHint = () => {
-  const region = document.getElementById('compareScroll');
-  if (!region) return;
-
-  const used = () => {
-    region.dataset.used = 'true';
-    region.removeEventListener('scroll', used);
-  };
-  region.addEventListener('scroll', used, { passive: true, once: true });
-};
-
-/* --------------------------------------------------------------------------
-   5 · Before / after
+   4 · Before / after
    The range input is the control; this only mirrors its value into the one
    custom property the clip and the handle both read. The live text keeps a
    screen reader told how far the reveal has gone.
@@ -175,7 +158,7 @@ const setupBeforeAfter = () => {
 };
 
 /* --------------------------------------------------------------------------
-   6 · The mechanism video
+   5 · The mechanism video
    Silent and looping, so it plays by itself — but only while it is on
    screen, never under reduced motion, and never again once somebody has
    pressed pause. The button shows which state it is in.
@@ -216,7 +199,7 @@ const setupLoopVideo = () => {
 };
 
 /* --------------------------------------------------------------------------
-   7 · Dr. Silk's video
+   6 · Dr. Silk's video
    This one talks, so it waits to be asked. Pressing play starts it with
    sound and hands over to the browser's own controls.
    -------------------------------------------------------------------------- */
@@ -235,7 +218,7 @@ const setupTalkVideo = () => {
 };
 
 /* --------------------------------------------------------------------------
-   8 · The sticky call bar
+   7 · The sticky call bar
    On a phone, once the hero and its two buttons have scrolled away. Hidden
    again at the closing band, which carries the same two actions full size.
    -------------------------------------------------------------------------- */
@@ -263,7 +246,7 @@ const setupStickyCta = () => {
 };
 
 /* --------------------------------------------------------------------------
-   9 · The procedure's step bar
+   8 · The procedure's step bar
    The tabs pattern: one tab in the tab order at a time, arrow keys and
    Home/End move along the row, and the panels the script hides are the only
    thing it hides — without it all five stay open. On a device that can
@@ -304,7 +287,7 @@ const setupStepper = () => {
 };
 
 /* --------------------------------------------------------------------------
-   10 · Accordions — the FAQ and the cost questions open softly
+   9 · Accordions — the FAQ and the cost questions open softly
    <details> opens in one frame: the answer appears and everything under it
    jumps. Here the row's height eases between closed and open, the answer
    fades in a beat behind it, and the chevron turns as the move starts, not
@@ -375,7 +358,6 @@ const setupAccordions = () => {
 setupMenu();
 setupScroll();
 setupReveals();
-setupScrollHint();
 setupBeforeAfter();
 setupLoopVideo();
 setupTalkVideo();

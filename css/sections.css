@@ -216,7 +216,6 @@
 }
 .footer-brand img { inline-size: 9.5rem; block-size: auto; }
 
-
 .footer-offices {
   display: grid;
   gap: var(--s-6) var(--s-5);
@@ -273,32 +272,6 @@
 }
 .footer-phone .ico { inline-size: 1rem; block-size: 1rem; color: rgb(255 255 255 / .45); }
 
-/* The marks sit under the logo, in the brand column. No hairline and no row
-   of their own: five names spelled out needed the separation, five marks read
-   as one object and belong with the mark above them.
-
-   The names are still there as .sr-only, so the accessible name of each link
-   is the network rather than "link". */
-.social {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--s-1);
-  margin-inline-start: calc(var(--s-3) * -1);
-}
-.social a {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  /* Both, because the mark inside is 20px square: without them the target is
-     20px in each direction, well under the fingertip floor. */
-  min-block-size: var(--tap);
-  min-inline-size: var(--tap);
-  color: var(--white);
-  transition: color var(--t-fast) var(--ease), transform var(--t-fast) var(--ease);
-}
-.social .ico { inline-size: 1.25rem; block-size: 1.25rem; }
-.social a:hover { color: var(--cyan-300); transform: translateY(-2px); }
-
 /* The legal bar, centred. It is the one block on the page with no reading
    order to protect — a disclaimer, a copyright line and two links — so
    ranging it left only made it look like the start of a column that never
@@ -348,7 +321,6 @@
   text-decoration: underline;
   text-underline-offset: 3px;
 }
-
 
 /* On the navy bands the lead and the running copy both step up a tone.
    --text-soft re-points to 62% white there, which is right for a label and
@@ -477,7 +449,6 @@
 .profile__who p { color: var(--on-dark-soft); }
 /* The same fade on the navy band: the band's cyan label at 60%. */
 .profile__who .kicker { color: rgb(108 197 240 / .6); font-weight: 600; }
-.profile__br { display: none; }
 
 .profile__stats { display: flex; flex-wrap: wrap; gap: var(--s-5) var(--s-7); margin: 0; }
 .profile__stats > div { display: grid; gap: var(--s-1); }
@@ -500,8 +471,6 @@
 @media (min-width: 48rem) {
   .profile { grid-template-columns: auto 1fr; align-items: center; column-gap: var(--s-6); padding: var(--s-6) var(--s-7); }
   .profile__photo { inline-size: 9.5rem; block-size: 9.5rem; min-inline-size: 9.5rem; }
-  .profile__br { display: inline; }
-  .profile__who p span { display: none; }
   .profile__stats { grid-column: 1 / -1; justify-self: stretch; flex-wrap: nowrap; gap: 0; padding-block-start: var(--s-5); border-block-start: 1px solid var(--hairline-dark); }
   .profile__stats dt { white-space: nowrap; }
   .profile__stats > div + div { margin-inline-start: var(--s-6); padding-inline-start: var(--s-6); border-inline-start: 1px solid var(--hairline-dark); }
@@ -573,7 +542,6 @@
    rule under each name, in its colour, and the colour of the words.
    -------------------------------------------------------------------------- */
 
-#compare .table-scroll { border-radius: 0; box-shadow: none; background: transparent; }
 #compare .compare thead th { background: transparent; padding-block: var(--s-3) var(--s-4); }
 #compare .compare thead th:nth-child(2) { color: var(--plum-600); border-block-end: 2px solid var(--plum-600); }
 #compare .compare thead th:nth-child(3) { color: var(--ink-700); border-block-end: 2px solid var(--ink-700); }
@@ -583,31 +551,21 @@
 #compare .compare tbody tr:hover th,
 #compare .compare tbody tr:hover td { background: transparent; }
 #compare .compare tbody th { padding-inline-start: 0; color: var(--heading); }
-/* Group titles: the row names' blue, faded. The alpha is on the colour,
-   not `opacity`, so only the words lighten — the rule above stays as is. */
-#compare .compare .group th {
-  background: transparent;
-  color: rgb(0 88 148 / .6);   /* --blue-500 at 60% */
-  padding: var(--s-5) 0 var(--s-2);
-  border-block-start: 0;
-}
+
 #compare .tick { inline-size: auto; block-size: auto; background: transparent; color: var(--plum-600); }
 #compare .compare td:nth-of-type(2) .tick { background: transparent; color: var(--ink-700); }
 #compare .tick .ico { inline-size: 1.375rem; block-size: 1.375rem; stroke-width: 2.4; }
-/* Phones: with no frame to say "this scrolls", a clipped table read as a
-   broken one, and three columns squeezed to fit broke words in half. Each
+/* Phones: three columns squeezed to fit broke words in half. Each
    row stacks instead: its name across the top, the two answers side by
    side under the two names they belong to. */
 @media (max-width: 47.99rem) {
-  #compare .compare, #compare .compare thead, #compare .compare tbody { display: block; min-inline-size: 0; }
+  #compare .compare, #compare .compare thead, #compare .compare tbody { display: block; }
   #compare .compare tr { display: grid; grid-template-columns: 1fr 1fr; column-gap: var(--s-5); }
   #compare .compare thead th:first-child { display: none; }
   #compare .compare th, #compare .compare td { padding-inline: 0; text-align: start; }
   #compare .compare tbody th[scope="row"] { grid-column: 1 / -1; padding-block: var(--s-4) var(--s-1); border-block-end: 0; }
   #compare .compare tbody td { padding-block: 0 var(--s-4); }
-  #compare .compare .group th { grid-column: 1 / -1; }
   #compare .tick { justify-content: start; }
-  #compare ~ .scroll-hint, #compare .scroll-hint { display: none; }
 }
 
 /* --------------------------------------------------------------------------

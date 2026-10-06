@@ -95,9 +95,6 @@ strong, b { font-weight: 700; }
 .cluster { display: flex; flex-wrap: wrap; align-items: center; gap: var(--s-4); }
 .cluster--between { justify-content: space-between; }
 
-.grid { display: grid; gap: var(--s-5); }
-.grid--3 { grid-template-columns: repeat(auto-fit, minmax(min(17.5rem, 100%), 1fr)); }
-
 .split { display: grid; gap: var(--s-8); align-items: start; }
 @media (min-width: 60rem) {
   .split { grid-template-columns: 1fr 1fr; }
@@ -140,15 +137,6 @@ strong, b { font-weight: 700; }
    line wherever the screen can hold it. Still inside the 75-character measure. */
 .lead--wide { max-width: none; }
 
-/* Even the ragged edge out, so a short paragraph sets in lines of roughly one
-   length instead of three full ones and a stub.
-
-   A utility rather than the default, because `balance` costs a layout pass
-   per candidate break and browsers only apply it up to a handful of lines —
-   on running copy it does nothing and is paid for anyway. `pretty`, which
-   every p already has, is the cheap one: it only guards against orphans. */
-.balance { text-wrap: balance; }
-
 /* --------------------------------------------------------------------------
    Accessibility
    -------------------------------------------------------------------------- */
@@ -161,17 +149,10 @@ strong, b { font-weight: 700; }
 .band--deep :where(a, button, [tabindex]):focus-visible,
 .hero :where(a, button, [tabindex]):focus-visible { outline-color: var(--white); }
 
-/* Pressed.
-   Hover does not exist on a touch screen, and until this rule every link on
-   the page — the nav, the logo, the social marks, the contact row, the office
-   links — answered a finger with nothing at all between the tap and
-   the page changing. `.btn` was the only element with an :active state.
-
-   Two treatments, by what the element already does on hover. Anything that
-   lifts seats back down: pressing a thing should settle it, not launch it
-   further. Anything that only recolours dips instead, because there is no
-   travel to undo. Both are transform/opacity, so both composite. */
-:where(.nav a, .brand, .social a, .strip a):active {
+/* Pressed. Hover does not exist on a touch screen, so every link answers a
+   finger: anything that lifts on hover seats back down, anything that only
+   recolours dips instead. */
+:where(.nav a, .brand):active {
   transform: none;
 }
 :where(.topbar a, .site-footer a, .compare a, .nav a:not(.btn)):active {

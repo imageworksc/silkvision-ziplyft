@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Components — buttons, icons, cards, nav, table, progress, and the ZipLyft set
+   Components — buttons, icons, nav, table, progress, and the ZipLyft set
    ========================================================================== */
 
 /* --------------------------------------------------------------------------
@@ -18,32 +18,12 @@
   stroke-linecap: round;
   stroke-linejoin: round;
 }
-.ico--lg { inline-size: 1.925rem; block-size: 1.925rem; }
 
 /* Brand marks are the exception to everything above. They arrive as filled
    shapes from the companies that own them and are reproduced as issued, so
    the fill goes back on and the stroke off — restyling a logo into this
    page's 1.8 stroke would be redrawing somebody else's trademark. */
 .ico--brand { fill: currentColor; stroke: none; }
-
-/* The well an icon sits in. Flat ground, and it reacts to hover on the card
-   around it. */
-.ico-well {
-  display: grid;
-  place-items: center;
-  inline-size: 3.85rem;
-  block-size: 3.85rem;
-  border-radius: var(--r-md);
-  background: var(--white);
-  color: var(--plum-600);
-  flex: none;
-  box-shadow: var(--shadow-well);
-  transition: transform var(--t-mid) var(--ease-spring),
-              box-shadow var(--t-mid) var(--ease),
-              border-radius var(--t-mid) var(--ease);
-}
-
-.ico-well--sm { inline-size: 2.75rem; block-size: 2.75rem; border-radius: var(--r-sm); }
 
 /* --------------------------------------------------------------------------
    Buttons
@@ -113,96 +93,6 @@
 .btn:hover .ico--arrow { transform: translateX(.3rem); }
 
 /* --------------------------------------------------------------------------
-   Cards
-   -------------------------------------------------------------------------- */
-
-.card {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  gap: var(--s-4);
-  padding: var(--s-7);
-  border-radius: var(--r-lg);
-  background: var(--white);
-  border: 1px solid var(--hairline);
-  box-shadow: var(--shadow-sm);
-  overflow: hidden;
-  transition: transform .45s var(--ease-spring),
-              box-shadow var(--t-mid) var(--ease),
-              border-color var(--t-fast) var(--ease),
-              background-color var(--t-fast) var(--ease);
-}
-
-/* a.card, not .card. A card that rises under the cursor says "click me", and
-   eighteen of the twenty-one blocks that were saying it had nothing inside to
-   click — the six benefit cards, the four accreditation rows and the eight
-   timeline steps are all <article>, <div> or <li>. decisions/13 called this
-   before any of it was built: "a card that rises under the cursor promises a
-   click that is not there."
-
-   Keyed on the element rather than listed as exceptions, so it enforces
-   itself. Make a card an anchor and it gets the hover back; leave it as an
-   article and it never gets it by accident.
-
-   What it does when it applies: four things in sequence rather than sliding
-   the card as one block — the card rises on a spring, the icon swings up
-   behind it, then the heading and the copy follow. The delays live on :hover
-   only, so entering is orchestrated and leaving snaps straight back; a
-   staggered exit reads as lag.
-
-   --shadow-md, not --shadow-lg: the large one is 0 28px 60px at 17%, which on
-   a grid of cards pools a halo wide enough that rows smudge into each other. */
-a.card:hover {
-  transform: translateY(-10px);
-  background-color: var(--paper);
-  border-color: var(--blue-400);
-  box-shadow: var(--shadow-md);
-}
-
-a.card .ico-well,
-a.card h3,
-a.card p { transition: transform .45s var(--ease-spring); }
-
-a.card:hover .ico-well {
-  transform: translateY(-6px) scale(1.12);
-  transition-delay: 40ms;
-}
-a.card:hover h3 { transform: translateX(6px); transition-delay: 90ms; }
-a.card:hover p  { transform: translateX(4px); transition-delay: 130ms; }
-
-.card h3 { color: var(--heading); }
-.card p { color: var(--text-soft); font-size: var(--t-sm); }
-
-/* A card inside a centred stack centres its own contents too — otherwise
-   the icon well stays hard left while the heading and copy sit centred. */
-.stack--center .card { align-items: center; text-align: center; }
-
-/* A compacter card, for a set that runs two rows deep. The reduction comes
-   out of padding, the icon well and the heading — never the copy, which
-   holds its 16px floor. */
-.cards--sm { gap: var(--s-4); }
-.cards--sm .card { padding: var(--s-5); gap: var(--s-2); }
-.cards--sm .ico-well { inline-size: 2.75rem; block-size: 2.75rem; }
-.cards--sm .ico--lg { inline-size: 1.3rem; block-size: 1.3rem; }
-.cards--sm .card h3 { font-size: var(--t-body); }
-
-/* Cards on a dark band. */
-.band--deep .card {
-  background-color: rgb(255 255 255 / .05);
-  border-color: var(--hairline-dark);
-  box-shadow: none;
-  backdrop-filter: blur(6px);
-}
-.band--deep a.card:hover {
-  background-color: rgb(255 255 255 / .09);
-  border-color: rgb(108 197 240 / .5);
-  /* These carry none at rest and .card:hover was handing them one on the way
-     in — a navy shadow on a navy band, which costs a repaint and shows
-     nothing. The lighter fill is the whole signal here. */
-  box-shadow: none;
-}
-
-/* --------------------------------------------------------------------------
    Feature rows — an icon, a claim, a hairline
    -------------------------------------------------------------------------- */
 
@@ -267,15 +157,6 @@ a.card:hover p  { transform: translateX(4px); transition-delay: 130ms; }
 .brand img { inline-size: 11.5rem; block-size: auto; transition: transform var(--t-mid) var(--ease); }
 .brand:hover img { transform: scale(1.03); }
 
-/* A link that is a target on its own rather than a word inside a sentence.
-   An inline box ignores min-block-size, so it needs a box that does not.
-   (A link inside running prose is exempt from the 44px minimum.) */
-.tap {
-  display: inline-flex;
-  align-items: center;
-  min-block-size: var(--tap);
-}
-
 .nav { display: flex; align-items: center; gap: var(--s-5); }
 .nav a:not(.btn) {
   position: relative;
@@ -329,38 +210,6 @@ a.card:hover p  { transform: translateX(4px); transition-delay: 130ms; }
 .nav-toggle[aria-expanded="true"] .ico--close,
 .nav-toggle[aria-expanded="true"] .nav-toggle__open { display: inline-flex; }
 
-/* The table is 46rem wide and a phone is 24, so it scrolls sideways — and a
-   swipe is an invisible trigger with nothing to discover it by. This is the
-   visible alternative the gesture needs.
-
-   It is a closed loop: it appears once, and the first scroll of the region
-   ends it for good. Scaffolding that stays after the user has shown they do
-   not need it is clutter, not help.
-
-   No edge fade here, which is the usual answer, because that answer is a
-   gradient and this page has none (decision 14). A line of type says the
-   same thing and says it in words. */
-.scroll-hint {
-  display: none;
-  align-items: center;
-  justify-content: center;
-  /* The parent stack is align-items:flex-start, so without this the box
-     shrinks to its content and justify-content has nothing to centre in. */
-  inline-size: 100%;
-  max-width: none;
-  gap: var(--s-2);
-  margin-block-start: var(--s-3);
-  font-size: var(--t-xs);
-  color: var(--text-faint);
-  transition: opacity var(--t-mid) var(--ease);
-}
-.scroll-hint .ico { inline-size: 1rem; block-size: 1rem; }
-@media (max-width: 49.99rem) {
-  .scroll-hint { display: flex; }
-}
-/* Used it once — it has done its job. */
-.table-scroll[data-used="true"] + .scroll-hint { opacity: 0; visibility: hidden; }
-
 @media (max-width: 61.99rem) {
   .nav-toggle { display: inline-flex; }
   .site-header { position: relative; }
@@ -403,21 +252,16 @@ a.card:hover p  { transform: translateX(4px); transition-delay: 130ms; }
    Comparison table
    -------------------------------------------------------------------------- */
 
-.table-scroll {
+.compare-wrap {
   /* position:relative is load-bearing. The Yes/No in each cell is .sr-only,
      which is position:absolute; with no positioned ancestor it lays out
-     against the viewport at its static x — up to the table's full width —
-     and is not clipped here, which silently widens the page on a phone. */
+     against the viewport at its static x and silently widens the page on a
+     phone. */
   position: relative;
-  overflow-x: auto;
-  border-radius: var(--r-lg);
-  box-shadow: var(--shadow-md);
-  background: var(--white);
 }
 
 .compare {
   inline-size: 100%;
-  min-inline-size: 46rem;
   border-collapse: collapse;
   text-align: start;
 }
@@ -455,42 +299,6 @@ a.card:hover p  { transform: translateX(4px); transition-delay: 130ms; }
 .compare tbody tr:hover td:nth-of-type(1) { background: rgb(166 38 166 / .13); }
 .compare tbody tr:hover td:nth-of-type(2) { background: rgb(0 73 123 / .1); }
 
-/* The group row used to be a solid navy bar across all three columns, which
-   made it heavier than the table's own header — the row that matters most —
-   and cut the two tinted columns into thirds. Pale, with a rule above it, it
-   divides without outranking. */
-.compare .group th {
-  background: var(--pale-100);
-  color: var(--heading);
-  font-size: var(--t-xs);
-  font-weight: 800;
-  letter-spacing: var(--ls-wide);
-  text-transform: uppercase;
-  padding-block: var(--s-3);
-  border-block-start: 1px solid var(--hairline);
-}
-.compare tbody:first-of-type .group th { border-block-start: 0; }
-
-/* inline-flex on a span, not on the th: display:flex on a table cell drops it
-   out of the table's formatting context and the colspan stops spanning. */
-.group-label {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--s-3);
-}
-/* No colour of its own: currentColor takes the label's --heading, so the mark
-   and the words read as one thing. The brand blue measures 6.3:1 on this pale
-   ground, where a graphic needs 3. The cyan does not — it is 2.3:1 — so if
-   this ever wants to be lighter, it has to darken the ground first.
-
-   Sized in rem, not em. At 1.375em it was a tenth of a 13px label and came
-   out at 18px; the label is the smallest type on the page and the icon should
-   not inherit that. */
-.group-label .ico {
-  inline-size: 1.375rem;
-  block-size: 1.375rem;
-}
-
 .tick {
   display: inline-grid;
   place-items: center;
@@ -505,54 +313,11 @@ a.card:hover p  { transform: translateX(4px); transition-delay: 130ms; }
    two options are the same thing. */
 .compare td:nth-of-type(2) .tick { background: var(--ink-600); }
 
-/* An empty cell means "no". Left blank it reads as a gap in the data. */
-.dash { color: var(--text-faint); font-weight: 600; }
-
-
 /* ==========================================================================
    The ZipLyft set
    Everything below was added for this page. It reads off the same tokens as
    everything above and introduces no colour, radius or duration of its own.
    ========================================================================== */
-
-/* --------------------------------------------------------------------------
-   Checklist — a claim per line, each behind the table's plum tick.
-   The tick is the same object as the comparison table's, so a "yes" looks
-   the same wherever the page says one.
-   -------------------------------------------------------------------------- */
-
-.checklist {
-  display: grid;
-  gap: var(--s-3) var(--s-7);
-}
-.checklist li {
-  display: flex;
-  align-items: flex-start;
-  gap: var(--s-3);
-  font-size: var(--t-sm);
-  color: var(--text);
-}
-/* The check on its own — no plum disc behind it. The table keeps its
-   badges; they sit in a grid of cells where a bare mark would float. */
-.checklist .tick {
-  flex: none;
-  inline-size: 1.5rem;
-  block-size: 1.5rem;
-  margin-block-start: .1rem;
-  background: none;
-  color: var(--plum-600);
-}
-.checklist .tick .ico { inline-size: 1.375rem; block-size: 1.375rem; stroke-width: 2.2; }
-
-@media (min-width: 40rem) {
-  .checklist--2 { grid-template-columns: 1fr 1fr; }
-}
-@media (min-width: 60rem) {
-  .checklist--3 { grid-template-columns: repeat(3, 1fr); }
-}
-@media (min-width: 40rem) and (max-width: 59.99rem) {
-  .checklist--3 { grid-template-columns: 1fr 1fr; }
-}
 
 /* --------------------------------------------------------------------------
    Facts — label over value, divided by hairlines. The hero's three facts,
@@ -799,37 +564,7 @@ a.card:hover p  { transform: translateX(4px); transition-delay: 130ms; }
    Note — an aside that qualifies the copy next to it. A rule, not a box.
    -------------------------------------------------------------------------- */
 
-.note {
-  display: grid;
-  gap: var(--s-3);
-  padding-inline-start: var(--s-5);
-  border-inline-start: 3px solid var(--plum-600);
-}
-.note h3 { font-size: var(--t-body); }
-.note p { font-size: var(--t-sm); color: var(--text-soft); }
-
 .fine { font-size: var(--t-sm); color: var(--text-soft); }
-
-/* --------------------------------------------------------------------------
-   Callout — the one white panel on a pale band, like the accreditation
-   claim on the office-based surgery page.
-   -------------------------------------------------------------------------- */
-
-.callout {
-  display: grid;
-  gap: var(--s-4);
-  justify-items: start;
-  inline-size: 100%;
-  padding: var(--s-6) var(--s-5);
-  border-radius: var(--r-lg);
-  background: var(--white);
-  box-shadow: var(--shadow-md);
-}
-@media (min-width: 48rem) {
-  .callout { padding: var(--s-7); grid-template-columns: 1fr auto; align-items: center; column-gap: var(--s-8); }
-  .callout > .stack { gap: var(--s-3); }
-}
-.callout p { font-size: var(--t-sm); color: var(--text-soft); }
 
 /* --------------------------------------------------------------------------
    Sticky call bar — phones only, and only once the hero's own two buttons
@@ -874,33 +609,6 @@ a.card:hover p  { transform: translateX(4px); transition-delay: 130ms; }
    slide to finish on the way out and is restored at once on the way in. */
 .sticky-cta { visibility: hidden; transition: transform var(--t-mid) var(--ease), visibility 0s linear var(--t-mid); }
 .sticky-cta[data-shown="true"] { visibility: visible; transition-delay: 0s; }
-
-/* --------------------------------------------------------------------------
-   Panel — a white box that holds a list, so a list reads as one object on
-   its band instead of a scatter of lines. The card's frame without the
-   card's icon well: panels hold claims, not features. Not a link, so it
-   does not lift (DESIGN.md §5).
-   -------------------------------------------------------------------------- */
-
-.panel {
-  display: grid;
-  gap: var(--s-5);
-  align-content: start;
-  padding: var(--s-6) var(--s-5);
-  border-radius: var(--r-lg);
-  background: var(--white);
-  border: 1px solid var(--hairline);
-  box-shadow: var(--shadow-sm);
-}
-@media (min-width: 48rem) { .panel { padding: var(--s-7); } }
-
-/* The panel's heading, with a rule under it that runs the panel's width —
-   the one line that says where the title stops and the list starts. */
-.panel > h3 {
-  font-size: var(--t-body);
-  padding-block-end: var(--s-4);
-  border-block-end: 1px solid var(--hairline);
-}
 
 /* --------------------------------------------------------------------------
    Diagram — the eyelid, drawn

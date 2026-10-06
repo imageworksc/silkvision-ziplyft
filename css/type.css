@@ -30,7 +30,7 @@ body { font-family: var(--font-body); }
 /* Titles and controls stay Poppins. */
 h1, h2, h3, h4,
 .btn, .nav a, .nav-toggle, .topbar a, .skip-link,
-.faq summary, .compare thead th, .group-label,
+.faq summary, .compare thead th,
 .vid-btn, .play, .ba__tag, .sticky-cta a,
 .stepper__tab, .diagram__num, .d-pin text,
 .profile__stats dd, .kicker {
@@ -45,13 +45,6 @@ h1, h2, h3, h4,
   font-size: var(--t-copy);
   line-height: var(--lh-copy);
   letter-spacing: var(--ls-copy);
-}
-
-/* What is not body copy, set back to its own role. */
-#main .compare .group th,
-#main .scroll-hint {
-  font-size: var(--t-xs);
-  letter-spacing: var(--ls-wide);
 }
 
 /* The profile card's two figures are display type, not copy. */
@@ -94,10 +87,10 @@ h1, h2, h3, h4,
 
 :is(#_, h1, h2) { font-weight: 700; }
 
-:is(#_, h3, h4, .kicker, .group-label, .faq summary, .compare thead th,
-    .compare .group th, .btn, .nav a, .nav-toggle, .topbar a, .sticky-cta a,
-    .ba__tag, .vid-btn, .play, .stepper__num, .stages__num, .diagram__num,
-    .profile__stats dd, .fit__lead, .scroll-hint) { font-weight: 600; }
+:is(#_, h3, h4, .kicker, .faq summary, .compare thead th, .btn, .nav a,
+    .nav-toggle, .topbar a, .sticky-cta a, .ba__tag, .vid-btn, .play,
+    .stepper__num, .stages__num, .diagram__num, .profile__stats dd,
+    .fit__lead) { font-weight: 600; }
 
 #main :is(p, li, dt, dd, td, tbody th, figcaption, .subhead, .stepper__title):not(.profile__stats dd) {
   font-weight: 400;

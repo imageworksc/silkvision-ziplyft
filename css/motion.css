@@ -82,9 +82,6 @@
 .stagger > *:nth-child(7) { --d: 420ms; }
 .stagger > *:nth-child(8) { --d: 490ms; }
 
-/* The seal floats only while the pointer is on it — still otherwise. */
-.seal:hover { animation: float 2.4s var(--ease-soft) infinite; }
-
 /* --------------------------------------------------------------------------
    Reduced motion
    Everything above goes. Colour and tint changes stay, because they carry
@@ -101,28 +98,19 @@
     transition-duration: .01ms !important;
   }
 
-  .scroll-cue .ico,
-  .seal:hover { animation: none; }
-
   [data-anim="on"] [data-reveal] { opacity: 1; transform: none; }
 
   .stepper__tab::before { transform: none; }
   .stepper__tab:not([aria-selected="true"])::before { background: transparent; }
 
-  .btn:hover,
-  a.card:hover,
-  .social a:hover { transform: none; }
+  .btn:hover { transform: none; }
 
   /* Several hovers move something other than the element under the cursor,
      and each has to be named or it escapes the contract: the blanket rule
      above only zeroes the transform on the hovered element itself.
 
      Audited by listing every `transform` under a `:hover` in the stylesheets
-     against this block. Four were escaping — the logo, the feature's icon
-     well, the button's arrow, and the card's three children. */
-  a.card:hover .ico-well,
-  a.card:hover h3,
-  a.card:hover p,
+     against this block: the logo and the button's arrow. */
   .brand:hover img,
   .btn:hover .ico--arrow { transform: none; }
 
