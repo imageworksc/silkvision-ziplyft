@@ -146,16 +146,32 @@ const setupScrollHint = () => {
    screen reader told how far the reveal has gone.
    -------------------------------------------------------------------------- */
 const setupBeforeAfter = () => {
-  const stage = document.getElementById('ba');
-  const range = document.getElementById('baRange');
-  if (!stage || !range) return;
+  document.querySelectorAll('.ba').forEach((stage) => {
+    const range = stage.querySelector('.ba__range');
+    if (!range) return;
+    const paint = () => {
+      stage.style.setProperty('--pos', `${range.value}%`);
+      range.setAttribute('aria-valuetext', `${Math.round(100 - range.value)}% of the after photograph showing`);
+    };
+    range.addEventListener('input', paint);
+    paint();
+  });
 
-  const paint = () => {
-    stage.style.setProperty('--pos', `${range.value}%`);
-    range.setAttribute('aria-valuetext', `${Math.round(100 - range.value)}% of the after photograph showing`);
+  // The cases carousel: one slide at a time, arrows wrap around.
+  const root = document.getElementById('cases');
+  if (!root) return;
+  const slides = [...root.querySelectorAll('.carousel__slide')];
+  const current = root.querySelector('[data-current]');
+  let i = 0;
+  const show = (n) => {
+    i = (n + slides.length) % slides.length;
+    slides.forEach((sl, j) => { sl.hidden = j !== i; });
+    current.textContent = String(i + 1);
   };
-  range.addEventListener('input', paint);
-  paint();
+  root.querySelectorAll('.carousel__btn').forEach((b) =>
+    b.addEventListener('click', () => show(i + Number(b.dataset.dir))));
+  root.dataset.ready = '';
+  show(0);
 };
 
 /* --------------------------------------------------------------------------

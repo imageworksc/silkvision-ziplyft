@@ -679,7 +679,7 @@ a.card:hover p  { transform: translateX(4px); transition-delay: 130ms; }
 .ba {
   --pos: 50%;
   position: relative;
-  aspect-ratio: 16 / 9;
+  aspect-ratio: 1200 / 630;
   overflow: hidden;
   border-radius: var(--r-lg);
   background: var(--ink-800);

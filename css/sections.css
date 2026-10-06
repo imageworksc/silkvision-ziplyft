@@ -977,6 +977,44 @@ strong.hl {
 }
 
 /* --------------------------------------------------------------------------
+   Before & after — four cases, one at a time
+   -------------------------------------------------------------------------- */
+
+.carousel { display: grid; gap: var(--s-4); }
+/* Without script every slide shows, stacked; with it, only the current. */
+.carousel__track { display: grid; gap: var(--s-4); }
+.carousel__slide[hidden] { display: none; }
+[data-anim="on"] .carousel__slide:not([hidden]) { animation: fadeIn var(--t-mid) var(--ease); }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+.carousel__nav { display: flex; align-items: center; justify-content: center; gap: var(--s-4); }
+.carousel__btn {
+  display: grid;
+  place-items: center;
+  inline-size: var(--tap);
+  block-size: var(--tap);
+  padding: 0;
+  border: 1px solid var(--hairline);
+  border-radius: var(--r-pill);
+  background: transparent;
+  color: var(--heading);
+  cursor: pointer;
+  transition: border-color var(--t-fast) var(--ease), color var(--t-fast) var(--ease);
+}
+.carousel__btn:hover { border-color: var(--plum-600); color: var(--plum-600); }
+.carousel__btn[data-dir="-1"] .ico { transform: scaleX(-1); }
+.carousel__count {
+  min-inline-size: 3.5rem;
+  text-align: center;
+  font-family: var(--font);
+  font-size: var(--t-sm);
+  font-weight: 600;
+  color: var(--text-soft);
+  font-variant-numeric: tabular-nums;
+}
+.carousel:not([data-ready]) .carousel__nav { display: none; }
+
+/* --------------------------------------------------------------------------
    Phones — full-width buttons keep their label on one line
    --------------------------------------------------------------------------
    At the desktop's 48px a side, "Schedule a consultation" and "Compare your
