@@ -60,15 +60,15 @@
 <link rel="preconnect" href="https://res.cloudinary.com">
 <link rel="preload" as="image" fetchpriority="high"
       href="https://res.cloudinary.com/dsjbq35es/image/upload/f_auto,q_auto,w_1800/v1789669040/SV_ziplyft_hero_ktw80x.jpg">
-<link rel="stylesheet" href="css/fonts.css?v=76">
-<link rel="stylesheet" href="css/tokens.css?v=76">
-<link rel="stylesheet" href="css/base.css?v=76">
-<link rel="stylesheet" href="css/components.css?v=76">
-<link rel="stylesheet" href="css/sections.css?v=76">
-<link rel="stylesheet" href="css/type.css?v=76">
-<link rel="stylesheet" href="css/motion.css?v=76">
+<link rel="stylesheet" href="css/fonts.css?v=77">
+<link rel="stylesheet" href="css/tokens.css?v=77">
+<link rel="stylesheet" href="css/base.css?v=77">
+<link rel="stylesheet" href="css/components.css?v=77">
+<link rel="stylesheet" href="css/sections.css?v=77">
+<link rel="stylesheet" href="css/type.css?v=77">
+<link rel="stylesheet" href="css/motion.css?v=77">
 
-<script src="js/main.js?v=76" defer></script>
+<script src="js/main.js?v=77" defer></script>
 </head>
 <body>
 
@@ -361,12 +361,12 @@
           <p>The goal is to remove the excess skin contributing to a tired, heavy or hooded
             appearance while <strong class="hl">preserving the natural characteristics that make your eyes yours</strong>.</p>
         </div>
-        <p class="fine">Drag the handle to compare; use the arrows to see another case. Individual results and recovery times vary.</p>
+        <p class="fine">Drag the handle to compare; use the dots to see another case. Individual results and recovery times vary.</p>
       </div>
 
       <!-- Four cases from ziplyft.com/before-after (01, 03, 06, 08), one at a
-           time. Each is its own before/after slider; the arrows and dots
-           change case. Without script the four stack. -->
+           time. Each is its own before/after slider; the dots change case,
+           crossfading. Without script the four stack. -->
       <div class="carousel full" id="cases" role="region" aria-roledescription="carousel" aria-label="Before and after cases" data-reveal>
         <div class="carousel__track">
           <div class="carousel__slide" role="group" aria-roledescription="slide" aria-label="Case 01, 1 of 4">
@@ -379,7 +379,7 @@
               <input class="ba__range" type="range" min="0" max="100" value="50" step="1" aria-label="Compare before and after, case 01">
             </div>
           </div>
-          <div class="carousel__slide" role="group" aria-roledescription="slide" aria-label="Case 03, 2 of 4" hidden>
+          <div class="carousel__slide" role="group" aria-roledescription="slide" aria-label="Case 03, 2 of 4">
             <div class="ba">
               <img src="images/cases/case3-before.jpg" width="1200" height="630" loading="lazy" alt="Case 03: a patient’s upper eyelids before Ziplyft">
               <img class="ba__after" src="images/cases/case3-after.jpg" width="1200" height="630" loading="lazy" alt="Case 03: the same patient’s upper eyelids after Ziplyft">
@@ -389,7 +389,7 @@
               <input class="ba__range" type="range" min="0" max="100" value="50" step="1" aria-label="Compare before and after, case 03">
             </div>
           </div>
-          <div class="carousel__slide" role="group" aria-roledescription="slide" aria-label="Case 06, 3 of 4" hidden>
+          <div class="carousel__slide" role="group" aria-roledescription="slide" aria-label="Case 06, 3 of 4">
             <div class="ba">
               <img src="images/cases/case6-before.jpg" width="1200" height="630" loading="lazy" alt="Case 06: a patient’s upper eyelids before Ziplyft">
               <img class="ba__after" src="images/cases/case6-after.jpg" width="1200" height="630" loading="lazy" alt="Case 06: the same patient’s upper eyelids after Ziplyft">
@@ -399,7 +399,7 @@
               <input class="ba__range" type="range" min="0" max="100" value="50" step="1" aria-label="Compare before and after, case 06">
             </div>
           </div>
-          <div class="carousel__slide" role="group" aria-roledescription="slide" aria-label="Case 08, 4 of 4" hidden>
+          <div class="carousel__slide" role="group" aria-roledescription="slide" aria-label="Case 08, 4 of 4">
             <div class="ba">
               <img src="images/cases/case8-before.jpg" width="1200" height="630" loading="lazy" alt="Case 08: a patient’s upper eyelids before Ziplyft">
               <img class="ba__after" src="images/cases/case8-after.jpg" width="1200" height="630" loading="lazy" alt="Case 08: the same patient’s upper eyelids after Ziplyft">
@@ -411,9 +411,10 @@
           </div>
         </div>
         <div class="carousel__nav">
-          <button class="carousel__btn" type="button" data-dir="-1" aria-label="Previous case"><svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></button>
-          <span class="carousel__count" aria-live="polite"><span data-current>1</span> / 4</span>
-          <button class="carousel__btn" type="button" data-dir="1" aria-label="Next case"><svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+          <button class="carousel__dot" type="button" aria-label="Show case 01" aria-current="true"></button>
+          <button class="carousel__dot" type="button" aria-label="Show case 03" aria-current="false"></button>
+          <button class="carousel__dot" type="button" aria-label="Show case 06" aria-current="false"></button>
+          <button class="carousel__dot" type="button" aria-label="Show case 08" aria-current="false"></button>
         </div>
       </div>
     </div>

@@ -157,19 +157,19 @@ const setupBeforeAfter = () => {
     paint();
   });
 
-  // The cases carousel: one slide at a time, arrows wrap around.
+  // The cases carousel: one slide at a time, chosen by its dot.
   const root = document.getElementById('cases');
   if (!root) return;
   const slides = [...root.querySelectorAll('.carousel__slide')];
-  const current = root.querySelector('[data-current]');
-  let i = 0;
-  const show = (n) => {
-    i = (n + slides.length) % slides.length;
-    slides.forEach((sl, j) => { sl.hidden = j !== i; });
-    current.textContent = String(i + 1);
+  const dots = [...root.querySelectorAll('.carousel__dot')];
+  const show = (i) => {
+    slides.forEach((sl, j) => {
+      sl.classList.toggle('is-current', j === i);
+      sl.inert = j !== i;
+    });
+    dots.forEach((d, j) => d.setAttribute('aria-current', String(j === i)));
   };
-  root.querySelectorAll('.carousel__btn').forEach((b) =>
-    b.addEventListener('click', () => show(i + Number(b.dataset.dir))));
+  dots.forEach((d, i) => d.addEventListener('click', () => show(i)));
   root.dataset.ready = '';
   show(0);
 };

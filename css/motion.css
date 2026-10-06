@@ -146,3 +146,8 @@
   .ba:hover .ba__knob,
   .ba:has(.ba__range:focus-visible) .ba__knob { transform: none; }
 }
+
+@media (prefers-reduced-motion: reduce) {
+  .carousel[data-ready] .carousel__slide,
+  .carousel[data-ready] .carousel__slide.is-current { transition: none; transform: none; }
+}

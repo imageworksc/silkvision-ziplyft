@@ -980,38 +980,47 @@ strong.hl {
    Before & after — four cases, one at a time
    -------------------------------------------------------------------------- */
 
-.carousel { display: grid; gap: var(--s-4); }
-/* Without script every slide shows, stacked; with it, only the current. */
+.carousel { display: grid; gap: var(--s-5); }
+/* Without script every slide shows, stacked. With it, the four share one
+   grid cell and crossfade: nothing leaves the layout, so nothing jumps. */
 .carousel__track { display: grid; gap: var(--s-4); }
-.carousel__slide[hidden] { display: none; }
-[data-anim="on"] .carousel__slide:not([hidden]) { animation: fadeIn var(--t-mid) var(--ease); }
-@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+.carousel[data-ready] .carousel__track { gap: 0; }
+.carousel[data-ready] .carousel__slide {
+  grid-area: 1 / 1;
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(.985);
+  transition: opacity .6s var(--ease-soft), transform .6s var(--ease-soft), visibility 0s linear .6s;
+}
+.carousel[data-ready] .carousel__slide.is-current {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+  transition: opacity .6s var(--ease-soft), transform .6s var(--ease-soft), visibility 0s;
+}
 
-.carousel__nav { display: flex; align-items: center; justify-content: center; gap: var(--s-4); }
-.carousel__btn {
+.carousel__nav { display: flex; align-items: center; justify-content: center; gap: var(--s-1); }
+/* Each dot is a 44px target holding a small mark; the current one widens. */
+.carousel__dot {
   display: grid;
   place-items: center;
-  inline-size: var(--tap);
+  inline-size: 1.75rem;
   block-size: var(--tap);
   padding: 0;
-  border: 1px solid var(--hairline);
-  border-radius: var(--r-pill);
-  background: transparent;
-  color: var(--heading);
+  border: 0;
+  background: none;
   cursor: pointer;
-  transition: border-color var(--t-fast) var(--ease), color var(--t-fast) var(--ease);
 }
-.carousel__btn:hover { border-color: var(--plum-600); color: var(--plum-600); }
-.carousel__btn[data-dir="-1"] .ico { transform: scaleX(-1); }
-.carousel__count {
-  min-inline-size: 3.5rem;
-  text-align: center;
-  font-family: var(--font);
-  font-size: var(--t-sm);
-  font-weight: 600;
-  color: var(--text-soft);
-  font-variant-numeric: tabular-nums;
+.carousel__dot::before {
+  content: '';
+  inline-size: .5rem;
+  block-size: .5rem;
+  border-radius: var(--r-pill);
+  background: rgb(1 53 89 / .2);
+  transition: inline-size var(--t-mid) var(--ease), background-color var(--t-mid) var(--ease);
 }
+.carousel__dot:hover::before { background: rgb(106 0 106 / .4); }
+.carousel__dot[aria-current="true"]::before { inline-size: 1.5rem; background: var(--plum-600); }
 .carousel:not([data-ready]) .carousel__nav { display: none; }
 
 /* --------------------------------------------------------------------------
